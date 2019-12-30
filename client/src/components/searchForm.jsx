@@ -9,10 +9,10 @@ class SearchForm extends Component {
   }
 
   componentDidMount() {
-    this.getTmdbApi()
+    this.getRawgApi()
   }
 
-  getTmdbApi = async () => {
+  getRawgApi = async () => {
     if (this.state.keyword !== '') {
       try {
         const response = await fetch(`/api/videogameAutocomplete?q=${this.state.keyword.toLowerCase()}`)
@@ -64,7 +64,7 @@ class SearchForm extends Component {
   setKeywordInInput = event => {
     this.setState({ keyword: event.target.value })
     if (event.target.value.length > 3) {
-      this.getTmdbApi() // send request to api only after 3 characters
+      this.getRawgApi() // send request to api only after 3 characters
       this.setState({ dropdownIsopened: true })
     }
   }

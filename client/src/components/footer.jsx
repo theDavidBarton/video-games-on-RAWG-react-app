@@ -12,12 +12,9 @@ class Footer extends Component {
               <p className='text-center mt-2'>copyright © 2019 theDavidBarton</p>
             </div>
             <div className='col align-self-end'>
-              <p className='lead'>
-                Today these are the TOP9 trending movies on The Movie Database. This product uses the TMDb API but is
-                not endorsed or certified by TMDb.
-              </p>
+              <p className='lead'>Today these are the TOP9 top rated videogames on RAWG.</p>
               <p>
-                <span className='badge badge-success'>#TMDb</span>{' '}
+                <span className='badge badge-success'>#RAWG</span>{' '}
                 <span className='badge badge-warning'>#trending</span>{' '}
                 <span className='badge badge-light'>#ReactJS</span>{' '}
                 <span className='badge badge-danger'>#bootstrap</span>

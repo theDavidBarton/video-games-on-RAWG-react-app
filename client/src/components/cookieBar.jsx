@@ -15,8 +15,8 @@ class CookieBar extends Component {
         {this.state.isOpened ? (
           <div className='bg-warning sticky-top py-2'>
             <div className='container'>
-              This page doesn't store cookies, but TMDb does. Check out{' '}
-              <a className='text-success' href='https://www.themoviedb.org/privacy-policy'>
+              This page doesn't store cookies, but RAWG does. Check out{' '}
+              <a className='text-success' href='https://rawg.io/privacy_policy'>
                 their cookie policy
               </a>{' '}
               to opt out!

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TrendingMovieSkeletonLoading extends Component {
+class TrendingVideogameSkeletonLoading extends Component {
   render() {
     return (
       <div className='col-sm-4 col-xs-1'>
@@ -11,7 +11,7 @@ class TrendingMovieSkeletonLoading extends Component {
             </div>
             <img
               className='card-img-top'
-              alt='movie poster'
+              alt='videogame poster'
               src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
             />
           </div>
@@ -33,4 +33,4 @@ class TrendingMovieSkeletonLoading extends Component {
   }
 }
 
-export default TrendingMovieSkeletonLoading
+export default TrendingVideogameSkeletonLoading

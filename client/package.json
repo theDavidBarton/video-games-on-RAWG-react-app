@@ -1,7 +1,6 @@
 {
-  "homepage": "https://trending-movies-react-app.herokuapp.com/",
   "license": "MIT",
-  "name": "trending-movies-react-app",
+  "name": "video-games-on-RAWG-react-app",
   "version": "1.0.0",
   "private": true,
   "dependencies": {

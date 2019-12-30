@@ -24,7 +24,7 @@
   height: 22px;
 }
 
-/* movieDetails */
+/* videogameDetails */
 .heading-line {
   line-height: 0.8em;
 }
@@ -59,7 +59,7 @@
   z-index: -1;
 }
 
-/* trendingMovie */
+/* trendingVideogame */
 .badge-position {
   left: 20px;
   top: 20px;

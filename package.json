@@ -1,5 +1,5 @@
 {
-  "name": "trending-movies-react-app-express-server",
+  "name": "video-games-on-rawg-react-app-express-server",
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
@@ -9,8 +9,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd client && yarn && yarn run build",
-    "how-much-is-the-fish": "heroku ps -a trending-movies-react-app"
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "engines": {
     "node": "10.x"
