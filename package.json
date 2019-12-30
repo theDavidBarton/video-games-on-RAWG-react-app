@@ -1,0 +1,17 @@
+{
+  "name": "video-games-on-rawg-react-app-express-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}

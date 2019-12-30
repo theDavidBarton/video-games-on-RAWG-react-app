@@ -1,0 +1,89 @@
+/* global: overrides bootstrap font with a Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap');
+
+* {
+  font-family: 'Kulim Park', sans-serif;
+}
+
+/* 404, footer */
+.resized-logo {
+  height: 100%;
+  width: 350px;
+}
+
+/* header */
+.social-list-margin {
+  margin-right: 2em;
+}
+.social-link-style {
+  display: inline-block;
+  width: 104px;
+}
+.social-img-style {
+  margin-right: 0.5em;
+  height: 22px;
+}
+
+/* videogameDetails */
+.heading-line {
+  line-height: 0.8em;
+}
+.greyscale-img-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+}
+.greyscale-company-logo {
+  filter: grayscale(100%);
+}
+.poster-width {
+  width: 100%;
+}
+.company-logo-margin {
+  margin-right: 1em;
+}
+
+/* searchForm */
+.result-list-width {
+  width: 330px;
+}
+.overlay-style {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+/* trendingVideogame */
+.badge-position {
+  left: 20px;
+  top: 20px;
+}
+.right-badge {
+  right: 0;
+}
+.loading-anim-size {
+  width: 5rem;
+  height: 5rem;
+}
+.img-zoom-container {
+  overflow: hidden;
+}
+.img-zoom img {
+  display: block;
+  position: relative;
+  transition: all 1s ease-out;
+}
+.img-zoom:hover img {
+  transform: scale(1.03);
+}
+@media (hover: none) {
+  .img-zoom:hover img {
+    transform: none;
+  }
+}
