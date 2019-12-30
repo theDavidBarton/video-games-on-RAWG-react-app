@@ -124,13 +124,13 @@ class VideogameDetails extends Component {
                 <h4>Facts:</h4>
                 <strong>Company:</strong> {this.getCompanies()}
                 <br />
-                <strong>Duration:</strong> {this.getRuntime()} mins
+                <strong>Duration:</strong> {this.getRuntime()} hours
                 <br />
                 <strong>Genre:</strong> {this.getGenres()}
                 <br />
                 <strong>Release:</strong> {this.getReleaseDate()}
                 <br />
-                <strong>Voted:</strong> ★{this.getVotes()}/10
+                <strong>Voted:</strong> ★{this.getVotes()}/5
                 <br />
               </div>
               <div className='col my-3'>

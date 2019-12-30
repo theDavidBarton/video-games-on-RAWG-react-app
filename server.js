@@ -10,7 +10,7 @@ const optionsTrending = {
   headers: userAgent,
   url: 'https://api.rawg.io/api/games',
   qs: {
-    ordering: '-rating'
+    ordering: '-added'
   }
 }
 
@@ -26,10 +26,7 @@ const optionsTopRatedRecommended = {
 const optionsVideogameDetails = {
   method: 'GET',
   headers: userAgent,
-  url: undefined,
-  qs: {
-    ordering: '-rating'
-  }
+  url: undefined
 }
 
 const optionsVideogameAutocomplete = {
@@ -37,8 +34,7 @@ const optionsVideogameAutocomplete = {
   headers: userAgent,
   url: 'https://api.rawg.io/api/games',
   qs: {
-    search: undefined,
-    ordering: '-rating'
+    search: undefined
   }
 }
 

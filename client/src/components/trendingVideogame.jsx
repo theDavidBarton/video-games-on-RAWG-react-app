@@ -48,10 +48,10 @@ class TrendingVideogame extends Component {
                   <img className='card-img-top' alt='videogame poster' src={this.getPoster()} />
                 </div>
               </div>
-              <div className='badge-pill badge-warning position-absolute mt-4 right-badge'>★{this.getRating()}/10</div>
+              <div className='badge-pill badge-success position-absolute mt-4 right-badge'>★{this.getRating()}/5</div>
             </div>
             <div className='card-body'>
-              <div className='badge-pill badge-danger display-4 position-absolute badge-position'>
+              <div className='badge-pill badge-warning display-4 position-absolute badge-position'>
                 #<strong>{this.getRank()}</strong>
               </div>
               <h2>{this.getTitle()}</h2>

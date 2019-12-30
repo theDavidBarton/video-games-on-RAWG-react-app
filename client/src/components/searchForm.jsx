@@ -33,9 +33,9 @@ class SearchForm extends Component {
             <a key={result.id + 'a'} href={`/videogame/${result.id}`} className='text-decoration-none'>
               <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
                 {result.background_image ? (
-                  <img alt={result.name} key={result.id + 'img'} src={result.poster_path} />
+                  <img width='68' height='45' alt={result.name} key={result.id + 'img'} src={result.background_image} />
                 ) : (
-                  <svg width='45' height='68'>
+                  <svg width='68' height='45'>
                     <circle cx='45' cy='45' r='45' fill='#D5D8DC' />
                     Sorry, your browser does not support inline SVG.
                   </svg>
