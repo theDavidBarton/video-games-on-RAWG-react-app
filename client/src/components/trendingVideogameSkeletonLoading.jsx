@@ -9,11 +9,13 @@ class TrendingVideogameSkeletonLoading extends Component {
             <div className='spinner-border text-warning justify-content-center loading-anim-size' role='status'>
               <span className='sr-only'>Loading...</span>
             </div>
-            <img
-              className='card-img-top'
-              alt='videogame poster'
-              src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
-            />
+            <div className='img-zoom-container'>
+              <img
+                className='card-img-top'
+                alt='videogame poster'
+                src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+              />
+            </div>
           </div>
           <div className='card-body text-muted'>
             <svg width='400' height='323' viewBox='0, 0, 400,323.2323232323232'>

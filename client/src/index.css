@@ -17,7 +17,7 @@
 }
 .social-link-style {
   display: inline-block;
-  width: 104px;
+  width: 118px;
 }
 .social-img-style {
   margin-right: 0.5em;
@@ -73,6 +73,7 @@
 }
 .img-zoom-container {
   overflow: hidden;
+  height: 185px;
 }
 .img-zoom img {
   display: block;

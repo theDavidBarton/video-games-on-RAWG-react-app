@@ -111,7 +111,7 @@ class VideogameDetails extends Component {
               <div className='col m-4'>
                 <div>
                   <h4>Overview:</h4>
-                  <p className='mb-2'>{this.getOverview()}</p>
+                  <p className='mb-2' dangerouslySetInnerHTML={{ __html: this.getOverview() }}></p>
                 </div>
                 <h4>Creators:</h4>
                 <div className='row'>
