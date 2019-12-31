@@ -69,16 +69,16 @@ class TrendingVideogame extends Component {
               </div>
               <div className='badge-pill badge-info position-absolute mt-4 right-badge'>★{this.getRating()}/5</div>
             </div>
-            <div className='card-body'>
+            <div className='card-body card-background' style={{ backgroundImage: 'url(' + this.getPoster() + ')' }}>
               <div className='badge-pill badge-warning display-4 position-absolute badge-position'>
                 #<strong>{this.getRank()}</strong>
               </div>
               <h2>{this.getTitle()}</h2>
-              <div>
+              <div className='overlay-style'>
                 {this.state.detailsData ? (
                   <div dangerouslySetInnerHTML={{ __html: this.getOverview().substring(0, 350) + '...' }}></div>
                 ) : (
-                  <p>'loading...'</p>
+                  <p>loading...</p>
                 )}
               </div>
             </div>

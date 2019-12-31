@@ -60,6 +60,10 @@
 }
 
 /* trendingVideogame */
+.card-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .badge-position {
   left: 20px;
   top: 20px;
