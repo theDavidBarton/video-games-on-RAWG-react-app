@@ -58,27 +58,27 @@ class TrendingVideogame extends Component {
 
   render() {
     return (
-      <div className='col-sm-4 col-xs-1'>
+      <div className='col-md-6'>
         <a href={this.selectedVideogame()} className='text-decoration-none'>
           <div className='card bg-dark text-white border-0'>
             <div>
-              <div className='img-zoom-container rounded-circle'>
+              <div className='img-zoom-container card-background'>
                 <div className='img-zoom'>
                   <img className='card-img-top' alt='videogame poster' src={this.getPoster()} />
                 </div>
               </div>
-              <div className='badge-pill badge-info position-absolute mt-4 right-badge'>★{this.getRating()}/5</div>
+              <div className='badge-pill badge-danger position-absolute mt-4 right-badge'>★{this.getRating()}/5</div>
             </div>
             <div className='card-body'>
-              <div className='badge-pill badge-warning display-4 position-absolute badge-position'>
+              <div className='badge-pill badge-warning display-5 position-absolute badge-position'>
                 #<strong>{this.getRank()}</strong>
               </div>
-              <h2>{this.getTitle()}</h2>
+              <h2 className='position-absolute h2-position'>{this.getTitle()}</h2>
               <div>
                 {this.state.detailsData ? (
                   <div dangerouslySetInnerHTML={{ __html: this.getOverview().substring(0, 350) + '...' }}></div>
                 ) : (
-                  <p>'loading...'</p>
+                  <p>loading...</p>
                 )}
               </div>
             </div>

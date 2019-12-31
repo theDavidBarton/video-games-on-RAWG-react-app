@@ -13,7 +13,8 @@ class TrendingVideogameList extends Component {
       { id: 6, value: 5 },
       { id: 7, value: 6 },
       { id: 8, value: 7 },
-      { id: 9, value: 8 }
+      { id: 9, value: 8 },
+      { id: 10, value: 9 }
     ]
   }
 
