@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class TrendingVideogameSkeletonLoading extends Component {
   render() {
     return (
-      <div className='col-sm-4 col-xs-1'>
+      <div className='col-md-6'>
         <div className='card bg-dark text-decoration-none border-0'>
           <div className='text-center'>
             <div className='spinner-border text-warning justify-content-center loading-anim-size' role='status'>
