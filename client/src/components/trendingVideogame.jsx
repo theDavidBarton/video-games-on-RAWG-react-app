@@ -41,6 +41,16 @@ class TrendingVideogame extends Component {
     return overview
   }
 
+  getPlatform = () => {
+    const platformArray = this.state.detailsData.platforms
+    const platform = platformArray.map((platformElement, index) => (
+      <div className='badge badge-dark platform-badge-margin' key={index + 1}>
+        {platformElement.platform.name}
+      </div>
+    ))
+    return platform
+  }
+
   getRating = () => {
     const rating = this.state.response.results[this.state.value].rating
     return rating
@@ -73,7 +83,14 @@ class TrendingVideogame extends Component {
               <div className='badge-pill badge-dark display-5 position-absolute badge-position'>
                 #<strong>{this.getRank()}</strong>
               </div>
-              <h2 className='position-absolute h2-position'>{this.getTitle()}</h2>
+              <h2 className='position-absolute h2-position'>
+                {this.getTitle().length >= 30
+                  ? this.getTitle().substring(0, 30) + '...'
+                  : this.getTitle().substring(0, 30)}
+              </h2>
+              <div className='position-absolute platform-badge-position'>
+                {this.state.detailsData ? this.getPlatform() : null}
+              </div>
               <div>
                 {this.state.detailsData ? <div>{this.getOverview().substring(0, 350) + '...'}</div> : <p>loading...</p>}
               </div>

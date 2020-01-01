@@ -60,7 +60,7 @@ class Header extends Component {
                     href='https://github.com/theDavidBarton'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='btn btn-light social-link-style'>
+                    className='btn btn-dark social-link-style'>
                     <img className='float-left social-img-style' alt='github logo' src={github} />
                     GitHub
                   </a>
@@ -70,7 +70,7 @@ class Header extends Component {
                     href='https://linkedin.com/in/theDavidBarton/'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='btn btn-light float-left social-link-style'>
+                    className='btn btn-dark float-left social-link-style'>
                     <img className='float-left social-img-style' alt='linkedin logo' src={linkedin} />
                     LinkedIn
                   </a>
