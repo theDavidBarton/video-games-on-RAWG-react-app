@@ -22,6 +22,7 @@
 .social-img-style {
   margin-right: 0.5em;
   height: 22px;
+  filter: invert(100%);
 }
 
 /* videogameDetails */
@@ -74,6 +75,13 @@
   left: 20px;
   top: 20px;
 }
+.platform-badge-position {
+  right: 20px;
+  top: 150px;
+}
+.platform-badge-margin {
+  margin-right: 0.2em;
+}
 .right-badge {
   right: 0;
   top: 0;
@@ -87,6 +95,8 @@
   height: 185px;
 }
 .img-zoom img {
+  height: 100%;
+  min-height: 185px;
   display: block;
   position: relative;
   transition: all 1s ease-out;
