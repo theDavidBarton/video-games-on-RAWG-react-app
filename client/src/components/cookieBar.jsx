@@ -13,14 +13,14 @@ class CookieBar extends Component {
     return (
       <Fragment>
         {this.state.isOpened ? (
-          <div className='bg-warning sticky-top py-2'>
+          <div className='bg-secondary text-light sticky-top py-2'>
             <div className='container'>
               This page doesn't store cookies, but RAWG does. Check out{' '}
-              <a className='text-success' href='https://rawg.io/privacy_policy'>
+              <a className='text-warning' href='https://rawg.io/privacy_policy'>
                 their cookie policy
               </a>{' '}
               to opt out!
-              <button onClick={this.closeIt} type='button' className='close' aria-label='Close'>
+              <button onClick={this.closeIt} type='button' className='close text-warning' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
               </button>
             </div>
