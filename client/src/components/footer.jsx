@@ -12,9 +12,17 @@ class Footer extends Component {
               <p className='text-center mt-2'>copyright © 2019 theDavidBarton</p>
             </div>
             <div className='col align-self-end'>
-              <p className='lead'>Today these are the TOP10 top rated videogames on RAWG.</p>
+              <p className='lead'>
+                Today these are the TOP10 trending videogames on RAWG.
+                <br />
+                Powered by{' '}
+                <a className='text-danger' href='https://rawg.io/'>
+                  RAWG.io
+                </a>
+                !
+              </p>
               <p>
-                <span className='badge badge-success'>#RAWG</span>{' '}
+                <span className='badge badge-success'>#RAWG.io</span>{' '}
                 <span className='badge badge-warning'>#trending</span>{' '}
                 <span className='badge badge-light'>#ReactJS</span>{' '}
                 <span className='badge badge-danger'>#bootstrap</span>

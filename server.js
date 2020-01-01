@@ -8,9 +8,11 @@ const userAgent = { 'User-Agent': 'video-games-on-RAWG-react-app (GitHub)' }
 const optionsTrending = {
   method: 'GET',
   headers: userAgent,
-  url: 'https://api.rawg.io/api/games',
+  url: 'https://api.rawg.io/api/games/lists/main',
   qs: {
-    ordering: '-added'
+    ordering: '-relevance',
+    discover: true,
+    page_size: 10
   }
 }
 
@@ -19,7 +21,8 @@ const optionsTopRatedRecommended = {
   headers: userAgent,
   url: 'https://api.rawg.io/api/games',
   qs: {
-    ordering: '-rating'
+    ordering: '-added',
+    page_size: 10
   }
 }
 

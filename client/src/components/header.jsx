@@ -51,7 +51,7 @@ class Header extends Component {
             </div>
             <div className='col-md-auto col-12 align-self-end order-1 order-md-0'>
               <SearchForm />
-              <h1 className='d-none d-md-block'>browse The RAWG Database</h1>
+              <h1 className='d-none d-md-block'>powered by RAWG.io</h1>
             </div>
             <div className='col-auto align-self-end my-2'>
               <ul className='list-unstyled align-bottom social-list-margin'>

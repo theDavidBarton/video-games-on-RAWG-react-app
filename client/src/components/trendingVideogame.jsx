@@ -37,7 +37,7 @@ class TrendingVideogame extends Component {
   }
 
   getOverview = () => {
-    const overview = this.state.detailsData.description
+    const overview = this.state.detailsData.description_raw
     return overview
   }
 
@@ -67,19 +67,15 @@ class TrendingVideogame extends Component {
                   <img className='card-img-top' alt='videogame poster' src={this.getPoster()} />
                 </div>
               </div>
-              <div className='badge-pill badge-danger position-absolute mt-4 right-badge'>★{this.getRating()}/5</div>
+              <div className='badge-pill badge-warning position-absolute mt-4 right-badge'>★{this.getRating()}/5</div>
             </div>
             <div className='card-body'>
-              <div className='badge-pill badge-warning display-5 position-absolute badge-position'>
+              <div className='badge-pill badge-dark display-5 position-absolute badge-position'>
                 #<strong>{this.getRank()}</strong>
               </div>
               <h2 className='position-absolute h2-position'>{this.getTitle()}</h2>
               <div>
-                {this.state.detailsData ? (
-                  <div dangerouslySetInnerHTML={{ __html: this.getOverview().substring(0, 350) + '...' }}></div>
-                ) : (
-                  <p>loading...</p>
-                )}
+                {this.state.detailsData ? <div>{this.getOverview().substring(0, 350) + '...'}</div> : <p>loading...</p>}
               </div>
             </div>
           </div>
