@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-on-heroku:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Yarn install BE
+        run: yarn
+
+      - name: Yarn Install and Build FE
+        run: |
+          cd client
+          yarn
+          yarn run build
+
+      - name: Lint
+        run: |
+          cd client
+          yarn lint .
+
+      - name: Deploy to Heroku
+        run: echo "Follow deployment on Heroku https://dashboard.heroku.com/apps/trending-video-games/activity"
