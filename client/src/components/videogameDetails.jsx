@@ -113,10 +113,6 @@ class VideogameDetails extends Component {
                   <h4>Overview:</h4>
                   <p className='mb-2' dangerouslySetInnerHTML={{ __html: this.getOverview() }}></p>
                 </div>
-                <h4>Creators:</h4>
-                <div className='row'>
-                  <ul className='row list-unstyled list-group list-group-horizontal'></ul>
-                </div>
               </div>
             </div>
             <div className='row'>
@@ -133,19 +129,7 @@ class VideogameDetails extends Component {
                 <strong>Voted:</strong> ★{this.getVotes()}/5
                 <br />
               </div>
-              <div className='col my-3'>
-                <h4>Cast:</h4>
-                <ul className='list-unstyled'></ul>
-                {!this.state.fullCastIsOpened ? (
-                  <button className='btn btn-dark' onClick={this.setDisplayedCast}>
-                    Show full cast
-                  </button>
-                ) : (
-                  <button className='btn btn-dark' onClick={this.setBackDisplayedCast}>
-                    Hide full cast
-                  </button>
-                )}
-              </div>
+              <div className='col my-3'></div>
             </div>
           </div>
         ) : null}
