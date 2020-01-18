@@ -25,7 +25,7 @@ class VideogameDetails extends Component {
 
   getTitle = () => {
     let title
-    this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
+    this.state.data.released && this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
       ? (title = this.state.data.name.replace(/\([0-9]{4}\)/, '').trim())
       : (title = this.state.data.name)
     console.log(this.state.data)

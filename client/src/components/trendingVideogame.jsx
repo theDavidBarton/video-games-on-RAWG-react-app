@@ -33,6 +33,7 @@ class TrendingVideogame extends Component {
 
   getTitle = () => {
     let title
+    this.state.response.results[this.state.value].released &&
     this.state.response.results[this.state.value].name.includes(
       this.state.response.results[this.state.value].released.match(/[0-9]{4}/)
     )
