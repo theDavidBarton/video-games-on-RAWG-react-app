@@ -38,7 +38,7 @@ class SearchForm extends Component {
                     height='45'
                     alt={result.name}
                     key={result.id + 'img'}
-                    src={result.background_image.replace('/media/games/', '/media/resize/420/-/games/')}
+                    src={result.background_image.replace('/media/games/', '/media/resize/80/-/games/')}
                   />
                 ) : (
                   <svg width='68' height='45'>
@@ -47,7 +47,10 @@ class SearchForm extends Component {
                   </svg>
                 )}
                 <span key={result.id + 'span'} className='mx-1'>
-                  {result.name} ({result.released ? result.released.match(/[0-9]{4}/) : 'unknown'})
+                  {result.released && result.name.includes(result.released.match(/[0-9]{4}/))
+                    ? result.name.replace(/\([0-9]{4}\)/, '').trim()
+                    : result.name}{' '}
+                  ({result.released ? result.released.match(/[0-9]{4}/) : 'unknown'})
                 </span>
               </li>
             </a>

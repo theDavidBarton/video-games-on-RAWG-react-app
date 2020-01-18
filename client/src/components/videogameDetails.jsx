@@ -24,7 +24,10 @@ class VideogameDetails extends Component {
   }
 
   getTitle = () => {
-    const title = this.state.data.name
+    let title
+    this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
+      ? (title = this.state.data.name.replace(/\([0-9]{4}\)/, '').trim())
+      : (title = this.state.data.name)
     console.log(this.state.data)
     return title
   }
@@ -39,9 +42,14 @@ class VideogameDetails extends Component {
     return releaseDate
   }
 
-  getTagline = () => {
-    const tagline = 'tagline TBD'
-    return tagline
+  getTags = () => {
+    const tagsArray = this.state.data.tags
+    const tags = tagsArray.map((tagElement, index) => (
+      <div className='badge badge-dark tag-badge-margin' key={index + 1}>
+        {tagElement.language === 'eng' ? tagElement.name : null}
+      </div>
+    ))
+    return tags
   }
 
   getOverview = () => {
@@ -76,18 +84,32 @@ class VideogameDetails extends Component {
   }
 
   getBackground = () => {
-    const background = this.state.data.background_image
+    let background
+    this.state.data.background_image_additional
+      ? (background = this.state.data.background_image_additional)
+      : (background = this.state.data.background_image)
+    background = background.replace('media/games', 'media/crop/600/400/games')
     return background
   }
 
   getPoster = () => {
-    const poster = this.state.data.background_image
+    const poster = this.state.data.background_image.replace('media/games', 'media/crop/600/400/games')
     return poster
+  }
+
+  getPlatform = () => {
+    const platformArray = this.state.data.platforms
+    const platform = platformArray.map((platformElement, index) => (
+      <div className='badge badge-warning platform-badge-margin' key={index + 1}>
+        {platformElement.platform.name}
+      </div>
+    ))
+    return platform
   }
 
   render() {
     let bgImage = this.state.dataIsReady
-      ? 'linear-gradient(rgba(52,58,64,.6), rgba(52,58,64,.6)), url(' + this.getBackground() + ')'
+      ? 'linear-gradient(rgba(0,0,0,.9), rgba(52,58,64,.9)), url(' + this.getBackground() + ')'
       : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)'
     return (
       <Fragment>
@@ -98,38 +120,33 @@ class VideogameDetails extends Component {
                 {this.getTitle()}
                 <span className='lead heading-line'> ({this.getReleaseYear()}) </span>
               </h2>
+              {this.getPlatform()}
             </header>
-            {this.getTagline() === '' ? (
-              <blockquote className='lead'> </blockquote>
-            ) : (
-              <blockquote className='blockquote-footer lead'>{this.getTagline()}</blockquote>
-            )}
-            <div className='row text-white greyscale-img-background' style={{ backgroundImage: bgImage }}>
+            {this.getTags().length < 1 ? <div className='my-2'> </div> : <div className='my-2'>{this.getTags()}</div>}
+            <div className='row text-white img-background details-background' style={{ backgroundImage: bgImage }}>
               <div className='col-md-3 my-3'>
                 <img src={this.getPoster()} alt='poster' className='poster-width' />
+                <div className='my-3'>
+                  <h4>Facts:</h4>
+                  <strong>Company:</strong> {this.getCompanies()}
+                  <br />
+                  <strong>Playtime:</strong>{' '}
+                  {this.getRuntime() && this.getRuntime() !== 0 ? this.getRuntime() + ' hours' : '-'}
+                  <br />
+                  <strong>Genre:</strong> {this.getGenres()}
+                  <br />
+                  <strong>Release:</strong> {this.getReleaseDate()}
+                  <br />
+                  <strong>Voted:</strong> ★{this.getVotes()}/5
+                  <br />
+                </div>
               </div>
-              <div className='col m-4'>
+              <div className='col my-3'>
                 <div>
                   <h4>Overview:</h4>
                   <p className='mb-2' dangerouslySetInnerHTML={{ __html: this.getOverview() }}></p>
                 </div>
               </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-3 my-3'>
-                <h4>Facts:</h4>
-                <strong>Company:</strong> {this.getCompanies()}
-                <br />
-                <strong>Duration:</strong> {this.getRuntime()} hours
-                <br />
-                <strong>Genre:</strong> {this.getGenres()}
-                <br />
-                <strong>Release:</strong> {this.getReleaseDate()}
-                <br />
-                <strong>Voted:</strong> ★{this.getVotes()}/5
-                <br />
-              </div>
-              <div className='col my-3'></div>
             </div>
           </div>
         ) : null}
