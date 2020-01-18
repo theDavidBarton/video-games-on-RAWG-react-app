@@ -29,10 +29,12 @@
 .heading-line {
   line-height: 0.8em;
 }
-.greyscale-img-background {
+.details-background {
+  border-radius: 15px;
+}
+.img-background {
   background-repeat: no-repeat;
   background-size: cover;
-  filter: grayscale(100%);
 }
 .greyscale-company-logo {
   filter: grayscale(100%);
@@ -42,6 +44,9 @@
 }
 .company-logo-margin {
   margin-right: 1em;
+}
+.tag-badge-margin {
+  margin-right: 0.2em;
 }
 
 /* searchForm */
