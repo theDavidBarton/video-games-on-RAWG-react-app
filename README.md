@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/theDavidBarton/video-games-on-RAWG-react-app/workflows/CI/badge.svg)](https://github.com/theDavidBarton/video-games-on-RAWG-react-app/actions)
+
 # Videogames on RAWG
 
 Available on Heroku: https://trending-video-games.herokuapp.com/
@@ -29,6 +31,12 @@ MIT License
 
 Copyright (c) 2019 David Barton
 
-# Used data
+# Credits
+
+## Used data
 
 Powered by [RAWG.io](https://rawg.io/apidocs) data. Thank you guys!
+
+## Used font
+
+'Arcade Classic' is under copyright (c) Jakob Fischer at www.pizzadude.dk, all rights reserved.
