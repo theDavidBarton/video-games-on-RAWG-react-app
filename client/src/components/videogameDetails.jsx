@@ -5,8 +5,7 @@ class VideogameDetails extends Component {
     data: null,
     dataIsReady: false,
     id: this.props.selectedVideogame,
-    displayedCastMembers: 5,
-    fullCastIsOpened: false
+    reviewHeight: '133px'
   }
 
   componentDidMount() {
@@ -272,6 +271,14 @@ class VideogameDetails extends Component {
     return devteamMembers
   }
 
+  setReviewsHeight = () => {
+    this.setState({ reviewHeight: 'auto' })
+  }
+
+  setBackReviewsHeight = () => {
+    this.setState({ reviewHeight: '133px' })
+  }
+
   render() {
     let bgImage = this.state.dataIsReady
       ? 'linear-gradient(rgba(0,0,0,.9), rgba(52,58,64,.9)), url(' + this.getBackground() + ')'
@@ -346,8 +353,8 @@ class VideogameDetails extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='col'>
-                {this.getStores() ? (
+              <div className='col-md-3'>
+                {this.getStores().length > 0 ? (
                   <Fragment>
                     <div className='row mt-3 px-3'>
                       <h4>Buy it on:</h4>
@@ -356,12 +363,29 @@ class VideogameDetails extends Component {
                   </Fragment>
                 ) : null}
               </div>
-              <div className='col-9'>
-                {this.getReviews() ? (
+              <div className='col'>
+                {this.getReviews().length > 0 ? (
                   <Fragment>
                     <h4 className='row mt-3 px-3'>Reviews:</h4>
-                    <div>{this.getReviews()}</div>
-                    <div className='btn btn-outline-dark'>read more</div>
+                    <div
+                      id='longContent'
+                      style={{
+                        height: this.state.reviewHeight,
+                        overflow: 'hidden'
+                      }}>
+                      {this.getReviews()}
+                    </div>
+                    <div className='row justify-content-center'>
+                      {this.state.reviewHeight !== 'auto' ? (
+                        <div className='btn btn-outline-dark text-center m-3' onClick={this.setReviewsHeight}>
+                          read more
+                        </div>
+                      ) : (
+                        <div className='btn btn-outline-dark text-center m-3' onClick={this.setBackReviewsHeight}>
+                          read less
+                        </div>
+                      )}
+                    </div>
                   </Fragment>
                 ) : null}
               </div>
@@ -393,8 +417,8 @@ class VideogameDetails extends Component {
           <div className='container'>
             <div className='row text-center'>
               <div className='col-12 p-5'>
-                <h3 className='loading-game'>Loading Game</h3>
-                <div className='spinner-border text-dark justify-content-center loading-anim-size' role='status'>
+                <h3 className='loading-game p-3'>Loading Game</h3>
+                <div className='spinner-border text-dark justify-content-center loading-anim-size mb-5' role='status'>
                   <span className='sr-only'>Loading...</span>
                 </div>
               </div>
