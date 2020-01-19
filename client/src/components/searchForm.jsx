@@ -54,7 +54,7 @@ class SearchForm extends Component {
                   {result.released && result.name.includes(result.released.match(/[0-9]{4}/))
                     ? result.name.replace(/\([0-9]{4}\)/, '').trim()
                     : result.name}{' '}
-                  ({result.released ? result.released.match(/[0-9]{4}/) : 'unknown'})
+                  ({result.released ? result.released.match(/[0-9]{4}/) : 'n/a'})
                 </span>
               </li>
             </a>

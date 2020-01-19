@@ -89,9 +89,15 @@ class VideogameDetails extends Component {
       ? (background = this.state.data.background_image_additional)
       : (background = this.state.data.background_image)
 
-    background.match(/media\/screenshots/)
-      ? (background = background.replace('media/screenshots', 'media/crop/600/400/screenshots'))
-      : (background = background.replace('media/games', 'media/crop/600/400/games'))
+    if (background) {
+      try {
+        background.match(/media\/screenshots/)
+          ? (background = background.replace('media/screenshots', 'media/crop/600/400/screenshots'))
+          : (background = background.replace('media/games', 'media/crop/600/400/games'))
+      } catch (e) {
+        console.error(e)
+      }
+    }
 
     return background
   }
@@ -99,10 +105,15 @@ class VideogameDetails extends Component {
   getPoster = () => {
     let poster
 
-    this.state.data.background_image.match(/media\/screenshots/)
-      ? (poster = this.state.data.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots'))
-      : (poster = this.state.data.background_image.replace('media/games', 'media/crop/600/400/games'))
-
+    if (this.state.data.background_image) {
+      try {
+        this.state.data.background_image.match(/media\/screenshots/)
+          ? (poster = this.state.data.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots'))
+          : (poster = this.state.data.background_image.replace('media/games', 'media/crop/600/400/games'))
+      } catch (e) {
+        console.error(e)
+      }
+    }
     return poster
   }
 
@@ -128,25 +139,40 @@ class VideogameDetails extends Component {
 
   getSuggested = () => {
     const suggestedArray = this.state.data.suggested
+
     const suggested = suggestedArray.map(suggestedElement => (
-      <div key={suggestedElement.id} className='col-md-3'>
+      <Fragment key={suggestedElement.id}>
         {suggestedElement.background_image ? (
-          <Fragment>
+          <div
+            key={suggestedElement.id}
+            className='col-lg-2 col-5 m-2 p-4'
+            style={{
+              height: '200px',
+              overflow: 'hidden',
+              backgroundImage: `linear-gradient(rgba(0,0,0,.4), rgba(52,58,64,.2)), url(${
+                suggestedElement.background_image.match(/media\/screenshots/)
+                  ? suggestedElement.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots')
+                  : suggestedElement.background_image.replace('media/games', 'media/crop/600/400/games')
+              })`,
+              backgroundSize: 'cover'
+            }}>
             <a className='text-decoration-none' href={`/videogame/${suggestedElement.id}-${suggestedElement.slug}`}>
-              <img
-                className='suggestion-img-style rounded-circle'
-                src={
-                  suggestedElement.background_image.match(/media\/screenshots/)
-                    ? suggestedElement.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots')
-                    : suggestedElement.background_image.replace('media/games', 'media/crop/600/400/games')
-                }
-                alt='suggested game'
-              />
-              <h5 className='badge badge-dark'>{suggestedElement.name}</h5>
+              <h5 className='text-light suggestion-h2'>
+                {suggestedElement.name.length >= 30
+                  ? suggestedElement.name.substring(0, 30) + '...'
+                  : suggestedElement.name}
+              </h5>
+              <div>
+                {suggestedElement.platforms.map((platformElement, index) => (
+                  <div className='badge badge-warning platform-badge-margin' key={index + 1}>
+                    {platformElement.platform.name}
+                  </div>
+                ))}
+              </div>
             </a>
-          </Fragment>
+          </div>
         ) : null}
-      </div>
+      </Fragment>
     ))
     return suggested
   }
@@ -209,7 +235,7 @@ class VideogameDetails extends Component {
             <div className='row mt-3 px-3'>
               <h4>Similar titles:</h4>
             </div>
-            <div className='row mb-2 text-center'>{this.getSuggested()}</div>
+            <div className='row mb-2 justify-content-lg-center text-center'>{this.getSuggested()}</div>
           </div>
         ) : (
           <div className='container'>

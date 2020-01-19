@@ -57,14 +57,15 @@ h5 {
   width: 100%;
 }
 .suggestion-img-style {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 }
-.suggestion-position {
-  left: 20px;
-  top: 100px;
+.suggestion-h2 {
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
+.use-pointer {
+  cursor: pointer;
 }
 .loading-game {
   font-size: 4em;
