@@ -35,7 +35,7 @@ class SearchForm extends Component {
                 {result.background_image ? (
                   <img
                     className='autocomplete-img-style'
-                    width='68'
+                    width='45'
                     height='45'
                     alt={result.name}
                     key={result.id + 'img'}
@@ -46,7 +46,7 @@ class SearchForm extends Component {
                     }
                   />
                 ) : (
-                  <svg width='68' height='45'>
+                  <svg width='45' height='45'>
                     <circle cx='45' cy='45' r='45' fill='#D5D8DC' />
                     Sorry, your browser does not support inline SVG.
                   </svg>
