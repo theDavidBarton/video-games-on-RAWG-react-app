@@ -88,13 +88,67 @@ class VideogameDetails extends Component {
     this.state.data.background_image_additional
       ? (background = this.state.data.background_image_additional)
       : (background = this.state.data.background_image)
-    background = background.replace('media/games', 'media/crop/600/400/games')
+
+    background.match(/media\/screenshots/)
+      ? (background = background.replace('media/screenshots', 'media/crop/600/400/screenshots'))
+      : (background = background.replace('media/games', 'media/crop/600/400/games'))
+
     return background
   }
 
   getPoster = () => {
-    const poster = this.state.data.background_image.replace('media/games', 'media/crop/600/400/games')
+    let poster
+
+    this.state.data.background_image.match(/media\/screenshots/)
+      ? (poster = this.state.data.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots'))
+      : (poster = this.state.data.background_image.replace('media/games', 'media/crop/600/400/games'))
+
     return poster
+  }
+
+  getScreens = () => {
+    const screensArray = this.state.data.screenshots
+    const screens = screensArray.map(screenElement => (
+      <div key={screenElement.id} className='col-md-3 my-3'>
+        {screenElement.image ? (
+          <img
+            className='img-style'
+            src={
+              screenElement.image.match(/media\/screenshots/)
+                ? screenElement.image.replace('media/screenshots', 'media/crop/600/400/screenshots')
+                : screenElement.image.replace('media/games', 'media/crop/600/400/games')
+            }
+            alt='screenshot of the game'
+          />
+        ) : null}
+      </div>
+    ))
+    return screens
+  }
+
+  getSuggested = () => {
+    const suggestedArray = this.state.data.suggested
+    const suggested = suggestedArray.map(suggestedElement => (
+      <div key={suggestedElement.id} className='col-md-3'>
+        {suggestedElement.background_image ? (
+          <Fragment>
+            <a className='text-decoration-none' href={`/videogame/${suggestedElement.id}-${suggestedElement.slug}`}>
+              <img
+                className='suggestion-img-style rounded-circle'
+                src={
+                  suggestedElement.background_image.match(/media\/screenshots/)
+                    ? suggestedElement.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots')
+                    : suggestedElement.background_image.replace('media/games', 'media/crop/600/400/games')
+                }
+                alt='suggested game'
+              />
+              <h5 className='badge badge-dark'>{suggestedElement.name}</h5>
+            </a>
+          </Fragment>
+        ) : null}
+      </div>
+    ))
+    return suggested
   }
 
   getPlatform = () => {
@@ -125,7 +179,7 @@ class VideogameDetails extends Component {
             {this.getTags().length < 1 ? <div className='my-2'> </div> : <div className='my-2'>{this.getTags()}</div>}
             <div className='row text-white img-background details-background' style={{ backgroundImage: bgImage }}>
               <div className='col-md-3 my-3'>
-                <img src={this.getPoster()} alt='poster' className='poster-width' />
+                <img src={this.getPoster()} alt='poster' className='img-style' />
                 <div className='my-3'>
                   <h4>Facts:</h4>
                   <strong>Company:</strong> {this.getCompanies()}
@@ -148,8 +202,27 @@ class VideogameDetails extends Component {
                 </div>
               </div>
             </div>
+            <div className='row mt-3'>
+              <h4>Screens:</h4>
+            </div>
+            <div className='row mb-2'>{this.getScreens()}</div>
+            <div className='row mt-3'>
+              <h4>Similar titles:</h4>
+            </div>
+            <div className='row mb-2 text-center'>{this.getSuggested()}</div>
           </div>
-        ) : null}
+        ) : (
+          <div className='container'>
+            <div className='row text-center'>
+              <div className='col-12 p-5'>
+                <h3 className='loading-game'>Loading Game</h3>
+                <div className='spinner-border text-dark justify-content-center loading-anim-size' role='status'>
+                  <span className='sr-only'>Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </Fragment>
     )
   }

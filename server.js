@@ -96,7 +96,7 @@ function endpointCreation() {
 
     // providing a dynamic endpoint to videogame detail pages
     app.get('/api/videogameDetails/:rawgId', async (req, res) => {
-      const id = req.params.rawgId
+      const id = req.params.rawgId.match(/\d+/)
       const getPrimaryDetails = async () => {
         optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}`
         return await apiCall(optionsVideogameDetails)
@@ -125,11 +125,11 @@ function endpointCreation() {
       const primaryDetails = await getPrimaryDetails()
       const detailsCollected = {
         ...primaryDetails,
-        screenshots: parseInt(primaryDetails.screenshots_count) > 0 ? await getScreenshots() : null,
-        suggested: parseInt(primaryDetails.suggestions_count) > 0 ? await getSuggested() : null,
-        reviews: parseInt(primaryDetails.reviews_count) > 0 ? await getReviews() : null,
-        youtube: parseInt(primaryDetails.youtube_count) > 0 ? await getYoutube() : null,
-        devteam: parseInt(primaryDetails.creators_count) > 0 ? await getDevTeam() : null
+        screenshots: parseInt(primaryDetails.screenshots_count) > 0 ? (await getScreenshots()).results : null,
+        suggested: parseInt(primaryDetails.suggestions_count) > 0 ? (await getSuggested()).results : null,
+        reviews: parseInt(primaryDetails.reviews_count) > 0 ? (await getReviews()).results : null,
+        youtube: parseInt(primaryDetails.youtube_count) > 0 ? (await getYoutube()).results : null,
+        devteam: parseInt(primaryDetails.creators_count) > 0 ? (await getDevTeam()).results : null
       }
 
       res.json(detailsCollected)

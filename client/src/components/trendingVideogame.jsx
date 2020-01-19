@@ -68,7 +68,9 @@ class TrendingVideogame extends Component {
   }
 
   selectedVideogame = () => {
-    const videogame = '/videogame/' + this.state.response.results[this.state.value].id
+    const videogame = `/videogame/${this.state.response.results[this.state.value].id}-${
+      this.state.response.results[this.state.value].slug
+    }`
     return videogame
   }
 
