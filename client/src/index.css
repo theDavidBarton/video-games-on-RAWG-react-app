@@ -78,8 +78,28 @@ h5 {
 }
 
 /* searchForm */
+.autocomplete-img-style {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+}
+.form-control:focus {
+  border-color: #ffc107;
+  box-shadow: none;
+}
 .result-list-width {
-  width: 330px;
+  width: 385px;
+  color: black;
+}
+@media all and (min-width: 321px) and (max-width: 414px) {
+  .result-list-width {
+    width: 320px;
+  }
+}
+@media all and (max-width: 320px) {
+  .result-list-width {
+    width: 270px;
+  }
 }
 .overlay-style {
   width: 100%;

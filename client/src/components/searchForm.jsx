@@ -34,7 +34,8 @@ class SearchForm extends Component {
               <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
                 {result.background_image ? (
                   <img
-                    width='68'
+                    className='autocomplete-img-style'
+                    width='45'
                     height='45'
                     alt={result.name}
                     key={result.id + 'img'}
@@ -45,7 +46,7 @@ class SearchForm extends Component {
                     }
                   />
                 ) : (
-                  <svg width='68' height='45'>
+                  <svg width='45' height='45'>
                     <circle cx='45' cy='45' r='45' fill='#D5D8DC' />
                     Sorry, your browser does not support inline SVG.
                   </svg>
