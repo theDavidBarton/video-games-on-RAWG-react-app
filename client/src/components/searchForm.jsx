@@ -34,6 +34,7 @@ class SearchForm extends Component {
               <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
                 {result.background_image ? (
                   <img
+                    className='autocomplete-img-style'
                     width='68'
                     height='45'
                     alt={result.name}
