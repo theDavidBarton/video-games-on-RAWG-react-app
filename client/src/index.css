@@ -1,8 +1,22 @@
 /* global: overrides bootstrap font with a Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap');
+@font-face {
+  /* 'Arcade Classic' is under copyright (c) Jakob Fischer at www.pizzadude.dk, all rights reserved. */
+  font-family: 'ArcadeClassic';
+  src: url('./font/ArcadeClassic.otf') format('opentype');
+}
 
 * {
   font-family: 'Kulim Park', sans-serif;
+}
+
+h1,
+h3,
+h4,
+h5 {
+  font-family: 'ArcadeClassic';
+  letter-spacing: 2px;
+  word-spacing: 0.3em;
 }
 
 /* 404, footer */
@@ -39,8 +53,21 @@
 .greyscale-company-logo {
   filter: grayscale(100%);
 }
-.poster-width {
+.img-style {
   width: 100%;
+}
+.suggestion-img-style {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+.suggestion-position {
+  left: 20px;
+  top: 100px;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
+.loading-game {
+  font-size: 4em;
 }
 .company-logo-margin {
   margin-right: 1em;

@@ -30,7 +30,7 @@ class SearchForm extends Component {
       <Fragment>
         {this.state.data.count >= 1 ? (
           this.state.data.results.slice(0, 7).map(result => (
-            <a key={result.id + 'a'} href={`/videogame/${result.id}`} className='text-decoration-none'>
+            <a key={result.id + 'a'} href={`/videogame/${result.id}-${result.slug}`} className='text-decoration-none'>
               <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
                 {result.background_image ? (
                   <img
@@ -38,7 +38,11 @@ class SearchForm extends Component {
                     height='45'
                     alt={result.name}
                     key={result.id + 'img'}
-                    src={result.background_image.replace('/media/games/', '/media/resize/80/-/games/')}
+                    src={
+                      result.background_image.match(/media\/screenshots/)
+                        ? result.background_image.replace('media/screenshots', 'media/resize/80/-/screenshots')
+                        : result.background_image.replace('media/games', 'media/resize/80/-/games')
+                    }
                   />
                 ) : (
                   <svg width='68' height='45'>

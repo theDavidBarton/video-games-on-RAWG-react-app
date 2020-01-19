@@ -96,9 +96,43 @@ function endpointCreation() {
 
     // providing a dynamic endpoint to videogame detail pages
     app.get('/api/videogameDetails/:rawgId', async (req, res) => {
-      const id = req.params.rawgId
-      optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}`
-      res.json(await apiCall(optionsVideogameDetails))
+      const id = req.params.rawgId.match(/\d+/)
+      const getPrimaryDetails = async () => {
+        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}`
+        return await apiCall(optionsVideogameDetails)
+      }
+      const getScreenshots = async () => {
+        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/screenshots`
+        return await apiCall(optionsVideogameDetails)
+      }
+      const getSuggested = async () => {
+        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/suggested`
+        return await apiCall(optionsVideogameDetails)
+      }
+      const getReviews = async () => {
+        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/reviews`
+        return await apiCall(optionsVideogameDetails)
+      }
+      const getYoutube = async () => {
+        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/youtube`
+        return await apiCall(optionsVideogameDetails)
+      }
+      const getDevTeam = async () => {
+        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/development-team`
+        return await apiCall(optionsVideogameDetails)
+      }
+
+      const primaryDetails = await getPrimaryDetails()
+      const detailsCollected = {
+        ...primaryDetails,
+        screenshots: parseInt(primaryDetails.screenshots_count) > 0 ? (await getScreenshots()).results : null,
+        suggested: parseInt(primaryDetails.suggestions_count) > 0 ? (await getSuggested()).results : null,
+        reviews: parseInt(primaryDetails.reviews_count) > 0 ? (await getReviews()).results : null,
+        youtube: parseInt(primaryDetails.youtube_count) > 0 ? (await getYoutube()).results : null,
+        devteam: parseInt(primaryDetails.creators_count) > 0 ? (await getDevTeam()).results : null
+      }
+
+      res.json(detailsCollected)
       console.log(`/api/videogameDetails/${id} endpoint has been called!`)
     })
 
