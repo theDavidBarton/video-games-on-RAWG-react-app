@@ -202,11 +202,11 @@ class VideogameDetails extends Component {
                 </div>
               </div>
             </div>
-            <div className='row mt-3'>
+            <div className='row mt-3 px-3'>
               <h4>Screens:</h4>
             </div>
             <div className='row mb-2'>{this.getScreens()}</div>
-            <div className='row mt-3'>
+            <div className='row mt-3 px-3'>
               <h4>Similar titles:</h4>
             </div>
             <div className='row mb-2 text-center'>{this.getSuggested()}</div>
