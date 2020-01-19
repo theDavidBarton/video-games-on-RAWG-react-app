@@ -152,12 +152,11 @@ class VideogameDetails extends Component {
       reviews = reviewsArray.map(reviewElement => (
         <Fragment key={reviewElement.id}>
           <p dangerouslySetInnerHTML={{ __html: reviewElement.text }}></p>
-          <h5>by {reviewElement.user ? reviewElement.user.username : reviewElement.external_author}</h5>
-          <hr></hr>
+          <strong>by {reviewElement.user ? reviewElement.user.username : reviewElement.external_author}</strong>
+          <hr />
         </Fragment>
       ))
     }
-    console.log(reviews.length)
     return reviews
   }
 
