@@ -41,6 +41,20 @@ const optionsVideogameAutocomplete = {
   }
 }
 
+const optionsSearchArchive = {
+  method: 'GET',
+  headers: userAgent,
+  url: 'https://archive.org/advancedsearch.php',
+  qs: {
+    q: undefined,
+    rows: '5',
+    page: '1',
+    output: 'json',
+    'fl[]': 'identifier',
+    'sort[]': 'downloads desc'
+  }
+}
+
 let parsedResult
 
 async function apiCall(options) {
@@ -134,6 +148,20 @@ function endpointCreation() {
 
       res.json(detailsCollected)
       console.log(`/api/videogameDetails/${id} endpoint has been called!`)
+    })
+
+    // _Archive.org link to older titles
+    // e.g.: https://archive.org/advancedsearch.php?q=title:(prehistorik) AND collection:(softwarelibrary^10) AND year:(1993) AND mediatype:(software)&fl[]=identifier&fl[]=title&fl[]=year&sort[]=downloads desc&rows=5&page=1&output=json
+    app.get('/api/searchArchive', async (req, res) => {
+      try {
+        const queryTitle = req.query.title
+        const queryYear = req.query.year
+        optionsSearchArchive.qs.q = `title:(${queryTitle}) AND collection:(softwarelibrary^10) AND year:(${queryYear}) AND mediatype:(software)`
+        res.json(await apiCall(optionsSearchArchive))
+        console.log(`/api/searchArchive?title=${queryTitle}&year=${queryYear} endpoint has been called!`)
+      } catch (e) {
+        console.error(e)
+      }
     })
 
     // providing a dynamic endpoint to videogame autocomplete
