@@ -8,7 +8,7 @@ Available on Heroku: https://trending-video-games.herokuapp.com/
 
 ![RAWG app](rawg_screenshot.jpg)
 
-An experimental project with the RAWG api.
+An experimental project with the **RAWG** api and **Archive.org's** search api.
 
 ## Local run
 
@@ -22,6 +22,7 @@ An experimental project with the RAWG api.
 - `GET` **/api/topRatedRecommended** - used e.g. in the header components' bg image
 - `GET` **/api/videogameDetails/{id}** - the content of a specific game
 - `GET` **/api/videogameAutocomplete?q={query}**; `?q=` (mandatory) - used in the search input component's autocomplete
+- `GET` **/api/searchArchive?title={query}&year={query}**; `?title=` (mandatory); `?year=` (mandatory) - searches in Archive.org's collection if an older game has an online playeable version on their servers.
 
 See in details: [server.js](./server.js).
 
@@ -35,7 +36,9 @@ Copyright (c) 2019 David Barton
 
 ## Used data
 
-Powered by [RAWG.io](https://rawg.io/apidocs) data. Thank you guys!
+Powered by [RAWG.io](https://rawg.io/apidocs) video game data. Thank you guys!
+
+Powered by [Archive.org](https://archive.org/help/aboutsearch.htm) video game links. This app links some titles to the biggest web archive of the internet. Thanks Archive.org!
 
 ## Used font
 

@@ -4,19 +4,36 @@ class VideogameDetails extends Component {
   state = {
     data: null,
     dataIsReady: false,
+    archiveIdentifier: null,
+    archiveOfferAvailable: false,
     id: this.props.selectedVideogame,
     reviewHeight: '133px'
   }
 
   componentDidMount() {
-    this.getRawgApi()
+    this.getRawgAndArchiveApi()
   }
 
-  getRawgApi = async () => {
+  getRawgAndArchiveApi = async () => {
     try {
       const response = await fetch(`/api/videogameDetails/${this.state.id}`)
       const json = await response.json()
       this.setState({ data: json, dataIsReady: true })
+    } catch (e) {
+      console.error(e)
+    }
+    try {
+      let titleValue
+      this.state.data.released && this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
+        ? (titleValue = this.state.data.name.replace(/\([0-9]{4}\)|:.*|-|\./, '').trim())
+        : (titleValue = this.state.data.name.replace(/:.*|-|\./, ''))
+      const yearValue = this.state.data.released
+        ? this.state.data.released.match(/[0-9]{4}/)
+        : '[1960-01-01 TO 2010-01-01]'
+      const response = await fetch(`/api/searchArchive?title=${titleValue}&year=${yearValue}`)
+      const json = await response.json()
+      const identifier = json.response.docs.length > 0 ? json.response.docs[0].identifier : null
+      if (identifier) this.setState({ archiveIdentifier: identifier, archiveOfferAvailable: true })
     } catch (e) {
       console.error(e)
     }
@@ -28,7 +45,6 @@ class VideogameDetails extends Component {
       this.state.data.released && this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
         ? (title = this.state.data.name.replace(/\([0-9]{4}\)/, '').trim())
         : (title = this.state.data.name)
-      console.log(this.state.data)
       return title
     } catch (e) {
       console.error(e)
@@ -192,13 +208,33 @@ class VideogameDetails extends Component {
     }
   }
 
+  getArchiveOffers = () => {
+    try {
+      const archiveUrl = `https://archive.org/details/${this.state.archiveIdentifier}`
+      const archive = (
+        <Fragment>
+          <a href={archiveUrl} target='_blank' rel='noopener noreferrer'>
+            <div className='btn btn-outline-info m-2 p-2'>
+              <small style={{ fontSize: '68%' }}>FREE</small> <strong>Archive.org</strong>
+            </div>
+          </a>
+        </Fragment>
+      )
+      return archive
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   getReviews = () => {
     try {
       const reviewsArray = this.state.data.reviews ? this.state.data.reviews : []
       const reviews = reviewsArray.map(reviewElement => (
         <Fragment key={reviewElement.id}>
+          <div>{'★'.repeat(reviewElement.rating) + '☆'.repeat(5 - reviewElement.rating)}</div>
           <p dangerouslySetInnerHTML={{ __html: reviewElement.text }}></p>
-          <strong>by {reviewElement.user ? reviewElement.user.username : reviewElement.external_author}</strong>
+          <strong>by {reviewElement.user ? reviewElement.user.username : reviewElement.external_author} </strong>
+          <small>{reviewElement.created ? reviewElement.created.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/) : 'n/a'}</small>
           <hr />
         </Fragment>
       ))
@@ -410,12 +446,15 @@ class VideogameDetails extends Component {
             </div>
             <div className='row'>
               <div className='col-md-3'>
-                {this.getStores().length > 0 ? (
+                {this.getStores().length > 0 || this.state.archiveOfferAvailable ? (
                   <Fragment>
                     <div className='row mt-3 px-3'>
                       <h4>Buy it on:</h4>
                     </div>
-                    <div className='row mb-2'>{this.getStores()}</div>
+                    <div className='row mb-2'>
+                      <Fragment>{this.getStores().length > 0 ? this.getStores() : null}</Fragment>
+                      <Fragment>{this.state.archiveOfferAvailable ? this.getArchiveOffers() : null}</Fragment>
+                    </div>
                   </Fragment>
                 ) : null}
               </div>
