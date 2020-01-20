@@ -23,148 +23,195 @@ class VideogameDetails extends Component {
   }
 
   getTitle = () => {
-    let title
-    this.state.data.released && this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
-      ? (title = this.state.data.name.replace(/\([0-9]{4}\)/, '').trim())
-      : (title = this.state.data.name)
-    console.log(this.state.data)
-    return title
+    try {
+      let title
+      this.state.data.released && this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
+        ? (title = this.state.data.name.replace(/\([0-9]{4}\)/, '').trim())
+        : (title = this.state.data.name)
+      console.log(this.state.data)
+      return title
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getReleaseYear = () => {
-    const releaseYear = this.state.data.released ? this.state.data.released.match(/[0-9]{4}/) : 'n/a'
-    return releaseYear
+    try {
+      const releaseYear = this.state.data.released ? this.state.data.released.match(/[0-9]{4}/) : 'n/a'
+      return releaseYear
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getReleaseDate = () => {
-    const releaseDate = this.state.data.released
-    return releaseDate
+    try {
+      const releaseDate = this.state.data.released
+      return releaseDate
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getTags = () => {
-    const tagsArray = this.state.data.tags
-    const tags = tagsArray.map((tagElement, index) => (
-      <div className='badge badge-dark tag-badge-margin' key={index + 1}>
-        {tagElement.language === 'eng' ? tagElement.name : null}
-      </div>
-    ))
-    return tags
+    try {
+      const tagsArray = this.state.data.tags ? this.state.data.tags : []
+      const tags = tagsArray.map((tagElement, index) => (
+        <div className='badge badge-dark tag-badge-margin' key={index + 1}>
+          {tagElement.language === 'eng' ? tagElement.name : null}
+        </div>
+      ))
+      return tags
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getOverview = () => {
-    const overView = this.state.data.description
-    return overView
+    try {
+      const overView = this.state.data.description
+      return overView
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getRuntime = () => {
-    const runtime = this.state.data.playtime
-    return runtime
+    try {
+      const runtime = this.state.data.playtime
+      return runtime
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getVotes = () => {
-    const votes = this.state.data.rating
-    return votes
+    try {
+      const votes = this.state.data.rating
+      return votes
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getGenres = () => {
-    const genresArray = this.state.data.genres
-    const genres = genresArray.map((genreElement, index) => (
-      <span key={index + 1}>{(index ? ', ' : '') + genreElement.name}</span>
-    ))
-    return genres
+    try {
+      const genresArray = this.state.data.genres ? this.state.data.genres : []
+      const genres = genresArray.map((genreElement, index) => (
+        <span key={index + 1}>{(index ? ', ' : '') + genreElement.name}</span>
+      ))
+      return genres
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getCompanies = () => {
-    const companiesArray = this.state.data.developers
-    const companies = companiesArray.map((companyElement, index) => (
-      <span key={index + 1}>{(index ? ', ' : '') + companyElement.name}</span>
-    ))
-    return companies
+    try {
+      const companiesArray = this.state.data.developers ? this.state.data.developers : []
+      const companies = companiesArray.map((companyElement, index) => (
+        <span key={index + 1}>{(index ? ', ' : '') + companyElement.name}</span>
+      ))
+      return companies
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getClips = () => {
-    let clip
-    this.state.data.clip ? (clip = this.state.data.clip.clips[640]) : (clip = null)
-    return clip
+    try {
+      let clip, poster
+      this.state.data.clip
+        ? (clip = this.state.data.clip.clips[640]) &&
+          (poster = this.state.data.clip['preview'].replace(
+            'media/stories-previews',
+            'media/crop/600/400/stories-previews'
+          ))
+        : (clip = null) && (poster = null)
+      return { clip, poster }
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getWebsite = () => {
-    const website = this.state.data.website
-    const websiteText = website.replace(/http:\/\/|https:\/\/|www\./g, '')
-    return { website, websiteText }
+    try {
+      const website = this.state.data.website
+      const websiteText = website.replace(/http:\/\/|https:\/\/|www\./g, '')
+      return { website, websiteText }
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getBackground = () => {
-    let background
-    this.state.data.background_image_additional
-      ? (background = this.state.data.background_image_additional)
-      : (background = this.state.data.background_image)
+    try {
+      let background
+      this.state.data.background_image_additional
+        ? (background = this.state.data.background_image_additional)
+        : (background = this.state.data.background_image)
 
-    if (background) {
-      try {
+      if (background) {
         background.match(/media\/screenshots/)
           ? (background = background.replace('media/screenshots', 'media/crop/600/400/screenshots'))
           : (background = background.replace('media/games', 'media/crop/600/400/games'))
-      } catch (e) {
-        console.error(e)
       }
+      return background
+    } catch (e) {
+      console.error(e)
     }
-
-    return background
   }
 
   getPoster = () => {
-    let poster
-
-    if (this.state.data.background_image) {
-      try {
+    try {
+      let poster
+      if (this.state.data.background_image) {
         this.state.data.background_image.match(/media\/screenshots/)
           ? (poster = this.state.data.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots'))
           : (poster = this.state.data.background_image.replace('media/games', 'media/crop/600/400/games'))
-      } catch (e) {
-        console.error(e)
       }
+      return poster
+    } catch (e) {
+      console.error(e)
     }
-    return poster
   }
 
   getStores = () => {
-    const storesArray = this.state.data.stores
-    let stores
-    if (storesArray) {
-      stores = storesArray.map(storeElement => (
+    try {
+      const storesArray = this.state.data.stores ? this.state.data.stores : []
+      const stores = storesArray.map(storeElement => (
         <Fragment key={storeElement.id}>
           <a href={storeElement.url} target='_blank' rel='noopener noreferrer'>
             <div className='btn btn-outline-dark m-2 p-2'>{storeElement.store.name}</div>
           </a>
         </Fragment>
       ))
+      return stores
+    } catch (e) {
+      console.error(e)
     }
-    return stores
   }
 
   getReviews = () => {
-    const reviewsArray = this.state.data.reviews
-    let reviews
-
-    if (reviewsArray) {
-      reviews = reviewsArray.map(reviewElement => (
+    try {
+      const reviewsArray = this.state.data.reviews ? this.state.data.reviews : []
+      const reviews = reviewsArray.map(reviewElement => (
         <Fragment key={reviewElement.id}>
           <p dangerouslySetInnerHTML={{ __html: reviewElement.text }}></p>
           <strong>by {reviewElement.user ? reviewElement.user.username : reviewElement.external_author}</strong>
           <hr />
         </Fragment>
       ))
+      return reviews
+    } catch (e) {
+      console.error(e)
     }
-    return reviews
   }
 
   getScreens = () => {
-    const screensArray = this.state.data.screenshots
-    let screens
-
-    if (screensArray) {
-      screens = screensArray.map(screenElement => (
+    try {
+      const screensArray = this.state.data.screenshots ? this.state.data.screenshots : []
+      const screens = screensArray.map(screenElement => (
         <div key={screenElement.id} className='col-md-3 my-3'>
           {screenElement.image ? (
             <img
@@ -179,66 +226,73 @@ class VideogameDetails extends Component {
           ) : null}
         </div>
       ))
+      return screens
+    } catch (e) {
+      console.error(e)
     }
-    return screens
   }
 
   getSuggested = () => {
-    const suggestedArray = this.state.data.suggested
-
-    const suggested = suggestedArray.map(suggestedElement => (
-      <Fragment key={suggestedElement.id}>
-        {suggestedElement.background_image ? (
-          <div
-            key={suggestedElement.id}
-            className='col-lg-2 col-5 m-2 p-4'
-            style={{
-              height: '200px',
-              overflow: 'hidden',
-              backgroundImage: `linear-gradient(rgba(0,0,0,.4), rgba(52,58,64,.2)), url(${
-                suggestedElement.background_image.match(/media\/screenshots/)
-                  ? suggestedElement.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots')
-                  : suggestedElement.background_image.replace('media/games', 'media/crop/600/400/games')
-              })`,
-              backgroundSize: 'cover'
-            }}>
-            <a className='text-decoration-none' href={`/videogame/${suggestedElement.id}-${suggestedElement.slug}`}>
-              <h5 className='text-light suggestion-h2'>
-                {suggestedElement.name.length >= 30
-                  ? suggestedElement.name.substring(0, 30) + '...'
-                  : suggestedElement.name}
-              </h5>
-              <div>
-                {suggestedElement.platforms.map((platformElement, index) => (
-                  <div className='badge badge-warning platform-badge-margin' key={index + 1}>
-                    {platformElement.platform.name}
-                  </div>
-                ))}
-              </div>
-            </a>
-          </div>
-        ) : null}
-      </Fragment>
-    ))
-    return suggested
+    try {
+      const suggestedArray = this.state.data.suggested ? this.state.data.suggested : []
+      const suggested = suggestedArray.map(suggestedElement => (
+        <Fragment key={suggestedElement.id}>
+          {suggestedElement.background_image ? (
+            <div
+              key={suggestedElement.id}
+              className='col-lg-2 col-5 m-2 p-4'
+              style={{
+                height: '200px',
+                overflow: 'hidden',
+                backgroundImage: `linear-gradient(rgba(0,0,0,.4), rgba(52,58,64,.2)), url(${
+                  suggestedElement.background_image.match(/media\/screenshots/)
+                    ? suggestedElement.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots')
+                    : suggestedElement.background_image.replace('media/games', 'media/crop/600/400/games')
+                })`,
+                backgroundSize: 'cover'
+              }}>
+              <a className='text-decoration-none' href={`/videogame/${suggestedElement.id}-${suggestedElement.slug}`}>
+                <h5 className='text-light suggestion-h2'>
+                  {suggestedElement.name.length >= 30
+                    ? suggestedElement.name.substring(0, 30) + '...'
+                    : suggestedElement.name}
+                </h5>
+                <div>
+                  {suggestedElement.platforms.map((platformElement, index) => (
+                    <div className='badge badge-warning platform-badge-margin' key={index + 1}>
+                      {platformElement.platform.name}
+                    </div>
+                  ))}
+                </div>
+              </a>
+            </div>
+          ) : null}
+        </Fragment>
+      ))
+      return suggested
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getPlatform = () => {
-    const platformArray = this.state.data.platforms
-    const platform = platformArray.map((platformElement, index) => (
-      <div className='badge badge-warning platform-badge-margin' key={index + 1}>
-        {platformElement.platform.name}
-      </div>
-    ))
-    return platform
+    try {
+      const platformArray = this.state.data.platforms ? this.state.data.platforms : []
+      const platform = platformArray.map((platformElement, index) => (
+        <div className='badge badge-warning platform-badge-margin' key={index + 1}>
+          {platformElement.platform.name}
+        </div>
+      ))
+      return platform
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   getDevteam = () => {
-    let devteamMembers
-    const devteamArray = this.state.data.devteam
-
-    if (devteamArray) {
-      devteamMembers = devteamArray.map(devteamMember => (
+    try {
+      const devteamArray = this.state.data.devteam ? this.state.data.devteam : []
+      const devteamMembers = devteamArray.map(devteamMember => (
         <Fragment key={devteamMember.id}>
           <li className='col media my-3'>
             {devteamMember.image ? (
@@ -267,8 +321,10 @@ class VideogameDetails extends Component {
           </li>
         </Fragment>
       ))
+      return devteamMembers
+    } catch (e) {
+      console.error(e)
     }
-    return devteamMembers
   }
 
   setReviewsHeight = () => {
@@ -343,7 +399,7 @@ class VideogameDetails extends Component {
                   <p className='mb-2' dangerouslySetInnerHTML={{ __html: this.getOverview() }}></p>
                 </div>
                 <div>
-                  {this.getDevteam() ? (
+                  {this.getDevteam().length > 0 ? (
                     <Fragment>
                       <h4>Creators:</h4>
                       <ul className='row list-unstyled list-group list-group-horizontal'>{this.getDevteam()}</ul>
@@ -394,12 +450,13 @@ class VideogameDetails extends Component {
               <h4>Screens:</h4>
             </div>
             <div className='row mb-2'>
-              {this.getClips() ? (
+              {this.getClips().clip ? (
                 <div className='col-md-3 my-3'>
                   <video
                     className='img-style'
                     style={{ objectFit: 'cover', height: '100%' }}
-                    src={this.getClips()}
+                    src={this.getClips().clip}
+                    poster={this.getClips().poster}
                     playsInline
                     controls
                     muted

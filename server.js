@@ -125,11 +125,11 @@ function endpointCreation() {
       const primaryDetails = await getPrimaryDetails()
       const detailsCollected = {
         ...primaryDetails,
-        screenshots: parseInt(primaryDetails.screenshots_count) > 0 ? (await getScreenshots()).results : null,
-        suggested: parseInt(primaryDetails.suggestions_count) > 0 ? (await getSuggested()).results : null,
-        reviews: parseInt(primaryDetails.reviews_count) > 0 ? (await getReviews()).results : null,
-        youtube: parseInt(primaryDetails.youtube_count) > 0 ? (await getYoutube()).results : null,
-        devteam: parseInt(primaryDetails.creators_count) > 0 ? (await getDevTeam()).results : null
+        screenshots: parseInt(primaryDetails.screenshots_count) > 0 ? (await getScreenshots()).results : [],
+        suggested: parseInt(primaryDetails.suggestions_count) > 0 ? (await getSuggested()).results : [],
+        reviews: parseInt(primaryDetails.reviews_count) > 0 ? (await getReviews()).results : [],
+        youtube: parseInt(primaryDetails.youtube_count) > 0 ? (await getYoutube()).results : [],
+        devteam: parseInt(primaryDetails.creators_count) > 0 ? (await getDevTeam()).results : []
       }
 
       res.json(detailsCollected)
