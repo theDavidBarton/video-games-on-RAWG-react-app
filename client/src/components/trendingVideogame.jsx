@@ -15,7 +15,7 @@ class TrendingVideogame extends Component {
 
   getRawgApi = async () => {
     try {
-      const response = await fetch(`/api/videogameDetails/${this.state.response.results[this.state.value].id}`)
+      const response = await fetch(`/api/videogame/${this.state.response.results[this.state.value].id}`)
       const json = await response.json()
       this.setState({ detailsData: json, dataIsReady: true })
     } catch (e) {

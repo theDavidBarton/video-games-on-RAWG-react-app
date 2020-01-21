@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
-class VideogameDetails extends Component {
+class Videogame extends Component {
   state = {
     data: null,
     dataIsReady: false,
@@ -16,7 +16,7 @@ class VideogameDetails extends Component {
 
   getRawgAndArchiveApi = async () => {
     try {
-      const response = await fetch(`/api/videogameDetails/${this.state.id}`)
+      const response = await fetch(`/api/videogame/${this.state.id}`)
       const json = await response.json()
       this.setState({ data: json, dataIsReady: true })
     } catch (e) {
@@ -337,7 +337,11 @@ class VideogameDetails extends Component {
                 height='90'
                 style={{ objectFit: 'cover' }}
                 alt={devteamMember.name}
-                src={devteamMember.image}
+                src={
+                  devteamMember.image.match(/media\/persons_wiki/)
+                    ? devteamMember.image.replace('media/persons_wiki', 'media/resize/200/-/persons_wiki')
+                    : devteamMember.image.replace('media/persons', 'media/resize/200/-/persons')
+                }
                 className='mr-3 rounded-circle'
               />
             ) : (
@@ -380,7 +384,7 @@ class VideogameDetails extends Component {
         {this.state.dataIsReady ? (
           <div className='container'>
             <header border-bottom='1px' solid='#000'>
-              <h2 className='display-4 mt-2 heading-line' id='videogameDetailsLabel' display='inline'>
+              <h2 className='display-4 mt-2 heading-line' id='videogameLabel' display='inline'>
                 {this.getTitle()}
                 <span className='lead heading-line'> ({this.getReleaseYear()}) </span>
               </h2>
@@ -525,4 +529,4 @@ class VideogameDetails extends Component {
     )
   }
 }
-export default VideogameDetails
+export default Videogame

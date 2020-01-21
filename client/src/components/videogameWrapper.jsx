@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react'
 import CookieBar from './cookieBar'
 import Header from './header'
 import Footer from './footer'
-import VideogameDetails from './videogameDetails'
+import Videogame from './videogame'
 
-class VideogameDetailsWrapper extends Component {
+class VideogameWrapper extends Component {
   state = {
     data: null,
     dataIsReady: false,
@@ -18,7 +18,7 @@ class VideogameDetailsWrapper extends Component {
           <div>
             <CookieBar />
             <Header />
-            <VideogameDetails selectedVideogame={this.state.selectedVideogame} />
+            <Videogame selectedVideogame={this.state.selectedVideogame} />
             <Footer />
           </div>
         ) : null}
@@ -27,4 +27,4 @@ class VideogameDetailsWrapper extends Component {
   }
 }
 
-export default VideogameDetailsWrapper
+export default VideogameWrapper

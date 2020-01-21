@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import SearchDropdownItem, { SearchDropdownItemNoResult } from './searchDropdownItem'
 
 class SearchForm extends Component {
   state = {
@@ -24,61 +25,11 @@ class SearchForm extends Component {
     }
   }
 
-  // _TODO: move to its own component
-  getDropdown = () => {
-    const dropdown = (
-      <Fragment>
-        {this.state.data.count >= 1 ? (
-          this.state.data.results.slice(0, 7).map(result => (
-            <a key={result.id + 'a'} href={`/videogame/${result.id}-${result.slug}`} className='text-decoration-none'>
-              <li key={result.id + 'li'} className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
-                {result.background_image ? (
-                  <img
-                    className='autocomplete-img-style'
-                    width='45'
-                    height='45'
-                    alt={result.name}
-                    key={result.id + 'img'}
-                    src={
-                      result.background_image.match(/media\/screenshots/)
-                        ? result.background_image.replace('media/screenshots', 'media/resize/80/-/screenshots')
-                        : result.background_image.replace('media/games', 'media/resize/80/-/games')
-                    }
-                  />
-                ) : (
-                  <svg width='45' height='45'>
-                    <circle cx='45' cy='45' r='45' fill='#D5D8DC' />
-                    Sorry, your browser does not support inline SVG.
-                  </svg>
-                )}
-                <span key={result.id + 'span'} className='mx-1'>
-                  {result.released && result.name.includes(result.released.match(/[0-9]{4}/))
-                    ? result.name.replace(/\([0-9]{4}\)/, '').trim()
-                    : result.name}{' '}
-                  ({result.released ? result.released.match(/[0-9]{4}/) : 'n/a'})
-                </span>
-              </li>
-            </a>
-          ))
-        ) : (
-          <li className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
-            <span className='mx-1'>no results found...</span>
-          </li>
-        )}
-      </Fragment>
-    )
-    return dropdown
-  }
-
-  getDropdownOverlay = () => {
-    const overlay = <div id='dropdownOverlay' onClick={this.closeDropdown} className='overlay-style'></div>
-    return overlay
-  }
-
   setKeywordInInput = event => {
     this.setState({ keyword: event.target.value })
     if (event.target.value.length > 3) {
-      this.getRawgApi() // send request to api only after 3 characters
+      // sends request to api only after 3 characters
+      this.getRawgApi()
       this.setState({ dropdownIsopened: true })
     }
   }
@@ -94,7 +45,7 @@ class SearchForm extends Component {
           <input
             className='form-control mt-2'
             type='text'
-            placeholder='Type a videogame name…'
+            placeholder='Type a video game name…'
             value={this.state.keyword}
             onChange={this.setKeywordInInput}
           />
@@ -102,8 +53,16 @@ class SearchForm extends Component {
             <Fragment>
               {this.state.dropdownIsopened ? (
                 <div className='bg-light w-auto text-dark position-absolute py-2 px-2'>
-                  <ul className='list-unstyled mb-0'>{this.getDropdown()}</ul>
-                  {this.getDropdownOverlay()}
+                  <ul className='list-unstyled mb-0'>
+                    {this.state.data.count >= 1 ? (
+                      this.state.data.results
+                        .slice(0, 7)
+                        .map(result => <SearchDropdownItem key={result.id} result={result} />)
+                    ) : (
+                      <SearchDropdownItemNoResult />
+                    )}
+                  </ul>
+                  <div id='dropdownOverlay' onClick={this.closeDropdown} className='overlay-style'></div>
                 </div>
               ) : null}
             </Fragment>
@@ -113,4 +72,5 @@ class SearchForm extends Component {
     )
   }
 }
+
 export default SearchForm
