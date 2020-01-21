@@ -26,10 +26,11 @@ jobs:
           yarn
           yarn run build
 
-      - name: Lint
+      - name: Test
         run: |
           cd client
           yarn lint .
+          yarn test --watchAll=false --verbose
 
       - name: Deploy to Heroku
         run: echo "Follow deployment on Heroku https://dashboard.heroku.com/apps/trending-video-games/activity"

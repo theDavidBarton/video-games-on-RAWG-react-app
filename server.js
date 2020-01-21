@@ -26,7 +26,7 @@ const optionsTopRatedRecommended = {
   }
 }
 
-const optionsVideogameDetails = {
+const optionsVideogame = {
   method: 'GET',
   headers: userAgent,
   url: undefined
@@ -109,31 +109,31 @@ function endpointCreation() {
     })
 
     // providing a dynamic endpoint to videogame detail pages
-    app.get('/api/videogameDetails/:rawgId', async (req, res) => {
+    app.get('/api/videogame/:rawgId', async (req, res) => {
       const id = req.params.rawgId.match(/\d+/)
       const getPrimaryDetails = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}`
+        return await apiCall(optionsVideogame)
       }
       const getScreenshots = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/screenshots`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/screenshots`
+        return await apiCall(optionsVideogame)
       }
       const getSuggested = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/suggested`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/suggested`
+        return await apiCall(optionsVideogame)
       }
       const getReviews = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/reviews`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/reviews`
+        return await apiCall(optionsVideogame)
       }
       const getYoutube = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/youtube`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/youtube`
+        return await apiCall(optionsVideogame)
       }
       const getDevTeam = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/development-team`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/development-team`
+        return await apiCall(optionsVideogame)
       }
 
       const primaryDetails = await getPrimaryDetails()
@@ -147,7 +147,7 @@ function endpointCreation() {
       }
 
       res.json(detailsCollected)
-      console.log(`/api/videogameDetails/${id} endpoint has been called!`)
+      console.log(`/api/videogame/${id} endpoint has been called!`)
     })
 
     // _Archive.org link to older titles
