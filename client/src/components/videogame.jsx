@@ -98,6 +98,8 @@ class Videogame extends Component {
   }
 
   // ⚠️ _MARKED for making it as component! ⚠️
+
+  // _article: https://cdb.reacttraining.com/react-inline-functions-and-performance-bdff784f5578
   getGenres = () => {
     try {
       const genresArray = this.state.data.genres ? this.state.data.genres : []
@@ -236,10 +238,12 @@ class Videogame extends Component {
       console.error(e)
     }
     try {
-      noMoreReadmore =
-        reviews.length <= 1 && reviews[0].props.children[1].props.dangerouslySetInnerHTML.__html.length < 445
-          ? (noMoreReadmore = true)
-          : (noMoreReadmore = false)
+      if (reviews[0]) {
+        noMoreReadmore =
+          reviews.length <= 1 && reviews[0].props.children[1].props.dangerouslySetInnerHTML.__html.length < 445
+            ? (noMoreReadmore = true)
+            : (noMoreReadmore = false)
+      }
     } catch (e) {
       console.error(e)
     }
