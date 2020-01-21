@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import DevteamMember from './videogameDevteamMember'
+import PlatformBadge from './videogamePlatformBadge'
+import Tag from './videogameTag'
 
 class Videogame extends Component {
   state = {
@@ -53,8 +56,7 @@ class Videogame extends Component {
 
   getReleaseYear = () => {
     try {
-      const releaseYear = this.state.data.released ? this.state.data.released.match(/[0-9]{4}/) : 'n/a'
-      return releaseYear
+      return this.state.data.released ? this.state.data.released.match(/[0-9]{4}/) : 'n/a'
     } catch (e) {
       console.error(e)
     }
@@ -62,22 +64,7 @@ class Videogame extends Component {
 
   getReleaseDate = () => {
     try {
-      const releaseDate = this.state.data.released
-      return releaseDate
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  getTags = () => {
-    try {
-      const tagsArray = this.state.data.tags ? this.state.data.tags : []
-      const tags = tagsArray.map((tagElement, index) => (
-        <div className='badge badge-dark tag-badge-margin' key={index + 1}>
-          {tagElement.language === 'eng' ? tagElement.name : null}
-        </div>
-      ))
-      return tags
+      return this.state.data.released
     } catch (e) {
       console.error(e)
     }
@@ -110,6 +97,7 @@ class Videogame extends Component {
     }
   }
 
+  // ⚠️ _MARKED for making it as component! ⚠️
   getGenres = () => {
     try {
       const genresArray = this.state.data.genres ? this.state.data.genres : []
@@ -122,6 +110,7 @@ class Videogame extends Component {
     }
   }
 
+  // ⚠️ _MARKED for making it as component! ⚠️
   getCompanies = () => {
     try {
       const companiesArray = this.state.data.developers ? this.state.data.developers : []
@@ -192,6 +181,7 @@ class Videogame extends Component {
     }
   }
 
+  // ⚠️ _MARKED for making it as component! ⚠️
   getStores = () => {
     try {
       const storesArray = this.state.data.stores ? this.state.data.stores : []
@@ -208,6 +198,7 @@ class Videogame extends Component {
     }
   }
 
+  // ⚠️ _MARKED for making it as component! ⚠️
   getArchiveOffers = () => {
     try {
       const archiveUrl = `https://archive.org/details/${this.state.archiveIdentifier}`
@@ -215,7 +206,7 @@ class Videogame extends Component {
         <Fragment>
           <a href={archiveUrl} target='_blank' rel='noopener noreferrer'>
             <div className='btn btn-outline-info m-2 p-2'>
-              <small style={{ fontSize: '68%' }}>FREE</small> <strong>Archive.org</strong>
+              <small className='smaller-free'>FREE</small> <strong>Archive.org</strong>
             </div>
           </a>
         </Fragment>
@@ -226,10 +217,13 @@ class Videogame extends Component {
     }
   }
 
+  // ⚠️ _MARKED for making it as component! ⚠️
   getReviews = () => {
+    let reviews
+    let noMoreReadmore
     try {
       const reviewsArray = this.state.data.reviews ? this.state.data.reviews : []
-      const reviews = reviewsArray.map(reviewElement => (
+      reviews = reviewsArray.map(reviewElement => (
         <Fragment key={reviewElement.id}>
           <div>{'★'.repeat(reviewElement.rating) + '☆'.repeat(5 - reviewElement.rating)}</div>
           <p dangerouslySetInnerHTML={{ __html: reviewElement.text }}></p>
@@ -238,12 +232,21 @@ class Videogame extends Component {
           <hr />
         </Fragment>
       ))
-      return reviews
     } catch (e) {
       console.error(e)
     }
+    try {
+      noMoreReadmore =
+        reviews.length <= 1 && reviews[0].props.children[1].props.dangerouslySetInnerHTML.__html.length < 445
+          ? (noMoreReadmore = true)
+          : (noMoreReadmore = false)
+    } catch (e) {
+      console.error(e)
+    }
+    return { reviews, noMoreReadmore }
   }
 
+  // ⚠️ _MARKED for making it as component! ⚠️
   getScreens = () => {
     try {
       const screensArray = this.state.data.screenshots ? this.state.data.screenshots : []
@@ -268,6 +271,7 @@ class Videogame extends Component {
     }
   }
 
+  // ⚠️ _MARKED for making it as component! ⚠️
   getSuggested = () => {
     try {
       const suggestedArray = this.state.data.suggested ? this.state.data.suggested : []
@@ -276,10 +280,8 @@ class Videogame extends Component {
           {suggestedElement.background_image ? (
             <div
               key={suggestedElement.id}
-              className='col-lg-2 col-5 m-2 p-4'
+              className='col-lg-2 col-5 m-2 p-4 suggested-game-style'
               style={{
-                height: '200px',
-                overflow: 'hidden',
                 backgroundImage: `linear-gradient(rgba(0,0,0,.4), rgba(52,58,64,.2)), url(${
                   suggestedElement.background_image.match(/media\/screenshots/)
                     ? suggestedElement.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots')
@@ -295,9 +297,7 @@ class Videogame extends Component {
                 </h5>
                 <div>
                   {suggestedElement.platforms.map((platformElement, index) => (
-                    <div className='badge badge-warning platform-badge-margin' key={index + 1}>
-                      {platformElement.platform.name}
-                    </div>
+                    <PlatformBadge data={platformElement} key={index} />
                   ))}
                 </div>
               </a>
@@ -306,62 +306,6 @@ class Videogame extends Component {
         </Fragment>
       ))
       return suggested
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  getPlatform = () => {
-    try {
-      const platformArray = this.state.data.platforms ? this.state.data.platforms : []
-      const platform = platformArray.map((platformElement, index) => (
-        <div className='badge badge-warning platform-badge-margin' key={index + 1}>
-          {platformElement.platform.name}
-        </div>
-      ))
-      return platform
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  getDevteam = () => {
-    try {
-      const devteamArray = this.state.data.devteam ? this.state.data.devteam : []
-      const devteamMembers = devteamArray.map(devteamMember => (
-        <Fragment key={devteamMember.id}>
-          <li className='col media my-3'>
-            {devteamMember.image ? (
-              <img
-                width='90'
-                height='90'
-                style={{ objectFit: 'cover' }}
-                alt={devteamMember.name}
-                src={
-                  devteamMember.image.match(/media\/persons_wiki/)
-                    ? devteamMember.image.replace('media/persons_wiki', 'media/resize/200/-/persons_wiki')
-                    : devteamMember.image.replace('media/persons', 'media/resize/200/-/persons')
-                }
-                className='mr-3 rounded-circle'
-              />
-            ) : (
-              <div className='mr-3'>
-                <svg width='90' height='90'>
-                  <circle cx='45' cy='45' r='45' fill='#6c757d' />
-                  Sorry, your browser does not support inline SVG.
-                </svg>{' '}
-              </div>
-            )}
-            <div className='media-body'>
-              <h5 className='mt-0 mb-1'>{devteamMember.name}</h5>
-              {devteamMember.positions.map((position, index) => (
-                <span key={index + 1}>{(index ? ', ' : '') + position.name}</span>
-              ))}
-            </div>
-          </li>
-        </Fragment>
-      ))
-      return devteamMembers
     } catch (e) {
       console.error(e)
     }
@@ -388,9 +332,19 @@ class Videogame extends Component {
                 {this.getTitle()}
                 <span className='lead heading-line'> ({this.getReleaseYear()}) </span>
               </h2>
-              {this.getPlatform()}
+              {this.state.data.platforms.map((platformBadge, index) => (
+                <PlatformBadge key={index} data={platformBadge} />
+              ))}
             </header>
-            {this.getTags().length < 1 ? <div className='my-2'> </div> : <div className='my-2'>{this.getTags()}</div>}
+            {this.state.data.tags.length < 1 ? (
+              <div className='my-2'> </div>
+            ) : (
+              <div className='my-2'>
+                {this.state.data.tags.map((tag, index) => (
+                  <Tag key={index} data={tag} />
+                ))}
+              </div>
+            )}
             <div className='row text-white img-background details-background' style={{ backgroundImage: bgImage }}>
               <div className='col-md-3 my-3'>
                 <img src={this.getPoster()} alt='poster' className='img-style' />
@@ -439,10 +393,14 @@ class Videogame extends Component {
                   <p className='mb-2' dangerouslySetInnerHTML={{ __html: this.getOverview() }}></p>
                 </div>
                 <div>
-                  {this.getDevteam().length > 0 ? (
+                  {this.state.data.devteam.length > 0 ? (
                     <Fragment>
                       <h4>Creators:</h4>
-                      <ul className='row list-unstyled list-group list-group-horizontal'>{this.getDevteam()}</ul>
+                      <ul className='row list-unstyled list-group list-group-horizontal'>
+                        {this.state.data.devteam.map(devteamMember => (
+                          <DevteamMember key={devteamMember.id} data={devteamMember} />
+                        ))}
+                      </ul>
                     </Fragment>
                   ) : null}
                 </div>
@@ -453,7 +411,7 @@ class Videogame extends Component {
                 {this.getStores().length > 0 || this.state.archiveOfferAvailable ? (
                   <Fragment>
                     <div className='row mt-3 px-3'>
-                      <h4>Buy it on:</h4>
+                      <h4>Get it from:</h4>
                     </div>
                     <div className='row mb-2'>
                       <Fragment>{this.getStores().length > 0 ? this.getStores() : null}</Fragment>
@@ -463,22 +421,23 @@ class Videogame extends Component {
                 ) : null}
               </div>
               <div className='col'>
-                {this.getReviews().length > 0 ? (
+                {this.getReviews().reviews.length > 0 ? (
                   <Fragment>
                     <h4 className='row mt-3 px-3'>Reviews:</h4>
-                    <div
-                      id='longContent'
-                      style={{
-                        height: this.state.reviewHeight,
-                        overflow: 'hidden'
-                      }}>
-                      {this.getReviews()}
+                    <div id='longContent' className='long-content' style={{ height: this.state.reviewHeight }}>
+                      {this.getReviews().reviews}
                     </div>
                     <div className='row justify-content-center'>
                       {this.state.reviewHeight !== 'auto' ? (
-                        <div className='btn btn-outline-dark text-center m-3' onClick={this.setReviewsHeight}>
-                          read more
-                        </div>
+                        <Fragment>
+                          {!this.getReviews().noMoreReadmore ? (
+                            <Fragment>
+                              <div className='btn btn-outline-dark text-center m-3' onClick={this.setReviewsHeight}>
+                                read more
+                              </div>{' '}
+                            </Fragment>
+                          ) : null}
+                        </Fragment>
                       ) : (
                         <div className='btn btn-outline-dark text-center m-3' onClick={this.setBackReviewsHeight}>
                           read less
@@ -496,8 +455,7 @@ class Videogame extends Component {
               {this.getClips().clip ? (
                 <div className='col-md-3 my-3'>
                   <video
-                    className='img-style'
-                    style={{ objectFit: 'cover', height: '100%' }}
+                    className='img-style vid-style'
                     src={this.getClips().clip}
                     poster={this.getClips().poster}
                     playsInline
@@ -519,7 +477,7 @@ class Videogame extends Component {
               <div className='col-12 p-5'>
                 <h3 className='loading-game p-3'>Loading Game</h3>
                 <div className='spinner-border text-dark justify-content-center loading-anim-size mb-5' role='status'>
-                  <span className='sr-only'>Loading...</span>
+                  <span className='sr-only'>Loading Game</span>
                 </div>
               </div>
             </div>
