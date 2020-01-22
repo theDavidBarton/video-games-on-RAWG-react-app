@@ -20,7 +20,7 @@ An experimental project with the **RAWG** api and **Archive.org's** search api.
 
 - `GET` **/api/trending** - used on the home page
 - `GET` **/api/topRatedRecommended** - used e.g. in the header components' bg image
-- `GET` **/api/videogameDetails/{id}** - the content of a specific game
+- `GET` **/api/videogame/{id}** - the content of a specific game
 - `GET` **/api/videogameAutocomplete?q={query}**; `?q=` (mandatory) - used in the search input component's autocomplete
 - `GET` **/api/searchArchive?title={query}&year={query}**; `?title=` (mandatory); `?year=` (mandatory) - searches in Archive.org's collection if an older game has an online playeable version on their servers.
 

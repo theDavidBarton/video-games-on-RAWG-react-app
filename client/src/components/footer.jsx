@@ -13,7 +13,7 @@ class Footer extends Component {
             </div>
             <div className='col align-self-end'>
               <p className='lead'>
-                Today these are the TOP10 trending videogames on RAWG.
+                Check out the currently trending video games on RAWG or search for retro titles in the database.
                 <br />
                 Powered by{' '}
                 <a className='text-danger' href='https://rawg.io/'>
@@ -22,7 +22,7 @@ class Footer extends Component {
                 !
               </p>
               <p>
-                <span className='badge badge-success'>#RAWG.io</span>{' '}
+                <span className='badge badge-dark'>#RAWG.io</span>{' '}
                 <span className='badge badge-warning'>#trending</span>{' '}
                 <span className='badge badge-light'>#ReactJS</span>{' '}
                 <span className='badge badge-danger'>#bootstrap</span>

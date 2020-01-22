@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TrendingVideogameSkeletonLoading extends Component {
+class TrendingSkeletonLoad extends Component {
   render() {
     return (
       <div className='col-md-6'>
@@ -35,4 +35,4 @@ class TrendingVideogameSkeletonLoading extends Component {
   }
 }
 
-export default TrendingVideogameSkeletonLoading
+export default TrendingSkeletonLoad

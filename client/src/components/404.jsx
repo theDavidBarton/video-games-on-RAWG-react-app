@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import logoDark from './../img/logo-big-dark.svg'
 
 class Page404 extends Component {
   render() {
@@ -13,15 +12,14 @@ class Page404 extends Component {
           </div>
         </div>
         <div className='bg-white container text-center'>
-          <img className='col img-fluid py-5 resized-logo' src={logoDark} alt='logo' />
-          <p className='col display-4'>
-            Back to{' '}
-            <a className='text-secondary' href='/'>
-              {' '}
-              home
-            </a>
-            .
-          </p>{' '}
+          <div className='col'>
+            <h1>
+              Back to{' '}
+              <a className='text-secondary' href='/'>
+                home
+              </a>
+            </h1>
+          </div>
         </div>
       </Fragment>
     )

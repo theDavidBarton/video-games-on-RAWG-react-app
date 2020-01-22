@@ -26,7 +26,7 @@ const optionsTopRatedRecommended = {
   }
 }
 
-const optionsVideogameDetails = {
+const optionsVideogame = {
   method: 'GET',
   headers: userAgent,
   url: undefined
@@ -109,45 +109,46 @@ function endpointCreation() {
     })
 
     // providing a dynamic endpoint to videogame detail pages
-    app.get('/api/videogameDetails/:rawgId', async (req, res) => {
+    app.get('/api/videogame/:rawgId', async (req, res) => {
       const id = req.params.rawgId.match(/\d+/)
       const getPrimaryDetails = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}`
+        return await apiCall(optionsVideogame)
       }
       const getScreenshots = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/screenshots`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/screenshots`
+        return await apiCall(optionsVideogame)
       }
       const getSuggested = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/suggested`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/suggested`
+        return await apiCall(optionsVideogame)
       }
       const getReviews = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/reviews`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/reviews`
+        return await apiCall(optionsVideogame)
       }
       const getYoutube = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/youtube`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/youtube`
+        return await apiCall(optionsVideogame)
       }
       const getDevTeam = async () => {
-        optionsVideogameDetails.url = `https://api.rawg.io/api/games/${id}/development-team`
-        return await apiCall(optionsVideogameDetails)
+        optionsVideogame.url = `https://api.rawg.io/api/games/${id}/development-team`
+        return await apiCall(optionsVideogame)
       }
 
-      const primaryDetails = await getPrimaryDetails()
+      const primary = await getPrimaryDetails()
+      const secondary = await Promise.all([getScreenshots(), getSuggested(), getReviews(), getYoutube(), getDevTeam()])
       const detailsCollected = {
-        ...primaryDetails,
-        screenshots: parseInt(primaryDetails.screenshots_count) > 0 ? (await getScreenshots()).results : [],
-        suggested: parseInt(primaryDetails.suggestions_count) > 0 ? (await getSuggested()).results : [],
-        reviews: parseInt(primaryDetails.reviews_count) > 0 ? (await getReviews()).results : [],
-        youtube: parseInt(primaryDetails.youtube_count) > 0 ? (await getYoutube()).results : [],
-        devteam: parseInt(primaryDetails.creators_count) > 0 ? (await getDevTeam()).results : []
+        ...primary,
+        screenshots: parseInt(primary.screenshots_count) > 0 ? secondary[0].results : [],
+        suggested: parseInt(primary.suggestions_count) > 0 ? secondary[1].results : [],
+        reviews: parseInt(primary.reviews_count) > 0 ? secondary[2].results : [],
+        youtube: parseInt(primary.youtube_count) > 0 ? secondary[3].results : [],
+        devteam: parseInt(primary.creators_count) > 0 ? secondary[4].results : []
       }
 
       res.json(detailsCollected)
-      console.log(`/api/videogameDetails/${id} endpoint has been called!`)
+      console.log(`/api/videogame/${id} endpoint has been called!`)
     })
 
     // _Archive.org link to older titles
