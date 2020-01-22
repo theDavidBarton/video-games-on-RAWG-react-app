@@ -136,14 +136,15 @@ function endpointCreation() {
         return await apiCall(optionsVideogame)
       }
 
-      const primaryDetails = await getPrimaryDetails()
+      const primary = await getPrimaryDetails()
+      const secondary = await Promise.all([getScreenshots(), getSuggested(), getReviews(), getYoutube(), getDevTeam()])
       const detailsCollected = {
-        ...primaryDetails,
-        screenshots: parseInt(primaryDetails.screenshots_count) > 0 ? (await getScreenshots()).results : [],
-        suggested: parseInt(primaryDetails.suggestions_count) > 0 ? (await getSuggested()).results : [],
-        reviews: parseInt(primaryDetails.reviews_count) > 0 ? (await getReviews()).results : [],
-        youtube: parseInt(primaryDetails.youtube_count) > 0 ? (await getYoutube()).results : [],
-        devteam: parseInt(primaryDetails.creators_count) > 0 ? (await getDevTeam()).results : []
+        ...primary,
+        screenshots: parseInt(primary.screenshots_count) > 0 ? secondary[0].results : [],
+        suggested: parseInt(primary.suggestions_count) > 0 ? secondary[1].results : [],
+        reviews: parseInt(primary.reviews_count) > 0 ? secondary[2].results : [],
+        youtube: parseInt(primary.youtube_count) > 0 ? secondary[3].results : [],
+        devteam: parseInt(primary.creators_count) > 0 ? secondary[4].results : []
       }
 
       res.json(detailsCollected)

@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import CookieBar from './cookieBar'
-import Header from './header'
-import Footer from './footer'
-import TrendingVideogameList from './trendingVideogameList'
+import TrendingList from './homepageTrendingList'
 
 class HomepageWrapper extends Component {
   state = {
@@ -27,10 +24,7 @@ class HomepageWrapper extends Component {
   render() {
     return (
       <div>
-        <CookieBar />
-        <Header />
-        <TrendingVideogameList data={this.state.data} dataIsReady={this.state.dataIsReady} />
-        <Footer />
+        <TrendingList data={this.state.data} dataIsReady={this.state.dataIsReady} />
       </div>
     )
   }

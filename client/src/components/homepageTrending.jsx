@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TrendingVideogame extends Component {
+class Trending extends Component {
   state = {
     response: this.props.data,
     detailsData: null,
@@ -110,4 +110,4 @@ class TrendingVideogame extends Component {
   }
 }
 
-export default TrendingVideogame
+export default Trending

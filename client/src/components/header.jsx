@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchForm from './searchForm'
+import Search from './search'
 import logo from './../img/logo-big.svg'
 import github from './../img/github.svg'
 import linkedin from './../img/linkedin.png'
@@ -50,7 +50,7 @@ class Header extends Component {
               </a>
             </div>
             <div className='col-md-auto col-12 align-self-end order-1 order-md-0'>
-              <SearchForm />
+              <Search />
               <h1 className='d-none d-md-block'>powered by RAWG.io</h1>
             </div>
             <div className='col-auto align-self-end my-2'>

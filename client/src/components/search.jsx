@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import SearchDropdownItem, { SearchDropdownItemNoResult } from './searchDropdownItem'
 
-class SearchForm extends Component {
+class Search extends Component {
   state = {
     data: null,
     dataIsReady: false,
@@ -73,4 +73,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm
+export default Search

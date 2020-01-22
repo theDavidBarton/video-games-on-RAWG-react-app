@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import TrendingVideogame from './trendingVideogame'
-import TrendingVideogameSkeletonLoading from './trendingVideogameSkeletonLoading'
+import Trending from './homepageTrending'
+import TrendingSkeletonLoading from './homepageTrendingSkeletonLoading'
 
-class TrendingVideogameList extends Component {
+class TrendingList extends Component {
   state = {
     topVideogameCount: [
       { id: 1, value: 0 },
@@ -25,7 +25,7 @@ class TrendingVideogameList extends Component {
           <div className='container'>
             <div className='row'>
               {this.state.topVideogameCount.map(videogames => (
-                <TrendingVideogame
+                <Trending
                   key={videogames.id}
                   value={videogames.value}
                   data={this.props.data}
@@ -38,7 +38,7 @@ class TrendingVideogameList extends Component {
           <div className='container'>
             <div className='row'>
               {this.state.topVideogameCount.map(videogames => (
-                <TrendingVideogameSkeletonLoading key={videogames.id} />
+                <TrendingSkeletonLoading key={videogames.id} />
               ))}
             </div>
           </div>
@@ -48,4 +48,4 @@ class TrendingVideogameList extends Component {
   }
 }
 
-export default TrendingVideogameList
+export default TrendingList
