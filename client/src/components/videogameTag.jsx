@@ -6,11 +6,8 @@ class Tag extends Component {
   }
 
   render() {
-    return (
-      <div className='badge badge-dark tag-badge-margin'>
-        {this.state.data.language === 'eng' ? this.state.data.name : null}
-      </div>
-    )
+    const tag = this.state.data
+    return <div className='badge badge-dark tag-badge-margin'>{tag.language === 'eng' ? tag.name : null}</div>
   }
 }
 

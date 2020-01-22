@@ -11,11 +11,7 @@ class VideogameWrapper extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.selectedVideogame ? (
-          <div>
-            <Videogame selectedVideogame={this.state.selectedVideogame} />
-          </div>
-        ) : null}
+        {this.state.selectedVideogame ? <Videogame selectedVideogame={this.state.selectedVideogame} /> : null}
       </Fragment>
     )
   }

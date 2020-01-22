@@ -22,11 +22,7 @@ class HomepageWrapper extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <TrendingList data={this.state.data} dataIsReady={this.state.dataIsReady} />
-      </div>
-    )
+    return <TrendingList data={this.state.data} dataIsReady={this.state.dataIsReady} />
   }
 }
 

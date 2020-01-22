@@ -201,8 +201,8 @@ class Videogame extends Component {
               <div className='my-2'> </div>
             ) : (
               <div className='my-2'>
-                {data.tags.map((tag, index) => (
-                  <Tag key={index} data={tag} />
+                {data.tags.map((tag, i) => (
+                  <Tag key={i} data={tag} />
                 ))}
               </div>
             )}

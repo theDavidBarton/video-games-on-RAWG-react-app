@@ -6,7 +6,8 @@ class PlatformBadge extends Component {
   }
 
   render() {
-    return <div className='badge badge-warning platform-badge-margin'>{this.state.data.platform.name}</div>
+    const platformElement = this.state.data
+    return <div className='badge badge-warning platform-badge-margin'>{platformElement.platform.name}</div>
   }
 }
 

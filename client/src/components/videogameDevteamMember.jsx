@@ -6,16 +6,17 @@ class DevteamMember extends Component {
   }
 
   render() {
+    const devteamMember = this.state.data
     return (
-      <Fragment key={this.state.data.id}>
+      <Fragment>
         <li className='col media my-3'>
-          {this.state.data.image ? (
+          {devteamMember.image ? (
             <img
-              alt={this.state.data.name}
+              alt={devteamMember.name}
               src={
-                this.state.data.image.match(/media\/persons_wiki/)
-                  ? this.state.data.image.replace('media/persons_wiki', 'media/resize/200/-/persons_wiki')
-                  : this.state.data.image.replace('media/persons', 'media/resize/200/-/persons')
+                devteamMember.image.match(/media\/persons_wiki/)
+                  ? devteamMember.image.replace('media/persons_wiki', 'media/resize/200/-/persons_wiki')
+                  : devteamMember.image.replace('media/persons', 'media/resize/200/-/persons')
               }
               className='mr-3 rounded-circle dev-avatar-style '
             />
@@ -28,9 +29,9 @@ class DevteamMember extends Component {
             </div>
           )}
           <div className='media-body'>
-            <h5 className='mt-0 mb-1'>{this.state.data.name}</h5>
-            {this.state.data.positions.map((position, index) => (
-              <span key={index + 1}>{(index ? ', ' : '') + position.name}</span>
+            <h5 className='mt-0 mb-1'>{devteamMember.name}</h5>
+            {devteamMember.positions.map((position, i) => (
+              <span key={i}>{`${i ? ', ' : ''} ${position.name}`}</span>
             ))}
           </div>
         </li>
