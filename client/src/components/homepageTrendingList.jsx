@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Trending from './homepageTrending'
-import TrendingSkeletonLoading from './homepageTrendingSkeletonLoading'
+import TrendingSkeletonLoad from './homepageTrendingSkeletonLoad'
 
 class TrendingList extends Component {
   state = {
@@ -38,7 +38,7 @@ class TrendingList extends Component {
           <div className='container'>
             <div className='row'>
               {this.state.topVideogameCount.map(videogames => (
-                <TrendingSkeletonLoading key={videogames.id} />
+                <TrendingSkeletonLoad key={videogames.id} />
               ))}
             </div>
           </div>
