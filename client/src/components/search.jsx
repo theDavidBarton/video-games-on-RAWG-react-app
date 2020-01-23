@@ -56,7 +56,7 @@ class Search extends Component {
           {this.state.dataIsReady ? (
             <Fragment>
               {this.state.dropdownIsopened ? (
-                <div className='bg-light w-auto text-dark position-absolute py-2 px-2'>
+                <div className='bg-white w-auto text-dark position-absolute dropdown-position py-2 px-2'>
                   <ul className='list-unstyled mb-0'>
                     {this.state.data.count >= 1 ? (
                       this.state.data.results

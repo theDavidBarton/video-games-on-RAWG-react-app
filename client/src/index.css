@@ -127,6 +127,10 @@ h5 {
   object-fit: cover;
 }
 
+.dropdown-position {
+  top: 35px;
+}
+
 .form-control:focus {
   border-color: #ffc107;
   box-shadow: none;
@@ -236,4 +240,9 @@ h5 {
 /* reviews */
 .long-content {
   overflow: hidden;
+}
+
+/* misc. */
+.bg-white {
+  background-color: #ffffff;
 }
