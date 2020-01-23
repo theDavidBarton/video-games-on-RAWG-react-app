@@ -10,6 +10,8 @@ import Store from './videogameStore'
 import Company from './videogameCompany'
 import Genre from './videogameGenre'
 import VideogameSkeletonLoad from './videogameSkeletonLoad'
+import ImageGallery from './videogameImageGallery'
+import ImageGalleryCloseButton from './videogameImageGalleryCloseButton'
 
 class Videogame extends Component {
   state = {
@@ -18,7 +20,8 @@ class Videogame extends Component {
     archiveIdentifier: null,
     archiveOfferAvailable: false,
     id: this.props.selectedVideogame,
-    reviewHeight: '133px'
+    reviewHeight: '133px',
+    galleryIsOpened: false
   }
 
   componentDidMount() {
@@ -168,6 +171,14 @@ class Videogame extends Component {
         : (unnecessaryReviewReadmore = false)
     }
     return unnecessaryReviewReadmore
+  }
+
+  setGalleryOpen = () => {
+    this.setState({ galleryIsOpened: true })
+  }
+
+  setGalleryClosed = () => {
+    this.setState({ galleryIsOpened: false })
   }
 
   setReviewsHeight = () => {
@@ -324,8 +335,18 @@ class Videogame extends Component {
             </div>
             <div className='row mt-3 px-3'>
               <h4>Screens:</h4>
+              {this.state.galleryIsOpened ? (
+                <Fragment>
+                  <div onClick={this.setGalleryClosed}>
+                    <ImageGalleryCloseButton onClick={this.setGalleryClosed} />
+                  </div>
+                  <div>
+                    <ImageGallery data={data.screenshots} />
+                  </div>
+                </Fragment>
+              ) : null}
             </div>
-            <div className='row mb-2'>
+            <div className='row mb-2' onClick={this.setGalleryOpen} style={{ cursor: 'pointer' }}>
               {this.getClips().clip ? (
                 <div className='col-md-3 my-3'>
                   <video
