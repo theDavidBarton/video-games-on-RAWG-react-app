@@ -4,6 +4,7 @@
   /* 'Arcade Classic' is under copyright (c) Jakob Fischer at www.pizzadude.dk, all rights reserved. */
   font-family: 'ArcadeClassic';
   src: url('./font/ArcadeClassic.otf') format('opentype');
+  font-display: swap;
 }
 
 * {
@@ -18,6 +19,10 @@ h5 {
   letter-spacing: 2px;
   word-spacing: 0.3em;
 }
+/* cookie bar */
+.close {
+  text-shadow: none !important;
+}
 
 /* 404, footer */
 .resized-logo {
@@ -25,7 +30,21 @@ h5 {
   width: 350px;
 }
 
+.resized-logo-footer {
+  height: 100%;
+  width: 300px;
+  max-width: 320px;
+}
+
 /* header */
+.input-label-style {
+  font-family: ArcadeClassic;
+  letter-spacing: 2px;
+  word-spacing: 0.3em;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
 .social-list-margin {
   margin-right: 2em;
 }

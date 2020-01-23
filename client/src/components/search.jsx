@@ -43,12 +43,16 @@ class Search extends Component {
       <Fragment>
         <div className='position-relative' style={{ zIndex: 1 }}>
           <input
+            id='searchform'
             className='form-control mt-2'
             type='text'
             placeholder='Type a video game name…'
             value={this.state.keyword}
             onChange={this.setKeywordInInput}
           />
+          <label htmlFor='searchform' className='d-none d-md-block input-label-style'>
+            powered by RAWG.io
+          </label>
           {this.state.dataIsReady ? (
             <Fragment>
               {this.state.dropdownIsopened ? (

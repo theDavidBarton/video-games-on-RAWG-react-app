@@ -2,6 +2,7 @@
 
 const express = require('express')
 const request = require('request')
+const compression = require('compression')
 const path = require('path')
 const userAgent = { 'User-Agent': 'video-games-on-RAWG-react-app (GitHub)' }
 
@@ -85,6 +86,7 @@ function endpointCreation() {
     const app = express()
     const port = process.env.PORT || 5000
 
+    app.use(compression())
     app.use(express.static(path.join(__dirname, 'client/build')))
     // required to serve SPA on heroku production without routing problems; it will skip only 'api' calls
     if (process.env.NODE_ENV === 'production') {
