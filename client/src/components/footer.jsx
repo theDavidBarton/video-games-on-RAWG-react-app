@@ -7,8 +7,8 @@ class Footer extends Component {
       <div className='bg-light'>
         <div className='container py-3'>
           <div className='row justify-content-md-center'>
-            <div className='col align-self-center text-left'>
-              <img alt='logo' src={logoDark} className='resized-logo' />
+            <div className='col align-self-center text-center'>
+              <img alt='logo' src={logoDark} className='resized-logo-footer' />
               <p className='text-center mt-2'>copyright © 2019 theDavidBarton</p>
             </div>
             <div className='col align-self-end'>
@@ -16,7 +16,7 @@ class Footer extends Component {
                 Check out the currently trending video games on RAWG or search for retro titles in the database.
                 <br />
                 Powered by{' '}
-                <a className='text-danger' href='https://rawg.io/'>
+                <a className='text-light bg-dark' href='https://rawg.io/'>
                   RAWG.io
                 </a>
                 !

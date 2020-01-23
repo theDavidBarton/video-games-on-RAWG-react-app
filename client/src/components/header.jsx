@@ -25,7 +25,10 @@ class Header extends Component {
   }
 
   getBackground = () => {
-    const background = this.state.data.background_image
+    const backgroundPath = this.state.data.background_image
+    const background = backgroundPath.match(/media\/screenshots/)
+      ? backgroundPath.replace('media/screenshots', 'media/resize/1280/-/screenshots')
+      : backgroundPath.replace('media/games', 'media/resize/1280/-/games')
     return background
   }
 
@@ -51,13 +54,12 @@ class Header extends Component {
             </div>
             <div className='col-md-auto col-12 align-self-end order-1 order-md-0'>
               <Search />
-              <h1 className='d-none d-md-block'>powered by RAWG.io</h1>
             </div>
             <div className='col-auto align-self-end my-2'>
               <ul className='list-unstyled align-bottom social-list-margin'>
                 <li className='my-2'>
                   <a
-                    href='https://github.com/theDavidBarton'
+                    href='https://github.com/theDavidBarton/video-games-on-RAWG-react-app/'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='btn btn-dark social-link-style'>

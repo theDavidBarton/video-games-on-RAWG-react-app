@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 class Trending extends Component {
   state = {
@@ -24,10 +24,10 @@ class Trending extends Component {
   }
 
   getPoster = () => {
-    const poster = this.state.response.results[this.state.value].background_image.replace(
-      '/media/games/',
-      '/media/resize/420/-/games/'
-    )
+    const posterPath = this.state.response.results[this.state.value].background_image
+    const poster = posterPath.match(/media\/screenshots/)
+      ? posterPath.replace('media/screenshots', 'media/resize/420/-/screenshots')
+      : posterPath.replace('/media/games/', '/media/resize/420/-/games/')
     return poster
   }
 
@@ -100,7 +100,17 @@ class Trending extends Component {
                 {this.state.detailsData ? this.getPlatform() : null}
               </div>
               <div>
-                {this.state.detailsData ? <div>{this.getOverview().substring(0, 350) + '...'}</div> : <p>loading...</p>}
+                {this.state.detailsData ? (
+                  <div>{this.getOverview().substring(0, 350) + '...'}</div>
+                ) : (
+                  <Fragment>
+                    <p className='col-10 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='col-4 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='col-6 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='col-10 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='col-4 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                  </Fragment>
+                )}
               </div>
             </div>
           </div>
