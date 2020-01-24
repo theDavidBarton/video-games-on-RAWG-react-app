@@ -340,7 +340,7 @@ class Videogame extends Component {
             </section>
             <section id='imageGallery' className='row mt-3 px-3'>
               <h4>Screens:</h4>
-              {this.state.galleryIsOpened ? (
+              {this.state.galleryIsOpened && window.innerWidth > 765 ? (
                 <Fragment>
                   <div>
                     <ImageGallery data={data.screenshots} />

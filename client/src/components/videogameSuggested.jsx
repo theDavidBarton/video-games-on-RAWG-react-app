@@ -12,7 +12,7 @@ class Suggested extends Component {
       <Fragment>
         {suggestedElement.background_image ? (
           <div
-            className='col-lg-2 col-5 m-2 p-4 suggested-game-style'
+            className='col-5 m-2 p-4 suggested-game-style'
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,.4), rgba(52,58,64,.2)), url(${
                 suggestedElement.background_image.match(/media\/screenshots/)
