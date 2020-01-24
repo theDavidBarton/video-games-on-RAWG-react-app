@@ -91,12 +91,14 @@ function endpointCreation() {
     // required to serve SPA on heroku production without routing problems; it will skip only 'api' calls
     if (process.env.NODE_ENV === 'production') {
       app.get(/^((?!(api)).)*$/, function(req, res) {
+        res.set('Cache-Control', 'public, max-age=31536001')
         res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
       })
     }
 
     // providing a constant endpoint for trending videogames
     app.get('/api/trending', async (req, res) => {
+      res.set('Cache-Control', 'no-cache')
       res.json(await apiCall(optionsTrending))
       console.log('/api/trending endpoint has been called!')
     })
@@ -106,6 +108,7 @@ function endpointCreation() {
       const topRatedResponse = await apiCall(optionsTopRatedRecommended)
       const randomIndex = Math.floor(Math.random() * Math.floor(10)) // one page contains exactly 10 results
       const topRatedRandomVideogame = topRatedResponse.results[randomIndex]
+      res.set('Cache-Control', 'no-cache')
       res.json(topRatedRandomVideogame)
       console.log('/api/topRatedRecommended endpoint has been called!')
     })
@@ -149,6 +152,7 @@ function endpointCreation() {
         devteam: parseInt(primary.creators_count) > 0 ? secondary[4].results : []
       }
 
+      res.set('Cache-Control', 'no-cache')
       res.json(detailsCollected)
       console.log(`/api/videogame/${id} endpoint has been called!`)
     })
@@ -160,6 +164,7 @@ function endpointCreation() {
         const queryTitle = req.query.title
         const queryYear = req.query.year
         optionsSearchArchive.qs.q = `title:(${queryTitle}) AND collection:(softwarelibrary^10) AND year:(${queryYear}) AND mediatype:(software)`
+        res.set('Cache-Control', 'no-cache')
         res.json(await apiCall(optionsSearchArchive))
         console.log(`/api/searchArchive?title=${queryTitle}&year=${queryYear} endpoint has been called!`)
       } catch (e) {
@@ -171,6 +176,7 @@ function endpointCreation() {
     app.get('/api/videogameAutocomplete', async (req, res) => {
       const query = req.query.q
       optionsVideogameAutocomplete.qs.search = query
+      res.set('Cache-Control', 'no-cache')
       res.json(await apiCall(optionsVideogameAutocomplete))
       console.log(`/api/videogameAutocomplete?q=${query} endpoint has been called!`)
     })

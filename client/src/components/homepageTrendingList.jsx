@@ -20,9 +20,9 @@ class TrendingList extends Component {
 
   render() {
     return (
-      <div className='bg-dark py-5'>
+      <main className='bg-dark py-5'>
         {this.props.dataIsReady ? (
-          <div className='container'>
+          <article className='container'>
             <div className='row'>
               {this.state.topVideogameCount.map(videogames => (
                 <Trending
@@ -33,17 +33,17 @@ class TrendingList extends Component {
                 />
               ))}
             </div>
-          </div>
+          </article>
         ) : (
-          <div className='container'>
+          <article className='container'>
             <div className='row'>
               {this.state.topVideogameCount.map(videogames => (
                 <TrendingSkeletonLoad key={videogames.id} />
               ))}
             </div>
-          </div>
+          </article>
         )}
-      </div>
+      </main>
     )
   }
 }

@@ -4,7 +4,7 @@
   /* 'Arcade Classic' is under copyright (c) Jakob Fischer at www.pizzadude.dk, all rights reserved. */
   font-family: 'ArcadeClassic';
   src: url('./font/ArcadeClassic.otf') format('opentype');
-  font-display: swap;
+  font-display: optional;
 }
 
 * {
@@ -187,13 +187,15 @@ h5 {
 }
 
 .gallery-img-style {
-  padding: 3em;
+  cursor: pointer;
+  padding: 10px;
   vertical-align: middle;
-  max-height: 80vh;
+  max-height: 100vh;
   max-width: 100%;
 }
 
 .gallery-close-position-style {
+  height: fit-content;
   top: 0;
   left: 0;
   right: 0;

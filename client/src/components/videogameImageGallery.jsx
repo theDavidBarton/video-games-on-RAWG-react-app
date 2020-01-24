@@ -16,10 +16,15 @@ class ImageGallery extends Component {
     return screens
   }
 
-  changeScreen = () => {
+  changeScreenNext = () => {
     if (this.state.activeImage !== this.state.data.length - 1)
       this.setState({ activeImage: this.state.activeImage + 1 })
     else this.setState({ activeImage: 0 })
+  }
+
+  changeScreenBack = () => {
+    if (this.state.activeImage !== 0) this.setState({ activeImage: this.state.activeImage - 1 })
+    else this.setState({ activeImage: this.state.data.length - 1 })
   }
 
   render() {
@@ -27,13 +32,15 @@ class ImageGallery extends Component {
     const i = this.state.activeImage
     return (
       <div className='container'>
-        <div className='gallery-overlay-style position-fixed text-light'>
-          <div className='row'>
+        <div className='gallery-overlay-style position-fixed text-light align-items-center d-flex'>
+          <div className='row mx-auto'>
             <div className='col-12 text-center'>
-              <img className='gallery-img-style my-2' src={screens[i]} alt='video game' />
-            </div>
-            <div className='badge badge dark' onClick={this.changeScreen} style={{ zIndex: 7000 }}>
-              NEXT
+              <img
+                className='gallery-img-style p-md-2 p-0'
+                src={screens[i]}
+                onClick={this.changeScreenNext}
+                alt='video game'
+              />
             </div>
           </div>
         </div>

@@ -38,14 +38,14 @@ class Header extends Component {
       : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)'
 
     return (
-      <div
+      <nav
         className='bg-dark pb-3'
         style={{
           backgroundImage: imagePlacement,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover'
         }}>
-        <div className='container text-white'>
+        <header className='container text-white'>
           <div className='row justify-content-md-center'>
             <div className='col'>
               <a href='/'>
@@ -80,8 +80,8 @@ class Header extends Component {
               </ul>
             </div>
           </div>
-        </div>
-      </div>
+        </header>
+      </nav>
     )
   }
 }
