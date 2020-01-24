@@ -10,6 +10,8 @@ import Store from './videogameStore'
 import Company from './videogameCompany'
 import Genre from './videogameGenre'
 import VideogameSkeletonLoad from './videogameSkeletonLoad'
+import ImageGallery from './videogameImageGallery'
+import ImageGalleryCloseButton from './videogameImageGalleryCloseButton'
 
 class Videogame extends Component {
   state = {
@@ -18,7 +20,8 @@ class Videogame extends Component {
     archiveIdentifier: null,
     archiveOfferAvailable: false,
     id: this.props.selectedVideogame,
-    reviewHeight: '133px'
+    reviewHeight: '133px',
+    galleryIsOpened: false
   }
 
   componentDidMount() {
@@ -170,6 +173,14 @@ class Videogame extends Component {
     return unnecessaryReviewReadmore
   }
 
+  setGalleryOpen = () => {
+    this.setState({ galleryIsOpened: true })
+  }
+
+  setGalleryClosed = () => {
+    this.setState({ galleryIsOpened: false })
+  }
+
   setReviewsHeight = () => {
     this.setState({ reviewHeight: 'auto' })
   }
@@ -187,8 +198,8 @@ class Videogame extends Component {
     return (
       <Fragment>
         {this.state.dataIsReady ? (
-          <div className='container'>
-            <header border-bottom='1px' solid='#000'>
+          <main className='container'>
+            <header id='videogameHeader' border-bottom='1px' solid='#000'>
               <h2 className='display-4 mt-2 heading-line' id='videogameLabel' display='inline'>
                 {this.getTitle()}
                 <span className='lead heading-line'> ({this.getReleaseYear()}) </span>
@@ -198,16 +209,21 @@ class Videogame extends Component {
               ))}
             </header>
             {data.tags.length < 1 ? (
-              <div className='my-2'> </div>
+              <section id='tags' className='my-2'>
+                {' '}
+              </section>
             ) : (
-              <div className='my-2'>
+              <section id='tags' className='my-2'>
                 {data.tags.map((tag, i) => (
                   <Tag key={i} data={tag} />
                 ))}
-              </div>
+              </section>
             )}
-            <div className='row text-white img-background details-background' style={{ backgroundImage: bgImage }}>
-              <div className='col-md-3 my-3'>
+            <section
+              id='videogameSummary'
+              className='row text-white img-background details-background'
+              style={{ backgroundImage: bgImage }}>
+              <summary className='col-md-3 my-3'>
                 <img src={this.getPoster()} alt='poster' className='img-style' />
                 <div className='my-3'>
                   <h4>Facts:</h4>
@@ -252,8 +268,8 @@ class Videogame extends Component {
                     ) : null}
                   </ul>
                 </div>
-              </div>
-              <div className='col my-3'>
+              </summary>
+              <article id='overview' className='col my-3'>
                 <div>
                   <h4>Overview:</h4>
                   <p className='mb-2' dangerouslySetInnerHTML={{ __html: this.getOverview() }}></p>
@@ -270,9 +286,9 @@ class Videogame extends Component {
                     </Fragment>
                   ) : null}
                 </div>
-              </div>
-            </div>
-            <div className='row'>
+              </article>
+            </section>
+            <section id='storesAndReviews' className='row'>
               <div className='col-md-3'>
                 {data.stores.length > 0 || this.state.archiveOfferAvailable ? (
                   <Fragment>
@@ -292,7 +308,7 @@ class Videogame extends Component {
                   </Fragment>
                 ) : null}
               </div>
-              <div className='col'>
+              <article id='reviews' className='col'>
                 {data.reviews.length > 0 ? (
                   <Fragment>
                     <h4 className='row mt-3 px-3'>Reviews:</h4>
@@ -306,26 +322,36 @@ class Videogame extends Component {
                         <Fragment>
                           {!this.unnecessaryReviewReadmore() ? (
                             <Fragment>
-                              <div className='btn btn-outline-dark text-center m-3' onClick={this.setReviewsHeight}>
+                              <button className='btn btn-outline-dark text-center m-3' onClick={this.setReviewsHeight}>
                                 read more
-                              </div>{' '}
+                              </button>{' '}
                             </Fragment>
                           ) : null}
                         </Fragment>
                       ) : (
-                        <div className='btn btn-outline-dark text-center m-3' onClick={this.setBackReviewsHeight}>
+                        <button className='btn btn-outline-dark text-center m-3' onClick={this.setBackReviewsHeight}>
                           read less
-                        </div>
+                        </button>
                       )}
                     </div>
                   </Fragment>
                 ) : null}
-              </div>
-            </div>
-            <div className='row mt-3 px-3'>
-              <h4>Screens:</h4>
-            </div>
-            <div className='row mb-2'>
+              </article>
+            </section>
+            <h4>Screens:</h4>
+            <section id='imageGallery' className='row mt-3 px-3'>
+              {this.state.galleryIsOpened ? (
+                <Fragment>
+                  <div>
+                    <ImageGallery data={data.screenshots} />
+                  </div>
+                  <div onClick={this.setGalleryClosed}>
+                    <ImageGalleryCloseButton onClick={this.setGalleryClosed} />
+                  </div>
+                </Fragment>
+              ) : null}
+            </section>
+            <section id='media' className='row mb-2' onClick={this.setGalleryOpen} style={{ cursor: 'pointer' }}>
               {this.getClips().clip ? (
                 <div className='col-md-3 my-3'>
                   <video
@@ -341,16 +367,18 @@ class Videogame extends Component {
               {data.screenshots.map(screenElement => (
                 <Screen key={screenElement.id} data={screenElement} />
               ))}
-            </div>
-            <div className='row mt-3 px-3'>
-              <h4>Similar titles:</h4>
-            </div>
-            <div className='row mb-2 justify-content-center text-center'>
-              {data.suggested.map(suggestedElement => (
-                <Suggested key={suggestedElement.id} data={suggestedElement} />
-              ))}
-            </div>
-          </div>
+            </section>
+            <aside id='similarVideogames'>
+              <header className='row mt-3 px-3'>
+                <h4>Similar titles:</h4>
+              </header>
+              <section className='row mb-2 justify-content-center text-center'>
+                {data.suggested.map(suggestedElement => (
+                  <Suggested key={suggestedElement.id} data={suggestedElement} />
+                ))}
+              </section>
+            </aside>
+          </main>
         ) : (
           <VideogameSkeletonLoad />
         )}

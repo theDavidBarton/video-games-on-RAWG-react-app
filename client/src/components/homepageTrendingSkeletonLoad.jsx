@@ -7,12 +7,9 @@ class TrendingSkeletonLoad extends Component {
         <div className='card bg-dark text-decoration-none border-0'>
           <div className='text-center'>
             <div className='img-zoom-container'>
-              <div className='row img-style bg-secondary text-center p-5' style={{ minHeight: '185px' }}>
-                <h3 className='col bg-secondary align-self-center text-center'>
-                  Loading Game...
-                  <span className='sr-only'>Loading Game...</span>
-                </h3>
-              </div>
+              <div
+                className='row img-style bg-secondary text-center p-5'
+                style={{ minHeight: '185px', borderRadius: '0px 200px 0px 0px' }}></div>
             </div>
           </div>
           <div className='card-body'>

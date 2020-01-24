@@ -4,7 +4,7 @@ import logoDark from './../img/logo-big-dark.svg'
 class Footer extends Component {
   render() {
     return (
-      <div className='bg-light'>
+      <footer className='bg-light'>
         <div className='container py-3'>
           <div className='row justify-content-md-center'>
             <div className='col align-self-center text-center'>
@@ -30,7 +30,7 @@ class Footer extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </footer>
     )
   }
 }
