@@ -338,8 +338,8 @@ class Videogame extends Component {
                 ) : null}
               </article>
             </section>
-            <h4>Screens:</h4>
             <section id='imageGallery' className='row mt-3 px-3'>
+              <h4>Screens:</h4>
               {this.state.galleryIsOpened ? (
                 <Fragment>
                   <div>
@@ -369,7 +369,7 @@ class Videogame extends Component {
               ))}
             </section>
             <aside id='similarVideogames'>
-              <header className='row mt-3 px-3'>
+              <header className='row my-3 px-3'>
                 <h4>Similar titles:</h4>
               </header>
               <section className='row mb-2 justify-content-center text-center'>
