@@ -12,6 +12,8 @@ import Genre from './videogameGenre'
 import VideogameSkeletonLoad from './videogameSkeletonLoad'
 import ImageGallery from './videogameImageGallery'
 import ImageGalleryCloseButton from './videogameImageGalleryCloseButton'
+import Youtube from './videogameYoutube'
+import YoutubeGallery from './videogameYoutubeGallery'
 
 class Videogame extends Component {
   state = {
@@ -21,7 +23,8 @@ class Videogame extends Component {
     archiveOfferAvailable: false,
     id: this.props.selectedVideogame,
     reviewHeight: '133px',
-    galleryIsOpened: false
+    galleryIsOpened: false,
+    youtubeGalleryIsOpened: false
   }
 
   componentDidMount() {
@@ -181,6 +184,14 @@ class Videogame extends Component {
     this.setState({ galleryIsOpened: false })
   }
 
+  setYoutubeGalleryOpen = () => {
+    this.setState({ youtubeGalleryIsOpened: true })
+  }
+
+  setYoutubeGalleryClosed = () => {
+    this.setState({ youtubeGalleryIsOpened: false })
+  }
+
   setReviewsHeight = () => {
     this.setState({ reviewHeight: 'auto' })
   }
@@ -224,7 +235,7 @@ class Videogame extends Component {
               className='row text-white img-background details-background'
               style={{ backgroundImage: bgImage }}>
               <summary className='col-md-3 my-3'>
-                <img src={this.getPoster()} alt='poster' className='img-style' />
+                <img src={this.getPoster()} onClick={this.setGalleryOpen} alt='poster' className='img-style' />
                 <div className='my-3'>
                   <h4>Facts:</h4>
                   <ul className='list-unstyled'>
@@ -293,7 +304,7 @@ class Videogame extends Component {
                 {data.stores.length > 0 || this.state.archiveOfferAvailable ? (
                   <Fragment>
                     <div className='row mt-3 px-3'>
-                      <h4>Get it from:</h4>
+                      <h4>Stores:</h4>
                     </div>
                     <div className='row mb-2'>
                       <Fragment>
@@ -346,7 +357,7 @@ class Videogame extends Component {
                     <ImageGallery data={data.screenshots} />
                   </div>
                   <div onClick={this.setGalleryClosed}>
-                    <ImageGalleryCloseButton onClick={this.setGalleryClosed} />
+                    <ImageGalleryCloseButton />
                   </div>
                 </Fragment>
               ) : null}
@@ -368,6 +379,36 @@ class Videogame extends Component {
                 <Screen key={screenElement.id} data={screenElement} />
               ))}
             </section>
+            {data.youtube.length > 0 ? (
+              <Fragment>
+                <section id='youtubeGallery' className='row mt-3 px-3'>
+                  <h4>On YouTube:</h4>
+                  <p className='w-100'>
+                    Check out these gameplay videos about <i>{this.getTitle()}</i> on YouTube.
+                  </p>
+                  {this.state.youtubeGalleryIsOpened ? (
+                    <Fragment>
+                      <div>
+                        <YoutubeGallery data={data.youtube} />
+                      </div>
+                      <div onClick={this.setYoutubeGalleryClosed}>
+                        <ImageGalleryCloseButton />
+                      </div>
+                    </Fragment>
+                  ) : null}
+                </section>
+                <section
+                  id='media'
+                  className='row mb-2'
+                  onClick={this.setYoutubeGalleryOpen}
+                  style={{ cursor: 'pointer' }}>
+                  {data.youtube.slice(0, 4).map(youtubeElement => (
+                    <Youtube key={youtubeElement.id} data={youtubeElement} />
+                  ))}
+                </section>
+              </Fragment>
+            ) : null}
+
             <aside id='similarVideogames'>
               <header className='row my-3 px-3'>
                 <h4>Similar titles:</h4>
