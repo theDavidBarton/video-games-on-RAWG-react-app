@@ -191,12 +191,6 @@ h5 {
   max-width: 100%;
 }
 
-@media all and (min-width: 2500px) {
-  .gallery-img-style {
-    min-height: auto;
-  }
-}
-
 .gallery-nav-back-style {
   user-select: none;
   opacity: 0.5;
