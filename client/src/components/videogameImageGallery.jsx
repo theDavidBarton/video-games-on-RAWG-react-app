@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 
 class ImageGallery extends Component {
-  state = {
-    data: this.props.data,
-    activeImage: 0
-  }
+  state = { activeImage: 0 }
 
   getScreens = () => {
-    const screenPath = this.state.data
+    const screenPath = this.props.data
     const screens = screenPath.map(screenElement =>
       screenElement.image.match(/media\/screenshots/)
         ? screenElement.image.replace('media/screenshots', 'media/resize/1280/-/screenshots')
@@ -17,34 +14,35 @@ class ImageGallery extends Component {
   }
 
   changeScreenNext = () => {
-    if (this.state.activeImage !== this.state.data.length - 1)
+    if (this.state.activeImage !== this.props.data.length - 1)
       this.setState({ activeImage: this.state.activeImage + 1 })
     else this.setState({ activeImage: 0 })
   }
 
   changeScreenBack = () => {
     if (this.state.activeImage !== 0) this.setState({ activeImage: this.state.activeImage - 1 })
-    else this.setState({ activeImage: this.state.data.length - 1 })
+    else this.setState({ activeImage: this.props.data.length - 1 })
   }
 
   render() {
     const screens = this.getScreens()
     const i = this.state.activeImage
     return (
-      <div className='container'>
-        <div className='gallery-overlay-style position-fixed text-light align-items-center d-flex'>
-          <div className='row mx-auto'>
-            <div className='col-12 text-center'>
-              <img
-                className='gallery-img-style p-md-2 p-0'
-                src={screens[i]}
-                onClick={this.changeScreenNext}
-                alt='video game'
-              />
+      <main className='container'>
+        <div id='galleryOverlay' className='gallery-overlay-style position-fixed text-light align-items-center d-flex'>
+          <section className='row mx-auto justify-content-center text-center'>
+            <button className='col my-auto bg-dark text-light gallery-nav-back-style' onClick={this.changeScreenBack}>
+              &#9664;
+            </button>
+            <div className='col-10'>
+              <img className='gallery-img-style p-md-2 p-0' src={screens[i]} alt='video game' />
             </div>
-          </div>
+            <button className='col my-auto bg-dark text-light gallery-nav-next-style' onClick={this.changeScreenNext}>
+              &#9654;
+            </button>
+          </section>
         </div>
-      </div>
+      </main>
     )
   }
 }

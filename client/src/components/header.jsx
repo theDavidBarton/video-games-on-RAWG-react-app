@@ -33,7 +33,7 @@ class Header extends Component {
   }
 
   render() {
-    let imagePlacement = this.state.dataIsReady
+    const imagePlacement = this.state.dataIsReady
       ? 'linear-gradient(0deg, rgba(52,58,64,1) 0%, rgba(52,58,64,0) 100%), url(' + this.getBackground() + ')'
       : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)'
 
@@ -47,7 +47,7 @@ class Header extends Component {
         }}>
         <header className='container text-white'>
           <div className='row justify-content-md-center'>
-            <div className='col'>
+            <div className='col my-2'>
               <a href='/'>
                 <img className='img-fluid text-center resized-logo' src={logo} alt='logo' />
               </a>
@@ -56,7 +56,7 @@ class Header extends Component {
               <Search />
             </div>
             <div className='col-auto align-self-end my-2'>
-              <ul className='list-unstyled align-bottom social-list-margin'>
+              <ul className='list-unstyled align-bottom'>
                 <li className='my-2'>
                   <a
                     href='https://github.com/theDavidBarton/video-games-on-RAWG-react-app/'
