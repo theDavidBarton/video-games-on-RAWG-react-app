@@ -14,6 +14,7 @@ import ImageGallery from './videogameImageGallery'
 import ImageGalleryCloseButton from './videogameImageGalleryCloseButton'
 import Youtube from './videogameYoutube'
 import YoutubeGallery from './videogameYoutubeGallery'
+import YoutubeGalleryCloseButton from './videogameYoutubeGelleryCloseButton'
 
 class Videogame extends Component {
   state = {
@@ -392,7 +393,7 @@ class Videogame extends Component {
                         <YoutubeGallery data={data.youtube} />
                       </div>
                       <div onClick={this.setYoutubeGalleryClosed}>
-                        <ImageGalleryCloseButton />
+                        <YoutubeGalleryCloseButton />
                       </div>
                     </Fragment>
                   ) : null}

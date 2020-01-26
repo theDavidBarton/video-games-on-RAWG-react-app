@@ -32,13 +32,13 @@ class ImageGallery extends Component {
         <div id='galleryOverlay' className='gallery-overlay-style position-fixed text-light align-items-center d-flex'>
           <section className='row mx-auto justify-content-center text-center'>
             <button className='col my-auto bg-dark text-light gallery-nav-back-style' onClick={this.changeScreenBack}>
-              &#9664;
+              &#128896;
             </button>
             <div className='col-10'>
               <img className='gallery-img-style p-md-2 p-0' src={screens[i]} alt='video game' />
             </div>
             <button className='col my-auto bg-dark text-light gallery-nav-next-style' onClick={this.changeScreenNext}>
-              &#9654;
+              &#128898;
             </button>
           </section>
         </div>
