@@ -1,11 +1,8 @@
 import React, { Fragment, Component } from 'react'
 
 class Review extends Component {
-  state = {
-    data: this.props.data
-  }
   render() {
-    const reviewElement = this.state.data
+    const reviewElement = this.props.data
     return (
       <Fragment>
         <div>{'★'.repeat(reviewElement.rating) + '☆'.repeat(5 - reviewElement.rating)}</div>

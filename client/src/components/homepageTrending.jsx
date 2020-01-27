@@ -101,14 +101,15 @@ class Trending extends Component {
               </div>
               <div>
                 {this.state.detailsData ? (
-                  <div>{this.getOverview().substring(0, 350) + '...'}</div>
+                  <Fragment>{this.getOverview().substring(0, 350) + '...'}</Fragment>
                 ) : (
                   <Fragment>
-                    <p className='col-10 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-                    <p className='col-4 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-                    <p className='col-6 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-                    <p className='col-10 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-                    <p className='col-4 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    {/* skeleton loading for overviews */}
+                    <p className='w-100 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='w-50 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='w-75 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='w-100 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+                    <p className='w-50 mb-2 text-secondary bg-secondary'>&zwnj;</p>
                   </Fragment>
                 )}
               </div>

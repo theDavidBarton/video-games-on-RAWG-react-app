@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 
 class Screen extends Component {
-  state = {
-    data: this.props.data
-  }
-
   render() {
-    const screenElement = this.state.data
+    const screenElement = this.props.data
     return (
       <div className='col-md-3 my-3'>
         {screenElement.image ? (
