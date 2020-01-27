@@ -246,6 +246,7 @@ h5 {
 }
 
 .youtube-play-style {
+  z-index: 50000;
   padding: 10px 20px;
   border-radius: 11px;
   opacity: 0.85;
@@ -278,6 +279,22 @@ h5 {
   right: 2px;
   z-index: 9000;
   max-width: 50px;
+}
+
+.oney-background {
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+}
+
+@media all and (max-width: 765px) {
+  .oney-background {
+    background-image: none !important;
+  }
+}
+
+.oney-img-style {
+  filter: drop-shadow(8px 8px 8px black);
 }
 
 .img-background {

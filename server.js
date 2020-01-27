@@ -4,6 +4,7 @@ const express = require('express')
 const request = require('request')
 const compression = require('compression')
 const path = require('path')
+const oneyPlays = require('oneyplays-api')
 const userAgent = { 'User-Agent': 'video-games-on-RAWG-react-app (GitHub)' }
 
 const optionsTrending = {
@@ -140,16 +141,38 @@ function endpointCreation() {
         optionsVideogame.url = `https://api.rawg.io/api/games/${id}/development-team`
         return await apiCall(optionsVideogame)
       }
+      const getOneyplays = () => {
+        let compatibilityOneyObj = []
+        const oneyObj = oneyPlays(id)
+        if (oneyObj.length > 0) {
+          compatibilityOneyObj = [
+            {
+              ...oneyObj[0],
+              external_id: oneyObj[0].yt_id,
+              thumbnails: { medium: { url: oneyObj[0].yt_thumbnail } }
+            }
+          ]
+        }
+        return compatibilityOneyObj
+      }
 
       const primary = await getPrimaryDetails()
-      const secondary = await Promise.all([getScreenshots(), getSuggested(), getReviews(), getYoutube(), getDevTeam()])
+      const secondary = await Promise.all([
+        getScreenshots(),
+        getSuggested(),
+        getReviews(),
+        getYoutube(),
+        getDevTeam(),
+        getOneyplays()
+      ])
       const detailsCollected = {
         ...primary,
         screenshots: parseInt(primary.screenshots_count) > 0 ? secondary[0].results : [],
         suggested: parseInt(primary.suggestions_count) > 0 ? secondary[1].results : [],
         reviews: parseInt(primary.reviews_count) > 0 ? secondary[2].results : [],
         youtube: parseInt(primary.youtube_count) > 0 ? secondary[3].results : [],
-        devteam: parseInt(primary.creators_count) > 0 ? secondary[4].results : []
+        devteam: parseInt(primary.creators_count) > 0 ? secondary[4].results : [],
+        oneyplays: secondary[5]
       }
 
       res.set('Cache-Control', 'no-cache')
