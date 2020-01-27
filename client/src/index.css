@@ -246,6 +246,7 @@ h5 {
 }
 
 .youtube-play-style {
+  z-index: 50000;
   padding: 10px 20px;
   border-radius: 11px;
   opacity: 0.85;
