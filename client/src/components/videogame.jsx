@@ -14,7 +14,8 @@ import ImageGallery from './videogameImageGallery'
 import ImageGalleryCloseButton from './videogameImageGalleryCloseButton'
 import Youtube from './videogameYoutube'
 import YoutubeGallery from './videogameYoutubeGallery'
-import YoutubeGalleryCloseButton from './videogameYoutubeGelleryCloseButton'
+import YoutubeGalleryCloseButton from './videogameYoutubeGalleryCloseButton'
+import OneyGallery from './videogameOneyGallery'
 
 class Videogame extends Component {
   state = {
@@ -25,7 +26,8 @@ class Videogame extends Component {
     id: this.props.selectedVideogame,
     reviewHeight: '133px',
     galleryIsOpened: false,
-    youtubeGalleryIsOpened: false
+    youtubeGalleryIsOpened: false,
+    oneyGalleryIsOpened: false
   }
 
   componentDidMount() {
@@ -193,6 +195,14 @@ class Videogame extends Component {
     this.setState({ youtubeGalleryIsOpened: false })
   }
 
+  setOneyGalleryOpen = () => {
+    this.setState({ oneyGalleryIsOpened: true })
+  }
+
+  setOneyGalleryClosed = () => {
+    this.setState({ oneyGalleryIsOpened: false })
+  }
+
   setReviewsHeight = () => {
     this.setState({ reviewHeight: 'auto' })
   }
@@ -350,65 +360,118 @@ class Videogame extends Component {
                 ) : null}
               </article>
             </section>
-            <section id='imageGallery' className='row mt-3 px-3'>
-              <h4>Screens:</h4>
-              {this.state.galleryIsOpened && window.innerWidth > 765 ? (
-                <Fragment>
-                  <div>
-                    <ImageGallery data={data.screenshots} />
-                  </div>
-                  <div onClick={this.setGalleryClosed}>
-                    <ImageGalleryCloseButton />
-                  </div>
-                </Fragment>
-              ) : null}
-            </section>
-            <section id='media' className='row mb-2' onClick={this.setGalleryOpen} style={{ cursor: 'pointer' }}>
-              {this.getClips().clip ? (
-                <div className='col-md-3 my-3'>
-                  <video
-                    className='img-style vid-style'
-                    src={this.getClips().clip}
-                    poster={this.getClips().poster}
-                    playsInline
-                    controls
-                    muted
-                    loop></video>
-                </div>
-              ) : null}
-              {data.screenshots.map(screenElement => (
-                <Screen key={screenElement.id} data={screenElement} />
-              ))}
-            </section>
-            {data.youtube.length > 0 ? (
-              <Fragment>
-                <section id='youtubeGallery' className='row mt-3 px-3'>
-                  <h4>On YouTube:</h4>
-                  <p className='w-100'>
-                    Check out these gameplay videos about <i>{this.getTitle()}</i> on YouTube.
-                  </p>
-                  {this.state.youtubeGalleryIsOpened ? (
+            {/* galleries start here */}
+            <section id='outerImageRow' className='row'>
+              <section id='imageGallery' className='col'>
+                <section id='imageGalleryTop' className='row mt-3 px-3'>
+                  <h4>Screens:</h4>
+                  {this.state.galleryIsOpened && window.innerWidth > 765 ? (
                     <Fragment>
                       <div>
-                        <YoutubeGallery data={data.youtube} />
+                        <ImageGallery data={data.screenshots} />
                       </div>
-                      <div onClick={this.setYoutubeGalleryClosed}>
-                        <YoutubeGalleryCloseButton />
+                      <div onClick={this.setGalleryClosed}>
+                        <ImageGalleryCloseButton />
                       </div>
                     </Fragment>
                   ) : null}
                 </section>
-                <section
-                  id='media'
-                  className='row mb-2'
-                  onClick={this.setYoutubeGalleryOpen}
-                  style={{ cursor: 'pointer' }}>
-                  {data.youtube.slice(0, 4).map(youtubeElement => (
-                    <Youtube key={youtubeElement.id} data={youtubeElement} />
+                <section id='media' className='row mb-2' onClick={this.setGalleryOpen} style={{ cursor: 'pointer' }}>
+                  {this.getClips().clip ? (
+                    <div className='col-md-3 my-3'>
+                      <video
+                        className='img-style vid-style'
+                        src={this.getClips().clip}
+                        poster={this.getClips().poster}
+                        playsInline
+                        controls
+                        muted
+                        loop></video>
+                    </div>
+                  ) : null}
+                  {data.screenshots.map(screenElement => (
+                    <Screen key={screenElement.id} data={screenElement} />
                   ))}
                 </section>
+              </section>
+            </section>
+            <section id='misc' className='row'>
+              {data.youtube.length > 0 ? (
+                <section id='youtubeGallery' className='col-auto'>
+                  <section id='youtubeGalleryTop' className='row mt-3 px-3'>
+                    <h4>On YouTube:</h4>
+                    <p className='w-100'>
+                      Check out these gameplay videos about <i>{this.getTitle()}</i> on YouTube.
+                    </p>
+                    {this.state.youtubeGalleryIsOpened ? (
+                      <Fragment>
+                        <div>
+                          <YoutubeGallery data={data.youtube} />
+                        </div>
+                        <div onClick={this.setYoutubeGalleryClosed}>
+                          <YoutubeGalleryCloseButton />
+                        </div>
+                      </Fragment>
+                    ) : null}
+                  </section>
+                  <section
+                    id='media'
+                    className='row mb-2'
+                    onClick={this.setYoutubeGalleryOpen}
+                    style={{ cursor: 'pointer' }}>
+                    {data.youtube.slice(0, 4).map(youtubeElement => (
+                      <Youtube key={youtubeElement.id} data={youtubeElement} class={''} />
+                    ))}
+                  </section>
+                </section>
+              ) : null}
+
+              <Fragment>
+                {data.oneyplays.length > 0 ? (
+                  <section id='oneyplaysGallery' className='col'>
+                    <section id='oneyplaysGalleryTop' className='row mt-3 px-3'>
+                      <h4>On-ey Plays:</h4>
+                      <p className='w-100'>
+                        This title appeared on{' '}
+                        <a
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          href='https://www.youtube.com/channel/UCO1ITICo8MLHGAXR1uzFwjA'>
+                          OneyPlays
+                        </a>
+                        . Brought to you by{' '}
+                        <a target='_blank' rel='noopener noreferrer' href='https://www.npmjs.com/package/oneyplays-api'>
+                          oneyplays-api
+                        </a>
+                        .
+                      </p>
+                      {this.state.oneyGalleryIsOpened ? (
+                        <Fragment>
+                          <div>
+                            <OneyGallery data={data.oneyplays} />
+                          </div>
+                          <div onClick={this.setOneyGalleryClosed}>
+                            <YoutubeGalleryCloseButton />
+                          </div>
+                        </Fragment>
+                      ) : null}
+                    </section>
+
+                    <section
+                      id='media'
+                      className='row mb-2 oney-background'
+                      onClick={this.setOneyGalleryOpen}
+                      style={{
+                        backgroundImage: `url(${data.oneyplays[0].yt_thumbnail.replace('mqdefault', 'maxresdefault')})`
+                      }}>
+                      {data.oneyplays.map(youtubeElement => (
+                        <Youtube key={youtubeElement.id} data={youtubeElement} class={'oney-img-style'} />
+                      ))}
+                    </section>
+                  </section>
+                ) : null}
               </Fragment>
-            ) : null}
+            </section>
 
             <aside id='similarVideogames'>
               <header className='row my-3 px-3'>

@@ -280,6 +280,22 @@ h5 {
   max-width: 50px;
 }
 
+.oney-background {
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+}
+
+@media all and (max-width: 765px) {
+  .oney-background {
+    background-image: none !important;
+  }
+}
+
+.oney-img-style {
+  filter: drop-shadow(8px 8px 8px black);
+}
+
 .img-background {
   background-repeat: no-repeat;
   background-size: cover;
