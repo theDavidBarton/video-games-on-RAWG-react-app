@@ -29,7 +29,7 @@ class YoutubeGallery extends Component {
             <button
               className='col-1 my-auto bg-dark text-light gallery-youtube-nav-back-style'
               onClick={this.changeVideoBack}>
-              &#128896;
+              ◄
             </button>
             <div className='col-10' style={{ minWidth: '480px' }}>
               <iframe
@@ -41,7 +41,7 @@ class YoutubeGallery extends Component {
             <button
               className='col-1 my-auto bg-dark text-light gallery-youtube-nav-next-style'
               onClick={this.changeVideoNext}>
-              &#128898;
+              ►
             </button>
           </section>
         </div>
