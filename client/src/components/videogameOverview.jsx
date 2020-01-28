@@ -80,7 +80,7 @@ class Overview extends Component {
 
   render() {
     const data = this.props.data
-    const bgImage = this.props.dataIsReady
+    const bgImage = this.getBackground()
       ? 'linear-gradient(rgba(0,0,0,.9), rgba(52,58,64,.9)), url(' + this.getBackground() + ')'
       : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)'
     return (
@@ -88,8 +88,8 @@ class Overview extends Component {
         id='videogameSummary'
         className='row text-white img-background details-background'
         style={{ backgroundImage: bgImage }}>
-        <summary className='col-md-3 my-3'>
-          <img src={this.getPoster()} onClick={this.setGalleryOpen} alt='poster' className='img-style' />
+        <summary className='col-md-3 my-3' style={{ cursor: 'default' }}>
+          <img src={this.getPoster()} alt='poster' className='img-style' />
           <div className='my-3'>
             <h4>Facts:</h4>
             <ul className='list-unstyled'>

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 
 class Trending extends Component {
   state = {
-    response: this.props.data,
+    data: this.props.data,
     detailsData: null,
     value: this.props.value,
     selectedVideogame: this.props.selectedVideogame,
@@ -15,8 +15,8 @@ class Trending extends Component {
 
   getRawgApi = async () => {
     try {
-      const response = await fetch(`/api/videogame/${this.state.response.results[this.state.value].id}`)
-      const json = await response.json()
+      const data = await fetch(`/api/videogame/${this.state.data.results[this.state.value].id}`)
+      const json = await data.json()
       this.setState({ detailsData: json, dataIsReady: true })
     } catch (e) {
       console.error(e)
@@ -24,7 +24,7 @@ class Trending extends Component {
   }
 
   getPoster = () => {
-    const posterPath = this.state.response.results[this.state.value].background_image
+    const posterPath = this.state.data.results[this.state.value].background_image
     const poster = posterPath.match(/media\/screenshots/)
       ? posterPath.replace('media/screenshots', 'media/resize/420/-/screenshots')
       : posterPath.replace('/media/games/', '/media/resize/420/-/games/')
@@ -33,12 +33,12 @@ class Trending extends Component {
 
   getTitle = () => {
     let title
-    this.state.response.results[this.state.value].released &&
-    this.state.response.results[this.state.value].name.includes(
-      this.state.response.results[this.state.value].released.match(/[0-9]{4}/)
+    this.state.data.results[this.state.value].released &&
+    this.state.data.results[this.state.value].name.includes(
+      this.state.data.results[this.state.value].released.match(/[0-9]{4}/)
     )
-      ? (title = this.state.response.results[this.state.value].name.replace(/\([0-9]{4}\)/, '').trim())
-      : (title = this.state.response.results[this.state.value].name)
+      ? (title = this.state.data.results[this.state.value].name.replace(/\([0-9]{4}\)/, '').trim())
+      : (title = this.state.data.results[this.state.value].name)
     return title
   }
 
@@ -58,7 +58,7 @@ class Trending extends Component {
   }
 
   getRating = () => {
-    const rating = this.state.response.results[this.state.value].rating
+    const rating = this.state.data.results[this.state.value].rating
     return rating
   }
 
@@ -68,8 +68,8 @@ class Trending extends Component {
   }
 
   selectedVideogame = () => {
-    const videogame = `/videogame/${this.state.response.results[this.state.value].id}-${
-      this.state.response.results[this.state.value].slug
+    const videogame = `/videogame/${this.state.data.results[this.state.value].id}-${
+      this.state.data.results[this.state.value].slug
     }`
     return videogame
   }

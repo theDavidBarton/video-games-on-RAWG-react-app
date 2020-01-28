@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TrendingSkeletonLoad from './../components/homepageTrendingSkeletonLoad'
+import SkeletonLoad from './../components/homepageSkeletonLoad'
 
 test('should render without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<TrendingSkeletonLoad />, div)
+  ReactDOM.render(<SkeletonLoad />, div)
 })
