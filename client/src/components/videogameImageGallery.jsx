@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import LeftArrow from './mediaLeftArrow'
+import RightArrow from './mediaRightArrow'
 
 class ImageGallery extends Component {
   state = { activeImage: 0 }
@@ -35,7 +37,7 @@ class ImageGallery extends Component {
               style={{ maxWidth: '45px' }}
               className='col my-auto bg-dark text-light gallery-nav-back-style'
               onClick={this.changeScreenBack}>
-              &#9204;
+              <LeftArrow />
             </button>
             <div className='col-10'>
               <img className='gallery-img-style p-md-2 p-0' src={screens[i]} alt='video game' />
@@ -44,7 +46,7 @@ class ImageGallery extends Component {
               style={{ maxWidth: '45px' }}
               className='col my-auto bg-dark text-light gallery-nav-next-style'
               onClick={this.changeScreenNext}>
-              &#9205;
+              <RightArrow />
             </button>
           </section>
         </div>

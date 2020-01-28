@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import LeftArrow from './mediaLeftArrow'
+import RightArrow from './mediaRightArrow'
 
 class YoutubeGallery extends Component {
   state = { activeVideo: 0 }
@@ -30,7 +32,7 @@ class YoutubeGallery extends Component {
               style={{ maxWidth: '45px' }}
               className='col-1 my-auto bg-dark text-light gallery-youtube-nav-back-style'
               onClick={this.changeVideoBack}>
-              &#9204;
+              <LeftArrow />
             </button>
             <div className='col-10' style={{ minWidth: '480px' }}>
               <iframe
@@ -43,7 +45,7 @@ class YoutubeGallery extends Component {
               style={{ maxWidth: '45px' }}
               className='col-1 my-auto bg-dark text-light gallery-youtube-nav-next-style'
               onClick={this.changeVideoNext}>
-              &#9205;
+              <RightArrow />
             </button>
           </section>
         </div>
