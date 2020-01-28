@@ -2,12 +2,8 @@ import React, { Fragment, Component } from 'react'
 import PlatformBadge from './videogamePlatformBadge'
 
 class Suggested extends Component {
-  state = {
-    data: this.props.data
-  }
-
   render() {
-    const suggestedElement = this.state.data
+    const suggestedElement = this.props.data
     return (
       <Fragment>
         {suggestedElement.background_image ? (

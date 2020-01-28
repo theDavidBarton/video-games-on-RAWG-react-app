@@ -38,13 +38,8 @@ class VideogameSkeletonLoad extends Component {
           <div className='row mt-3 px-3'>
             <h4 className='col-3 mb-2 text-secondary bg-secondary'>&zwnj;</h4>
           </div>
-          <div className='img-style bg-secondary text-center p-5'>
+          <div className='img-style bg-secondary text-center p-5' style={{ minHeight: '170px' }}>
             &zwnj;
-            <br />
-            &zwnj;
-            <br />
-            &zwnj;
-            <br />
           </div>
         </div>
       </Fragment>

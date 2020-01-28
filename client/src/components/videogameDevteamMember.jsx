@@ -1,24 +1,20 @@
 import React, { Component, Fragment } from 'react'
 
 class DevteamMember extends Component {
-  state = {
-    data: this.props.data
-  }
-
   render() {
-    const devteamMember = this.state.data
+    const devteamMember = this.props.data
     return (
       <Fragment>
         <li className='col media my-3'>
           {devteamMember.image ? (
             <img
+              className='mr-3 rounded-circle dev-avatar-style'
               alt={devteamMember.name}
               src={
                 devteamMember.image.match(/media\/persons_wiki/)
                   ? devteamMember.image.replace('media/persons_wiki', 'media/resize/200/-/persons_wiki')
                   : devteamMember.image.replace('media/persons', 'media/resize/200/-/persons')
               }
-              className='mr-3 rounded-circle dev-avatar-style '
             />
           ) : (
             <div className='mr-3'>

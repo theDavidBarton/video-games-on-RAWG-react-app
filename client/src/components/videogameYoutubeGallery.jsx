@@ -27,9 +27,10 @@ class YoutubeGallery extends Component {
         <div id='galleryOverlay' className='gallery-overlay-style position-fixed text-light align-items-center d-flex'>
           <section className='row mx-auto justify-content-center text-center'>
             <button
+              style={{ maxWidth: '45px' }}
               className='col-1 my-auto bg-dark text-light gallery-youtube-nav-back-style'
               onClick={this.changeVideoBack}>
-              &#128896;
+              &#9204;
             </button>
             <div className='col-10' style={{ minWidth: '480px' }}>
               <iframe
@@ -39,9 +40,10 @@ class YoutubeGallery extends Component {
                 src={`https://youtube.com/embed/${videos[i]}?autoplay=0`}></iframe>
             </div>
             <button
+              style={{ maxWidth: '45px' }}
               className='col-1 my-auto bg-dark text-light gallery-youtube-nav-next-style'
               onClick={this.changeVideoNext}>
-              &#128898;
+              &#9205;
             </button>
           </section>
         </div>

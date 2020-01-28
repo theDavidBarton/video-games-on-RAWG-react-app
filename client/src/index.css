@@ -197,7 +197,7 @@ h5 {
   z-index: 7000;
   cursor: pointer;
   max-width: fit-content;
-  padding: 14px 16px;
+  padding: 14px;
 }
 
 .gallery-nav-next-style {
@@ -206,7 +206,7 @@ h5 {
   z-index: 7000;
   cursor: pointer;
   max-width: fit-content;
-  padding: 14px 16px;
+  padding: 14px;
 }
 
 .gallery-close-position-style {

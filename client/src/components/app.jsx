@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import HomepageWrapper from './homepageWrapper'
-import VideogameWrapper from './videogameWrapper'
+import Videogame from './videogame'
 import Page404 from './404'
 import CookieBar from './cookieBar'
 import Header from './header'
 import Footer from './footer'
+import Homepage from './homepage'
 
 class App extends Component {
   render() {
@@ -15,8 +15,8 @@ class App extends Component {
         <Header />
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={HomepageWrapper} />
-            <Route path='/videogame/:id' component={VideogameWrapper} />
+            <Route exact path='/' component={Homepage} />
+            <Route path='/videogame/:id' component={Videogame} />
             <Route component={Page404} />
           </Switch>
         </BrowserRouter>

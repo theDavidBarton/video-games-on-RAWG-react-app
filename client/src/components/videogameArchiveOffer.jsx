@@ -1,11 +1,8 @@
 import React, { Fragment, Component } from 'react'
 
 class ArchiveOffer extends Component {
-  state = {
-    archiveIdentifier: this.props.archiveIdentifier
-  }
   render() {
-    const archiveUrl = `https://archive.org/details/${this.state.archiveIdentifier}`
+    const archiveUrl = `https://archive.org/details/${this.props.archiveIdentifier}`
     return (
       <Fragment>
         <a href={archiveUrl} target='_blank' rel='noopener noreferrer'>

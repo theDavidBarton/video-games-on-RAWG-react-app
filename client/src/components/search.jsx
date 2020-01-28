@@ -59,6 +59,7 @@ class Search extends Component {
                 <div className='bg-white w-auto text-dark position-absolute dropdown-position py-2 px-2'>
                   <ul className='list-unstyled mb-0'>
                     {this.state.data.count >= 1 ? (
+                      // only first seven search results displayed in the dropdown
                       this.state.data.results
                         .slice(0, 7)
                         .map(result => <SearchDropdownItem key={result.id} result={result} />)

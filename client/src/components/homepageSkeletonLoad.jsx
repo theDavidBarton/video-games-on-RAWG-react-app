@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TrendingSkeletonLoad extends Component {
+class SkeletonLoad extends Component {
   render() {
     return (
       <div className='col-md-6'>
@@ -13,11 +13,11 @@ class TrendingSkeletonLoad extends Component {
             </div>
           </div>
           <div className='card-body'>
-            <p className='col-10 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-            <p className='col-4 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-            <p className='col-6 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-            <p className='col-10 mb-2 text-secondary bg-secondary'>&zwnj;</p>
-            <p className='col-4 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+            <p className='w-100 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+            <p className='w-50 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+            <p className='w-75 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+            <p className='w-100 mb-2 text-secondary bg-secondary'>&zwnj;</p>
+            <p className='w-50 mb-2 text-secondary bg-secondary'>&zwnj;</p>
           </div>
         </div>
       </div>
@@ -25,4 +25,4 @@ class TrendingSkeletonLoad extends Component {
   }
 }
 
-export default TrendingSkeletonLoad
+export default SkeletonLoad
