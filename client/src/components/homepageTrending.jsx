@@ -80,7 +80,7 @@ class Trending extends Component {
         <a href={this.selectedVideogame()} className='text-decoration-none'>
           <div className='card bg-dark text-white border-0'>
             <div>
-              <div className='img-zoom-container card-background'>
+              <div className='img-zoom-container card-background bg-secondary'>
                 <div className='img-zoom'>
                   <img className='card-img-top' alt='videogame poster' src={this.getPoster()} />
                 </div>
