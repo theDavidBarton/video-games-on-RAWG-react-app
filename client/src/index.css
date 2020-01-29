@@ -64,6 +64,11 @@ h5 {
   border-right: 5px solid #ffc107;
 }
 
+.card-img-top {
+  width: -webkit-fill-available;
+  object-fit: cover;
+}
+
 .h2-position {
   left: 20px;
   top: 100px;
@@ -352,7 +357,15 @@ h5 {
 
 .vid-style {
   object-fit: cover;
+  object-position: bottom;
   height: 100%;
+  max-height: 170px;
+}
+
+@media all and (max-width: 765px) {
+  .vid-style {
+    max-height: 230px;
+  }
 }
 
 /* dev team */

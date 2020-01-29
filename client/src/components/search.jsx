@@ -25,13 +25,10 @@ class Search extends Component {
     }
   }
 
-  setKeywordInInput = event => {
-    this.setState({ keyword: event.target.value })
-    if (event.target.value.length > 3) {
-      // sends request to api only after 3 characters
-      this.getRawgApi()
-      this.setState({ dropdownIsopened: true })
-    }
+  setKeywordInInput = async event => {
+    await this.setState({ keyword: event.target.value })
+    this.getRawgApi()
+    this.setState({ dropdownIsopened: true })
   }
 
   closeDropdown = () => {
@@ -59,9 +56,9 @@ class Search extends Component {
                 <div className='bg-white w-auto text-dark position-absolute dropdown-position py-2 px-2'>
                   <ul className='list-unstyled mb-0'>
                     {this.state.data.count >= 1 ? (
-                      // only first seven search results displayed in the dropdown
+                      // only first eight search results displayed in the dropdown
                       this.state.data.results
-                        .slice(0, 7)
+                        .slice(0, 8)
                         .map(result => <SearchDropdownItem key={result.id} result={result} />)
                     ) : (
                       <SearchDropdownItemNoResult />

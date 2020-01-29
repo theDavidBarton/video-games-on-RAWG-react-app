@@ -49,12 +49,13 @@ class Videogame extends Component {
 
   render() {
     const data = this.state.data
-
     return (
       <Fragment>
         {this.state.dataIsReady ? (
           <main className='container'>
-            <HeaderOnVideogames data={data} />
+            <HeaderOnVideogames data={data}>
+              {(document.title = `${this.state.data.name} | Trending on RAWG`)}
+            </HeaderOnVideogames>
             <Overview data={data} />
             <section id='storesAndReviews' className='row'>
               <Stores
@@ -72,7 +73,7 @@ class Videogame extends Component {
             <SimilarVideogames data={data} />
           </main>
         ) : (
-          <VideogameSkeletonLoad />
+          <VideogameSkeletonLoad>{(document.title = 'Loading game... | Trending on RAWG')}</VideogameSkeletonLoad>
         )}
       </Fragment>
     )

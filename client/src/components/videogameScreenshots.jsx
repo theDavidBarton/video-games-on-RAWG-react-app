@@ -33,7 +33,7 @@ class Screenshots extends Component {
   render() {
     const data = this.props.data
     return (
-      <section id='imageGallery' className='col'>
+      <section id='imageGallery' className='col-auto'>
         <header id='imageGalleryTop' className='row mt-3 px-3'>
           <h4>Screens:</h4>
           {this.state.galleryIsOpened && window.innerWidth > 765 ? (
