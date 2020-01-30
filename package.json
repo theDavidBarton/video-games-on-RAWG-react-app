@@ -9,8 +9,12 @@
     "oneyplays-api": "^1.2.0",
     "request": "^2.88.0"
   },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  },
   "scripts": {
     "start": "node server.js",
+    "deploy": "cd client && gh-pages -d build",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "engines": {

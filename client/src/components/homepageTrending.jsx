@@ -14,8 +14,9 @@ class Trending extends Component {
   }
 
   getRawgApi = async () => {
+    const baseUrl = window.location.href.match(/localhost/) ? '' : 'https://thedavidbarton.herokuapp.com'
     try {
-      const data = await fetch(`/api/videogame/${this.state.data.results[this.state.value].id}`)
+      const data = await fetch(baseUrl + `/api/videogame/${this.state.data.results[this.state.value].id}`)
       const json = await data.json()
       this.setState({ detailsData: json, dataIsReady: true })
     } catch (e) {
