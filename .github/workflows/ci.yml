@@ -32,9 +32,9 @@ jobs:
           yarn lint .
           yarn test --watchAll=false --verbose
 
-       - name: Deploy
-         uses: JamesIves/github-pages-deploy-action@master
-         env:
-           ACCESS_TOKEN: ${{ secrets.GH_PAGES_CI }}
-           BRANCH: gh-pages
-           FOLDER: client/build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.GH_PAGES_CI }}
+          BRANCH: gh-pages
+          FOLDER: client/build
