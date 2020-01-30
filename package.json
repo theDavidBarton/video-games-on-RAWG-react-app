@@ -15,9 +15,9 @@
   },
   "scripts": {
     "start": "node server.js",
-    "predeploy": "cd client && yarn run build",
+    "predeploy": "cd client && yarn build",
     "deploy": "cd client && gh-pages -d build",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "heroku-postbuild": "cd client && yarn && yarn build"
   },
   "engines": {
     "node": "10.x"
