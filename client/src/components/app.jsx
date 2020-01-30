@@ -9,14 +9,15 @@ import Homepage from './homepage'
 
 class App extends Component {
   render() {
+    console.log(process.env.PUBLIC_URL)
     return (
       <div className='App'>
         <CookieBar />
         <Header />
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={Homepage} />
-            <Route path='/videogame/:id' component={Videogame} />
+            <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
+            <Route path={`${process.env.PUBLIC_URL}/videogame/:id`} component={Videogame} />
             <Route component={Page404} />
           </Switch>
         </BrowserRouter>
