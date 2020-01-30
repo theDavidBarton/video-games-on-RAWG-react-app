@@ -1,5 +1,6 @@
 {
   "name": "video-games-on-rawg-react-app-express-server",
+  "homepage": "https://theDavidBarton.github.io/video-games-on-RAWG-react-app/",
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
@@ -9,8 +10,13 @@
     "oneyplays-api": "^1.2.0",
     "request": "^2.88.0"
   },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  },
   "scripts": {
     "start": "node server.js",
+    "predeploy": "cd client && yarn run build",
+    "deploy": "cd client && gh-pages -d build",
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "engines": {
