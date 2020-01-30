@@ -14,7 +14,7 @@ class App extends Component {
       <div className='App'>
         <CookieBar />
         <Header />
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
           <Switch>
             <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
             <Route path={`${process.env.PUBLIC_URL}/videogame/:id`} component={Videogame} />
