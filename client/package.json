@@ -1,6 +1,7 @@
 {
   "license": "MIT",
   "name": "video-games-on-rawg-react-app",
+  "homepage": "https://theDavidBarton.github.io/video-games-on-RAWG-react-app",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
