@@ -13,7 +13,7 @@ class App extends Component {
       <div className='App'>
         <CookieBar />
         <Header />
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route path='/videogame/:id' component={Videogame} />
