@@ -37,5 +37,5 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.GH_PAGES_CI }}
           BRANCH: gh-pages
-          FOLDER: client/build
+          FOLDER: build
           BUILD_SCRIPT: cd client && yarn && yarn build
