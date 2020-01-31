@@ -9,15 +9,14 @@ import Homepage from './homepage'
 
 class App extends Component {
   render() {
-    console.log('gh-pages iteration no.1')
     return (
       <div className='App'>
         <CookieBar />
         <Header />
         <BrowserRouter>
           <Switch>
-            <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
-            <Route exact path={`${process.env.PUBLIC_URL}/videogame/:id`} component={Videogame} />
+            <Route exact path='/' component={Homepage} />
+            <Route path='/videogame/:id' component={Videogame} />
             <Route component={Page404} />
           </Switch>
         </BrowserRouter>

@@ -14,10 +14,9 @@ class Search extends Component {
   }
 
   getRawgApi = async () => {
-    const baseUrl = window.location.href.match(/localhost/) ? '' : 'https://thedavidbarton.herokuapp.com'
     if (this.state.keyword !== '') {
       try {
-        const response = await fetch(baseUrl + `/api/videogameAutocomplete?q=${this.state.keyword.toLowerCase()}`)
+        const response = await fetch(`/api/videogameAutocomplete?q=${this.state.keyword.toLowerCase()}`)
         const json = await response.json()
         this.setState({ data: json, dataIsReady: true })
       } catch (e) {
