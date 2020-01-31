@@ -15,9 +15,8 @@ class Header extends Component {
   }
 
   getRawgApi = async () => {
-    const baseUrl = window.location.href.match(/localhost/) ? '' : 'https://thedavidbarton.herokuapp.com'
     try {
-      const response = await fetch(baseUrl + '/api/topRatedRecommended')
+      const response = await fetch('/api/topRatedRecommended')
       const json = await response.json()
       this.setState({ data: json, dataIsReady: true })
     } catch (e) {

@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
+  deploy-on-heroku:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -32,10 +32,5 @@ jobs:
           yarn lint .
           yarn test --watchAll=false --verbose
 
-      - name: Build & Deploy
-        uses: JamesIves/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.GH_PAGES_CI }}
-          BRANCH: gh-pages
-          FOLDER: build
-          BUILD_SCRIPT: cd client && yarn && yarn build
+      - name: Deploy to Heroku
+        run: echo "Follow deployment on Heroku https://dashboard.heroku.com/apps/trending-video-games/activity"
