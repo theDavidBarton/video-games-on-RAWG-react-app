@@ -17,6 +17,15 @@ jobs:
         with:
           node-version: 10.x
 
+      - name: Yarn install BE
+        run: yarn
+
+      - name: Yarn Install and Build FE
+        run: |
+          cd client
+          yarn
+          yarn build
+
       - name: Test
         run: |
           cd client
