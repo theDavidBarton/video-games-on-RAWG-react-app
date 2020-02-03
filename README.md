@@ -2,7 +2,7 @@
 
 # Videogames on RAWG
 
-Available on Heroku: https://trending-video-games.herokuapp.com/
+Available on Heroku: [trending-video-games.herokuapp.com](https://bit.ly/2GO2qOg) (redirection happens from theDavidBarton.github.io!)
 
 ## a React.Js app with Express backend
 
@@ -30,7 +30,7 @@ See in details: [server.js](./server.js).
 
 MIT License
 
-Copyright (c) 2019 David Barton
+Copyright (c) 2019-present David Barton
 
 # Credits
 

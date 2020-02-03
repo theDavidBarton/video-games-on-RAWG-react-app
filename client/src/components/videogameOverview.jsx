@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import dompurify from 'dompurify'
 import Company from './videogameCompany'
 import Genre from './videogameGenre'
 import DevteamMember from './videogameDevteamMember'
@@ -137,7 +138,7 @@ class Overview extends Component {
         <article id='overview' className='col my-3'>
           <div>
             <h4>Overview:</h4>
-            <p className='mb-2' dangerouslySetInnerHTML={{ __html: this.getOverview() }}></p>
+            <p className='mb-2' dangerouslySetInnerHTML={{ __html: dompurify.sanitize(this.getOverview()) }}></p>
           </div>
           <div>
             {data.devteam.length > 0 ? (
