@@ -2,7 +2,7 @@
 
 # Videogames on RAWG
 
-Available on Heroku: [trending-video-games.herokuapp.com](https://bit.ly/2GO2qOg) (redirection happens from theDavidBarton.github.io!)
+Available on Heroku: [trending-video-games.herokuapp.com](https://bit.ly/video-games-on-RAWG) (redirection happens from theDavidBarton.github.io!)
 
 ## a React.Js app with Express backend
 
