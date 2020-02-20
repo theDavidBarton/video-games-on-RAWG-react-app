@@ -40,6 +40,7 @@ class Search extends Component {
       <Fragment>
         <div className='position-relative' style={{ zIndex: 1 }}>
           <input
+            aria-label='powered by RAWG.io'
             id='searchform'
             className='form-control mt-2'
             type='text'
