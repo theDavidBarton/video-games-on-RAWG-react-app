@@ -43,7 +43,7 @@ class Videogame extends Component {
     }
     try {
       // _Archive.org call
-      let titleValue = getTitleValue()
+      const titleValue = getTitleValue()
       const yearValue = this.state.data.released
         ? this.state.data.released.match(/[0-9]{4}/)
         : '[1960-01-01 TO 2010-01-01]'
@@ -56,7 +56,7 @@ class Videogame extends Component {
     }
     try {
       // _NES call
-      let titleValue = getTitleValue()
+      const titleValue = getTitleValue()
       const isNES = this.state.data.platforms.filter(el => {
         if (el.platform.name === 'NES') return el
         return null
