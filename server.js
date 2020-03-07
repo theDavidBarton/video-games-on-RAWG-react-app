@@ -57,6 +57,16 @@ const optionsSearchArchive = {
   }
 }
 
+const optionsSearchOldgameshelf = {
+  method: 'GET',
+  headers: userAgent,
+  url: 'https://oldgameshelf.com/api/v1/games',
+  qs: {
+    _q: undefined,
+    _limit: '1'
+  }
+}
+
 let parsedResult
 
 async function apiCall(options) {
@@ -190,6 +200,20 @@ function endpointCreation() {
         res.set('Cache-Control', 'no-cache')
         res.json(await apiCall(optionsSearchArchive))
         console.log(`/api/searchArchive?title=${queryTitle}&year=${queryYear} endpoint has been called!`)
+      } catch (e) {
+        console.error(e)
+      }
+    })
+
+    // _OldGameShelf link to NES titles
+    // e.g.: https://oldgameshelf.com/api/v1/games?_q=super%20contra&_limit=1
+    app.get('/api/searchOldgameshelf', async (req, res) => {
+      try {
+        const queryTitle = req.query.title
+        optionsSearchOldgameshelf.qs._q = queryTitle
+        res.set('Cache-Control', 'no-cache')
+        res.json(await apiCall(optionsSearchOldgameshelf))
+        console.log(`/api/searchOldgameshelf?title=${queryTitle} endpoint has been called!`)
       } catch (e) {
         console.error(e)
       }

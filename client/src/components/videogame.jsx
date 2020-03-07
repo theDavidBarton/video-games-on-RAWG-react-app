@@ -15,6 +15,8 @@ class Videogame extends Component {
     dataIsReady: false,
     archiveIdentifier: null,
     archiveOfferAvailable: false,
+    oldgameshelfIdentifier: null,
+    oldgameshelfOfferAvailable: false,
     id: this.props.match.params.id
   }
 
@@ -23,7 +25,16 @@ class Videogame extends Component {
   }
 
   getRawgAndArchiveApi = async () => {
+    const getTitleValue = () => {
+      let titleValue
+      this.state.data.released && this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
+        ? (titleValue = this.state.data.name.replace(/\([0-9]{4}\)|:.*|-|\./, '').trim())
+        : (titleValue = this.state.data.name.replace(/:.*|-|\./, ''))
+      return titleValue
+    }
+
     try {
+      // backend call
       const response = await fetch(`/api/videogame/${this.state.id}`)
       const json = await response.json()
       this.setState({ data: json, dataIsReady: true })
@@ -31,10 +42,8 @@ class Videogame extends Component {
       console.error(e)
     }
     try {
-      let titleValue
-      this.state.data.released && this.state.data.name.includes(this.state.data.released.match(/[0-9]{4}/))
-        ? (titleValue = this.state.data.name.replace(/\([0-9]{4}\)|:.*|-|\./, '').trim())
-        : (titleValue = this.state.data.name.replace(/:.*|-|\./, ''))
+      // _Archive.org call
+      let titleValue = getTitleValue()
       const yearValue = this.state.data.released
         ? this.state.data.released.match(/[0-9]{4}/)
         : '[1960-01-01 TO 2010-01-01]'
@@ -42,6 +51,22 @@ class Videogame extends Component {
       const json = await response.json()
       const identifier = json.response.docs.length > 0 ? json.response.docs[0].identifier : null
       if (identifier) this.setState({ archiveIdentifier: identifier, archiveOfferAvailable: true })
+    } catch (e) {
+      console.error(e)
+    }
+    try {
+      // _NES call
+      let titleValue = getTitleValue()
+      const isNES = this.state.data.platforms.filter(el => {
+        if (el.platform.name === 'NES') return el
+        return null
+      })
+      if (isNES.length > 0) {
+        const response = await fetch(`/api/searchOldgameshelf?title=${titleValue}`)
+        const json = await response.json()
+        if (json[0].slug)
+          this.setState({ oldgameshelfIdentifier: `${json[0].slug}-${json[0].uid}`, oldgameshelfOfferAvailable: true })
+      }
     } catch (e) {
       console.error(e)
     }
@@ -62,6 +87,8 @@ class Videogame extends Component {
                 data={data}
                 archiveIdentifier={this.state.archiveIdentifier}
                 archiveOfferAvailable={this.state.archiveOfferAvailable}
+                oldgameshelfIdentifier={this.state.oldgameshelfIdentifier}
+                oldgameshelfOfferAvailable={this.state.oldgameshelfOfferAvailable}
               />
               <Reviews data={data} />
             </section>
