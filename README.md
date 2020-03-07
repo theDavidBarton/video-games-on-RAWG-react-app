@@ -41,7 +41,7 @@ Powered by [RAWG.io](https://rawg.io/apidocs) video game data. Thank you guys!
 
 Powered by [Archive.org](https://archive.org/help/aboutsearch.htm) video game links. This app links some titles to the biggest web archive of the internet. Thanks Archive.org!
 
-Powered by [OldGemeShelf.com](https://oldgameshelf.com/) video game links. This app links some titles to Oldgameshelf.com which is a brilliant website to play all the retro games of the Nintendo NES system. Thanks Oldgameshelf.com!
+Powered by [OldGameShelf.com](https://oldgameshelf.com/) video game links. This app links some titles to Oldgameshelf.com which is a brilliant website to play all the retro games of the Nintendo NES system. Thanks Oldgameshelf.com!
 
 ## Used font
 
