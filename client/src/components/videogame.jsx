@@ -17,6 +17,8 @@ class Videogame extends Component {
     archiveOfferAvailable: false,
     oldgameshelfIdentifier: null,
     oldgameshelfOfferAvailable: false,
+    snesnowIdentifier: null,
+    snesnowfOfferAvailable: false,
     id: this.props.match.params.id
   }
 
@@ -34,7 +36,7 @@ class Videogame extends Component {
     }
 
     try {
-      // backend call
+      // _RAWG game details call
       const response = await fetch(`/api/videogame/${this.state.id}`)
       const json = await response.json()
       this.setState({ data: json, dataIsReady: true })
@@ -70,6 +72,22 @@ class Videogame extends Component {
     } catch (e) {
       console.error(e)
     }
+    try {
+      // _SNES call
+      const titleValue = getTitleValue()
+      const isSNES = this.state.data.platforms.filter(el => {
+        if (el.platform.name === 'SNES') return el
+        return null
+      })
+      if (isSNES.length > 0) {
+        const response = await fetch(`/api/searchSnesnow?title=${titleValue}`)
+        const json = await response.json()
+        if (json[0] !== undefined)
+          this.setState({ snesnowIdentifier: `${json[0].slug}-${json[0].id}`, snesnowOfferAvailable: true })
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   render() {
@@ -89,6 +107,8 @@ class Videogame extends Component {
                 archiveOfferAvailable={this.state.archiveOfferAvailable}
                 oldgameshelfIdentifier={this.state.oldgameshelfIdentifier}
                 oldgameshelfOfferAvailable={this.state.oldgameshelfOfferAvailable}
+                snesnowIdentifier={this.state.snesnowIdentifier}
+                snesnowOfferAvailable={this.state.snesnowOfferAvailable}
               />
               <Reviews data={data} />
             </section>
