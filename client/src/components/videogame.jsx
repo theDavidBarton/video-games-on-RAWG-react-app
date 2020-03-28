@@ -64,7 +64,7 @@ class Videogame extends Component {
       if (isNES.length > 0) {
         const response = await fetch(`/api/searchOldgameshelf?title=${titleValue}`)
         const json = await response.json()
-        if (json[0].slug)
+        if (json[0] !== undefined)
           this.setState({ oldgameshelfIdentifier: `${json[0].slug}-${json[0].uid}`, oldgameshelfOfferAvailable: true })
       }
     } catch (e) {
