@@ -67,6 +67,16 @@ const optionsSearchOldgameshelf = {
   }
 }
 
+const optionsSearchSnesnow = {
+  method: 'GET',
+  headers: userAgent,
+  url: 'https://snesnow.com/media',
+  qs: {
+    _q: undefined,
+    _limit: '1'
+  }
+}
+
 let parsedResult
 
 async function apiCall(options) {
@@ -214,6 +224,20 @@ function endpointCreation() {
         res.set('Cache-Control', 'no-cache')
         res.json(await apiCall(optionsSearchOldgameshelf))
         console.log(`/api/searchOldgameshelf?title=${queryTitle} endpoint has been called!`)
+      } catch (e) {
+        console.error(e)
+      }
+    })
+
+    // _SnesNow link to SNES titles
+    // e.g.: https://snesnow.com/media?_limit=1&_q=contra
+    app.get('/api/searchSnesnow', async (req, res) => {
+      try {
+        const queryTitle = req.query.title
+        optionsSearchSnesnow.qs._q = queryTitle
+        res.set('Cache-Control', 'no-cache')
+        res.json(await apiCall(optionsSearchSnesnow))
+        console.log(`/api/searchSnesnow?title=${queryTitle} endpoint has been called!`)
       } catch (e) {
         console.error(e)
       }
