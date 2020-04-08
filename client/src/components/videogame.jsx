@@ -46,13 +46,13 @@ class Videogame extends Component {
     try {
       // _Archive.org call
       const titleValue = getTitleValue()
-      const yearValue = this.state.data.released
-        ? this.state.data.released.match(/[0-9]{4}/)
-        : '[1960-01-01 TO 2010-01-01]'
-      const response = await fetch(`/api/searchArchive?title=${titleValue}&year=${yearValue}`)
-      const json = await response.json()
-      const identifier = json.response.docs.length > 0 ? json.response.docs[0].identifier : null
-      if (identifier) this.setState({ archiveIdentifier: identifier, archiveOfferAvailable: true })
+      const yearValue = this.state.data.released ? this.state.data.released.match(/[0-9]{4}/) : null
+      if (yearValue) {
+        const response = await fetch(`/api/searchArchive?title=${titleValue}&year=${yearValue}`)
+        const json = await response.json()
+        const identifier = json.response.docs.length > 0 ? json.response.docs[0].identifier : null
+        if (identifier) this.setState({ archiveIdentifier: identifier, archiveOfferAvailable: true })
+      }
     } catch (e) {
       console.error(e)
     }
