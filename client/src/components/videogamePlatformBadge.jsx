@@ -1,10 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class PlatformBadge extends Component {
-  render() {
-    const platformElement = this.props.data
-    return <div className='badge badge-warning platform-badge-margin'>{platformElement.platform.name}</div>
-  }
+export default function PlatformBadge({ data }) {
+  const platformElement = data
+  return <div className='badge badge-warning platform-badge-margin'>{platformElement.platform.name}</div>
 }
-
-export default PlatformBadge
