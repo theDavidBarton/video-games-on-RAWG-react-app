@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Company extends Component {
-  render() {
-    const companyElement = this.props.data
-    const i = this.props.index
-    return <span>{`${i ? ', ' : ''} ${companyElement.name}`}</span>
-  }
+export default function Company({ data, index }) {
+  const companyElement = data
+  const i = index
+  return <span>{`${i ? ', ' : ''} ${companyElement.name}`}</span>
 }
-
-export default Company
