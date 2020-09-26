@@ -14,7 +14,8 @@ const optionsTrending = {
   qs: {
     ordering: '-relevance',
     discover: true,
-    page_size: 10
+    page_size: 40,
+    page: undefined
   }
 }
 
@@ -82,8 +83,8 @@ let parsedResult
 async function apiCall(options) {
   // (I.) promise to return the parsedResult for processing
   function rawgRequest() {
-    return new Promise(function(resolve, reject) {
-      request(options, function(error, response, body) {
+    return new Promise((resolve, reject) => {
+      request(options, (error, response, body) => {
         try {
           resolve(JSON.parse(body))
         } catch (e) {
@@ -111,7 +112,7 @@ function endpointCreation() {
     app.use(express.static(path.join(__dirname, 'client/build')))
     // required to serve SPA on heroku production without routing problems; it will skip only 'api' calls
     if (process.env.NODE_ENV === 'production') {
-      app.get(/^((?!(api)).)*$/, function(req, res) {
+      app.get(/^((?!(api)).)*$/, (req, res) => {
         res.set('Cache-Control', 'public, max-age=31536001')
         res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
       })
@@ -119,9 +120,11 @@ function endpointCreation() {
 
     // providing a constant endpoint for trending videogames
     app.get('/api/trending', async (req, res) => {
+      const queryPage = req.query.page
+      optionsTrending.qs.page = queryPage
       res.set('Cache-Control', 'no-cache')
       res.json(await apiCall(optionsTrending))
-      console.log('/api/trending endpoint has been called!')
+      console.log(`/api/trending?page=${queryPage} endpoint has been called!`)
     })
 
     // providing a constant endpoint for a random top rated videogame
