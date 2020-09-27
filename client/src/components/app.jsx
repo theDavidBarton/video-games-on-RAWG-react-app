@@ -1,25 +1,33 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Videogame from './videogame'
-import Page404 from './404'
-import CookieBar from './cookieBar'
-import Header from './header'
-import Footer from './footer'
-import Homepage from './homepage'
+const Videogame = lazy(() => import('./videogame'))
+const Page404 = lazy(() => import('./404'))
+const CookieBar = lazy(() => import('./cookieBar'))
+const Header = lazy(() => import('./header'))
+const Footer = lazy(() => import('./footer'))
+const Homepage = lazy(() => import('./homepage'))
 
 export default function App() {
   return (
     <div className='App'>
-      <CookieBar />
-      <Header />
+      <Suspense fallback={<div className='bg-dark'></div>}>
+        <CookieBar />
+      </Suspense>
+      <Suspense fallback={<div className='bg-dark'></div>}>
+        <Header />
+      </Suspense>
       <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/videogame/:id' component={Videogame} />
-          <Route component={Page404} />
-        </Switch>
+        <Suspense fallback={<div className='bg-dark'>Loading...</div>}>
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route path='/videogame/:id' component={Videogame} />
+            <Route component={Page404} />
+          </Switch>
+        </Suspense>
       </BrowserRouter>
-      <Footer />
+      <Suspense fallback={<div className='bg-dark'></div>}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

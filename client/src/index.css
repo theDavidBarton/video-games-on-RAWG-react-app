@@ -52,9 +52,22 @@ h5 {
 }
 
 .social-img-style {
-  margin-right: 0.5em;
-  height: 22px;
+  height: 45px;
   filter: invert(100%);
+}
+
+.col-mob {
+  padding-right: auto;
+  padding-left: auto;
+}
+
+@media all and (max-width: 414px) {
+  .social-img-style,
+  .col-mob {
+    height: 35px;
+    padding-right: 5px;
+    padding-left: 0px;
+  }
 }
 
 /* trendingVideogame */
