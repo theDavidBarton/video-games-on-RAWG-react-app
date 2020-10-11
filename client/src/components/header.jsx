@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import Search from './search'
 import logo from './../img/logo-big.svg'
 import github from './../img/github.svg'
+import linkedin from './../img/linkedin.png'
 
 export default function Header() {
   const [data, setData] = useState(null)
@@ -24,16 +25,9 @@ export default function Header() {
 
   const getBackground = () => {
     const backgroundPath = data.background_image
-    let background
-    if (window.innerWidth > 1024) {
-      background = backgroundPath.match(/media\/screenshots/)
-        ? backgroundPath.replace('media/screenshots', 'media/resize/1280/-/screenshots')
-        : backgroundPath.replace('media/games', 'media/resize/1280/-/games')
-    } else {
-      background = backgroundPath.match(/media\/screenshots/)
-        ? backgroundPath.replace('media/screenshots', 'media/resize/420/-/screenshots')
-        : backgroundPath.replace('media/games', 'media/resize/420/-/games')
-    }
+    const background = backgroundPath.match(/media\/screenshots/)
+      ? backgroundPath.replace('media/screenshots', 'media/resize/1280/-/screenshots')
+      : backgroundPath.replace('media/games', 'media/resize/1280/-/games')
     return background
   }
 
@@ -59,10 +53,29 @@ export default function Header() {
           <div className='col-md-auto col-12 align-self-end order-1 order-md-0'>
             <Search />
           </div>
-          <div className='col-auto col-mob align-self-center mt-5'>
-            <a href='https://github.com/theDavidBarton/video-games-on-RAWG-react-app/' target='_blank' rel='noopener noreferrer'>
-              <img className='float-left social-img-style' alt='github logo' src={github} />
-            </a>
+          <div className='col-auto align-self-end my-2'>
+            <ul className='list-unstyled align-bottom'>
+              <li className='my-2'>
+                <a
+                  href='https://github.com/theDavidBarton/video-games-on-RAWG-react-app/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='btn btn-dark social-link-style'>
+                  <img className='float-left social-img-style' alt='github logo' src={github} />
+                  GitHub
+                </a>
+              </li>
+              <li className='my-2'>
+                <a
+                  href='https://linkedin.com/in/theDavidBarton/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='btn btn-dark float-left social-link-style'>
+                  <img className='float-left social-img-style' alt='linkedin logo' src={linkedin} />
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </header>

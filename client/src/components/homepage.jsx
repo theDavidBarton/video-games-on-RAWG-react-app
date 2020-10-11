@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import Trending from './homepageTrending'
 import SkeletonLoad from './homepageSkeletonLoad'
-
-const Trending = lazy(() => import('./homepageTrending'))
 
 export default function Homepage() {
   const [data, setData] = useState(null)
@@ -40,9 +39,7 @@ export default function Homepage() {
         <div className='row'>
           {topVideogameCount.map(videogames =>
             dataIsReady ? (
-              <Suspense key={videogames.id} fallback={<div>Loading...</div>}>
-                <Trending key={videogames.id} value={videogames.value} data={data} />
-              </Suspense>
+              <Trending key={videogames.id} value={videogames.value} data={data} />
             ) : (
               <SkeletonLoad key={videogames.id} />
             )

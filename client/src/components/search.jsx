@@ -41,8 +41,7 @@ export default function Search() {
           id='searchform'
           className='form-control mt-2'
           type='text'
-          placeholder='Type a video game title…'
-          autoComplete='off'
+          placeholder='Type a video game name…'
           value={keyword}
           onChange={setKeywordInInput}
         />
