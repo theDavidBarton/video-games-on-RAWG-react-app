@@ -414,10 +414,10 @@ on-headers@~1.0.2:
   resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.2.tgz#772b0ae6aaa525c399e489adfad90c403eb3c28f"
   integrity sha512-pZAE+FJLoyITytdqK0U5s+FIpjN0JP3OzFi/u8Rx+EV5/W+JTWGXG8xFzevE7AjBfDqHv/8vL8qQsIhHnqRkrA==
 
-oneyplays-api@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/oneyplays-api/-/oneyplays-api-1.2.0.tgz#b44c4c10b6c1bcb1bddf1d29fcf92e9fd5475a3f"
-  integrity sha512-1jPs26cAtwYE5jxprs6XQnAE5nb4Kmz/x5V88RH/tlrqwcUSE/E9R7d+w8WIfbGZl16QdWMIWBrUohEEkzaKrw==
+oneyplays-api@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/oneyplays-api/-/oneyplays-api-1.3.0.tgz#5fe5331e74ecfce8a1f79ea16c462fc6cf41159a"
+  integrity sha512-WLO+bwQ/EfsIPKt2e/SHPMLqy40WHz2rfWAXoSgeXxdZFvA+uT7vxWOG42KKhsHSt8+bRaFlnqBp0QiZxrg42w==
 
 parseurl@~1.3.3:
   version "1.3.3"
