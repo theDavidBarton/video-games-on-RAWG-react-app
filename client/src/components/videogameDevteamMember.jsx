@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 
 export default function DevteamMember({ data }) {
-  const devteamMember = data;
+  const devteamMember = data
   return (
     <Fragment>
       <li className='col media my-3'>
@@ -31,5 +31,5 @@ export default function DevteamMember({ data }) {
         </div>
       </li>
     </Fragment>
-  );
+  )
 }

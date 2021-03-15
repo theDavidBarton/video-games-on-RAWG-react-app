@@ -1,30 +1,30 @@
-import React, { useState, Fragment } from 'react';
-import YoutubeGallery from './videogameYoutubeGallery';
-import YoutubeGalleryCloseButton from './videogameYoutubeGalleryCloseButton';
-import Youtube from './videogameYoutube';
+import React, { useState, Fragment } from 'react'
+import YoutubeGallery from './videogameYoutubeGallery'
+import YoutubeGalleryCloseButton from './videogameYoutubeGalleryCloseButton'
+import Youtube from './videogameYoutube'
 
 export default function YoutubeVideos({ data }) {
-  const [youtubeGalleryIsOpened, setYoutubeGalleryIsOpened] = useState(false);
+  const [youtubeGalleryIsOpened, setYoutubeGalleryIsOpened] = useState(false)
 
   const getTitle = () => {
     try {
-      let title;
+      let title
       data.released && data.name.includes(data.released.match(/[0-9]{4}/))
         ? (title = data.name.replace(/\([0-9]{4}\)/, '').trim())
-        : (title = data.name);
-      return title;
+        : (title = data.name)
+      return title
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
 
   const setYoutubeGalleryOpen = () => {
-    setYoutubeGalleryIsOpened(true);
-  };
+    setYoutubeGalleryIsOpened(true)
+  }
 
   const setYoutubeGalleryClosed = () => {
-    setYoutubeGalleryIsOpened(false);
-  };
+    setYoutubeGalleryIsOpened(false)
+  }
 
   return (
     <Fragment>
@@ -54,5 +54,5 @@ export default function YoutubeVideos({ data }) {
         </section>
       ) : null}
     </Fragment>
-  );
+  )
 }

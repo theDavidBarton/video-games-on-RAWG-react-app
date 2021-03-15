@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
-import Store from './videogameStore';
-import ArchiveOffer from './videogameArchiveOffer';
-import OldgameshelfOffer from './videogameOldgameshelfOffer';
-import SnesnowOffer from './videogameSnesnowOffer';
+import React, { Fragment } from 'react'
+import Store from './videogameStore'
+import ArchiveOffer from './videogameArchiveOffer'
+import OldgameshelfOffer from './videogameOldgameshelfOffer'
+import SnesnowOffer from './videogameSnesnowOffer'
 
 export default function Stores({
   data,
@@ -35,5 +35,5 @@ export default function Stores({
         </Fragment>
       ) : null}
     </section>
-  );
+  )
 }

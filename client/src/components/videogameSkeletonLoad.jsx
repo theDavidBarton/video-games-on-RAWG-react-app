@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 
 export default function VideogameSkeletonLoad() {
   return (
@@ -42,5 +42,5 @@ export default function VideogameSkeletonLoad() {
         </div>
       </div>
     </Fragment>
-  );
+  )
 }

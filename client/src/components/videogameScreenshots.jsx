@@ -1,31 +1,31 @@
-import React, { Fragment, useState } from 'react';
-import ImageGallery from './videogameImageGallery';
-import ImageGalleryCloseButton from './videogameImageGalleryCloseButton';
-import Screen from './videogameScreen';
+import React, { Fragment, useState } from 'react'
+import ImageGallery from './videogameImageGallery'
+import ImageGalleryCloseButton from './videogameImageGalleryCloseButton'
+import Screen from './videogameScreen'
 
 export default function Screenshots({ data }) {
-  const [galleryIsOpened, setGalleryIsOpened] = useState(false);
+  const [galleryIsOpened, setGalleryIsOpened] = useState(false)
 
   const getClips = () => {
     try {
-      let clip, poster;
+      let clip, poster
       data.clip
         ? (clip = data.clip.clips[640]) &&
           (poster = data.clip['preview'].replace('media/stories-previews', 'media/crop/600/400/stories-previews'))
-        : (clip = null) && (poster = null);
-      return { clip, poster };
+        : (clip = null) && (poster = null)
+      return { clip, poster }
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
 
   const setGalleryOpen = () => {
-    setGalleryIsOpened(true);
-  };
+    setGalleryIsOpened(true)
+  }
 
   const setGalleryClosed = () => {
-    setGalleryIsOpened(false);
-  };
+    setGalleryIsOpened(false)
+  }
 
   return (
     <section id='imageGallery' className='col-auto'>
@@ -60,5 +60,5 @@ export default function Screenshots({ data }) {
         ))}
       </section>
     </section>
-  );
+  )
 }

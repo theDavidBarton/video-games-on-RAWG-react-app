@@ -1,67 +1,67 @@
-import React, { useState, useEffect, Fragment, useCallback } from 'react';
+import React, { useState, useEffect, Fragment, useCallback } from 'react'
 
 export default function Trending({ data, value }) {
-  const [detailsData, setDetailsData] = useState(null);
+  const [detailsData, setDetailsData] = useState(null)
 
   const getRawgApi = useCallback(async () => {
     try {
-      const response = await fetch(`/api/videogame/${data.results[value].id}`);
-      const json = await response.json();
-      setDetailsData(json);
+      const response = await fetch(`/api/videogame/${data.results[value].id}`)
+      const json = await response.json()
+      setDetailsData(json)
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  }, [data, value]);
+  }, [data, value])
 
   useEffect(() => {
-    getRawgApi();
-  }, [getRawgApi]);
+    getRawgApi()
+  }, [getRawgApi])
 
   const getPoster = () => {
-    const posterPath = data.results[value].background_image;
+    const posterPath = data.results[value].background_image
     const poster = posterPath.match(/media\/screenshots/)
       ? posterPath.replace('media/screenshots', 'media/resize/420/-/screenshots')
-      : posterPath.replace('/media/games/', '/media/resize/420/-/games/');
-    return poster;
-  };
+      : posterPath.replace('/media/games/', '/media/resize/420/-/games/')
+    return poster
+  }
 
   const getTitle = () => {
-    let title;
+    let title
     data.results[value].released && data.results[value].name.includes(data.results[value].released.match(/[0-9]{4}/))
       ? (title = data.results[value].name.replace(/\([0-9]{4}\)/, '').trim())
-      : (title = data.results[value].name);
-    return title;
-  };
+      : (title = data.results[value].name)
+    return title
+  }
 
   const getOverview = () => {
-    const overview = detailsData.description_raw;
-    return overview;
-  };
+    const overview = detailsData.description_raw
+    return overview
+  }
 
   const getPlatform = () => {
-    const platformArray = detailsData.platforms;
+    const platformArray = detailsData.platforms
     const platform = platformArray.map((platformElement, index) => (
       <div className='badge badge-dark platform-badge-margin' key={index + 1}>
         {platformElement.platform.name}
       </div>
-    ));
-    return platform;
-  };
+    ))
+    return platform
+  }
 
   const getRating = () => {
-    const rating = data.results[value].rating;
-    return rating;
-  };
+    const rating = data.results[value].rating
+    return rating
+  }
 
   const getRank = () => {
-    const rank = value + 1;
-    return rank;
-  };
+    const rank = value + 1
+    return rank
+  }
 
   const selectedVideogameFn = () => {
-    const videogame = `/videogame/${data.results[value].id}-${data.results[value].slug}`;
-    return videogame;
-  };
+    const videogame = `/videogame/${data.results[value].id}-${data.results[value].slug}`
+    return videogame
+  }
 
   return (
     <div className='col-md-6'>
@@ -101,5 +101,5 @@ export default function Trending({ data, value }) {
         </div>
       </a>
     </div>
-  );
+  )
 }
