@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function RightArrow() {
   return (
@@ -7,5 +7,5 @@ export default function RightArrow() {
         <path fill='#ffffff' d='m 88.019802,151.92331 v 10.21172 l 4.385307,-5.14703 z' />
       </g>
     </svg>
-  );
+  )
 }

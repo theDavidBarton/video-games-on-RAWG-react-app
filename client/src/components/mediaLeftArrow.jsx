@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function LeftArrow() {
   return (
@@ -7,5 +7,5 @@ export default function LeftArrow() {
         <path fill='#ffffff' d='m 92.405109,151.92331 v 10.21172 L 88.019802,156.988 Z' />
       </g>
     </svg>
-  );
+  )
 }

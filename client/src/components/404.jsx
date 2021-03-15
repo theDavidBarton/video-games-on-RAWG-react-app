@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 
 export default function Page404() {
   return (
@@ -21,5 +21,5 @@ export default function Page404() {
         </section>
       </aside>
     </Fragment>
-  );
+  )
 }

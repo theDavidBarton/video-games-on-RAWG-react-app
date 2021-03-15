@@ -1,20 +1,20 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import Suggested from './videogameSuggested';
+import React, { useState, useEffect, Fragment } from 'react'
+import Suggested from './videogameSuggested'
 
 export default function SimilarVideogames({ data }) {
-  const [suggestedElements, setSuggestedElements] = useState(null);
+  const [suggestedElements, setSuggestedElements] = useState(null)
   useEffect(() => {
     async function getRawgApi() {
       try {
-        const response = await fetch(`/api/videogameAutocomplete?q=${data.name}`);
-        const json = await response.json();
-        setSuggestedElements(json);
+        const response = await fetch(`/api/videogameAutocomplete?q=${data.name}`)
+        const json = await response.json()
+        setSuggestedElements(json)
       } catch (e) {
-        console.error(e);
+        console.error(e)
       }
     }
-    getRawgApi();
-  }, [data]);
+    getRawgApi()
+  }, [data])
 
   return (
     <Fragment>
@@ -31,5 +31,5 @@ export default function SimilarVideogames({ data }) {
         </aside>
       ) : null}
     </Fragment>
-  );
+  )
 }

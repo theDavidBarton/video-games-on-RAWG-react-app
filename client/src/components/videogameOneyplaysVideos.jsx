@@ -1,18 +1,18 @@
-import React, { useState, Fragment } from 'react';
-import OneyGallery from './videogameOneyGallery';
-import YoutubeGalleryCloseButton from './videogameYoutubeGalleryCloseButton';
-import Youtube from './videogameYoutube';
+import React, { useState, Fragment } from 'react'
+import OneyGallery from './videogameOneyGallery'
+import YoutubeGalleryCloseButton from './videogameYoutubeGalleryCloseButton'
+import Youtube from './videogameYoutube'
 
 export default function OneyplaysVideos({ data }) {
-  const [oneyGalleryIsOpened, setOneyGalleryIsOpened] = useState(false);
+  const [oneyGalleryIsOpened, setOneyGalleryIsOpened] = useState(false)
 
   const setOneyGalleryOpen = () => {
-    setOneyGalleryIsOpened(true);
-  };
+    setOneyGalleryIsOpened(true)
+  }
 
   const setOneyGalleryClosed = () => {
-    setOneyGalleryIsOpened(false);
-  };
+    setOneyGalleryIsOpened(false)
+  }
   return (
     <Fragment>
       {data.oneyplays.length > 0 ? (
@@ -56,5 +56,5 @@ export default function OneyplaysVideos({ data }) {
         </section>
       ) : null}
     </Fragment>
-  );
+  )
 }

@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import LeftArrow from './mediaLeftArrow';
-import RightArrow from './mediaRightArrow';
+import React, { useState } from 'react'
+import LeftArrow from './mediaLeftArrow'
+import RightArrow from './mediaRightArrow'
 
 export default function YoutubeGallery({ data }) {
-  const [activeVideo, setActiveVideo] = useState(0);
+  const [activeVideo, setActiveVideo] = useState(0)
 
   const getVideos = () => {
-    const videoPath = data;
-    return videoPath.map(videoElement => videoElement.external_id);
-  };
+    const videoPath = data
+    return videoPath.map(videoElement => videoElement.external_id)
+  }
 
   const changeVideoNext = () => {
-    if (activeVideo !== data.length - 1) setActiveVideo(activeVideo + 1);
-    else setActiveVideo(0);
-  };
+    if (activeVideo !== data.length - 1) setActiveVideo(activeVideo + 1)
+    else setActiveVideo(0)
+  }
 
   const changeVideoBack = () => {
-    if (activeVideo !== 0) setActiveVideo(activeVideo - 1);
-    else setActiveVideo(data.length - 1);
-  };
+    if (activeVideo !== 0) setActiveVideo(activeVideo - 1)
+    else setActiveVideo(data.length - 1)
+  }
 
-  const videos = getVideos();
-  const i = activeVideo;
+  const videos = getVideos()
+  const i = activeVideo
   return (
     <main className='container'>
       <div id='galleryOverlay' className='gallery-overlay-style position-fixed text-light align-items-center d-flex'>
@@ -48,5 +48,5 @@ export default function YoutubeGallery({ data }) {
         </section>
       </div>
     </main>
-  );
+  )
 }
