@@ -5,7 +5,6 @@ import Overview from './videogameOverview'
 import SimilarVideogames from './videogameSimilarVideogames'
 import HeaderOnVideogames from './videogameHeader'
 import Screenshots from './videogameScreenshots'
-import YoutubeVideos from './videogameYoutubeVideos'
 import OneyplaysVideos from './videogameOneyplaysVideos'
 import Reviews from './videogameReviews'
 import Stores from './videogameStores'
@@ -128,7 +127,6 @@ export default function Videogame() {
           </section>
           <section id='misc' className='row'>
             <Screenshots data={data} />
-            <YoutubeVideos data={data} />
             <OneyplaysVideos data={data} />
           </section>
           <SimilarVideogames data={data} />
