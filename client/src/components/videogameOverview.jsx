@@ -1,85 +1,85 @@
-import React, { Fragment } from 'react'
-import dompurify from 'dompurify'
-import Company from './videogameCompany'
-import Genre from './videogameGenre'
-import DevteamMember from './videogameDevteamMember'
+import React, { Fragment } from 'react';
+import dompurify from 'dompurify';
+import Company from './videogameCompany';
+import Genre from './videogameGenre';
+import DevteamMember from './videogameDevteamMember';
 
 export default function Overview({ data }) {
   const getBackground = () => {
     try {
-      let background
-      data.background_image_additional ? (background = data.background_image_additional) : (background = data.background_image)
+      let background;
+      data.background_image_additional ? (background = data.background_image_additional) : (background = data.background_image);
 
       if (background) {
         background.match(/media\/screenshots/)
           ? (background = background.replace('media/screenshots', 'media/crop/600/400/screenshots'))
-          : (background = background.replace('media/games', 'media/crop/600/400/games'))
+          : (background = background.replace('media/games', 'media/crop/600/400/games'));
       }
-      return background
+      return background;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const getPoster = () => {
     try {
-      let poster
+      let poster;
       if (data.background_image) {
         data.background_image.match(/media\/screenshots/)
           ? (poster = data.background_image.replace('media/screenshots', 'media/crop/600/400/screenshots'))
-          : (poster = data.background_image.replace('media/games', 'media/crop/600/400/games'))
+          : (poster = data.background_image.replace('media/games', 'media/crop/600/400/games'));
       }
-      return poster
+      return poster;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const getWebsite = () => {
     try {
-      const website = data.website
-      const websiteText = website.replace(/http:\/\/|https:\/\/|www\./g, '')
-      return { website, websiteText }
+      const website = data.website;
+      const websiteText = website.replace(/http:\/\/|https:\/\/|www\./g, '');
+      return { website, websiteText };
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const getOverview = () => {
     try {
-      return data.description
+      return data.description;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const getPlaytime = () => {
     try {
-      return data.playtime
+      return data.playtime;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const getVotes = () => {
     try {
-      return data.rating
+      return data.rating;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const getReleaseDate = () => {
     try {
-      return data.released
+      return data.released;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-  }
+  };
 
   const bgImage = getBackground()
     ? 'linear-gradient(rgba(0,0,0,.9), rgba(52,58,64,.9)), url(' + getBackground() + ')'
-    : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)'
+    : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)';
 
   return (
     <section
@@ -146,5 +146,5 @@ export default function Overview({ data }) {
         </div>
       </article>
     </section>
-  )
+  );
 }
