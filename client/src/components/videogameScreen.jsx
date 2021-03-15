@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 export default function Screen({ data }) {
-  const screenElement = data;
+  const screenElement = data
   return (
     <div className='col-md-3 my-3'>
       {screenElement.image ? (
@@ -16,5 +16,5 @@ export default function Screen({ data }) {
         />
       ) : null}
     </div>
-  );
+  )
 }

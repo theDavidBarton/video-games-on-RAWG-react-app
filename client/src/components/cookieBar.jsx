@@ -1,11 +1,11 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react'
 
 export default function CookieBar() {
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(true)
 
   const closeIt = () => {
-    setIsOpened(false);
-  };
+    setIsOpened(false)
+  }
 
   return (
     <Fragment>
@@ -24,5 +24,5 @@ export default function CookieBar() {
         </section>
       ) : null}
     </Fragment>
-  );
+  )
 }

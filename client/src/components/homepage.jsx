@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import Trending from './homepageTrending';
-import SkeletonLoad from './homepageSkeletonLoad';
+import React, { useState, useEffect, useCallback } from 'react'
+import Trending from './homepageTrending'
+import SkeletonLoad from './homepageSkeletonLoad'
 
 export default function Homepage() {
-  const [data, setData] = useState(null);
-  const [dataIsReady, setDataIsReady] = useState(false);
+  const [data, setData] = useState(null)
+  const [dataIsReady, setDataIsReady] = useState(false)
   const [topVideogameCount] = useState([
     { id: 1, value: 0 },
     { id: 2, value: 1 },
@@ -16,22 +16,22 @@ export default function Homepage() {
     { id: 8, value: 7 },
     { id: 9, value: 8 },
     { id: 10, value: 9 }
-  ]);
+  ])
 
   const getRawgApi = useCallback(async () => {
     try {
-      const response = await fetch('/api/trending');
-      const json = await response.json();
-      setData(json);
-      setDataIsReady(true);
+      const response = await fetch('/api/trending')
+      const json = await response.json()
+      setData(json)
+      setDataIsReady(true)
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    getRawgApi();
-  }, [getRawgApi]);
+    getRawgApi()
+  }, [getRawgApi])
 
   return (
     <main className='bg-dark py-5'>
@@ -47,5 +47,5 @@ export default function Homepage() {
         </div>
       </article>
     </main>
-  );
+  )
 }

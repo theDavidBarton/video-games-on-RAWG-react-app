@@ -1,37 +1,37 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import SearchDropdownItem, { SearchDropdownItemNoResult } from './searchDropdownItem';
+import React, { useState, useEffect, Fragment } from 'react'
+import SearchDropdownItem, { SearchDropdownItemNoResult } from './searchDropdownItem'
 
 export default function Search() {
-  const [data, setData] = useState(null);
-  const [dataIsReady, setDataIsReady] = useState(false);
-  const [dropdownIsopened, setDropdownIsopened] = useState(false);
-  const [keyword, setKeyword] = useState('');
+  const [data, setData] = useState(null)
+  const [dataIsReady, setDataIsReady] = useState(false)
+  const [dropdownIsopened, setDropdownIsopened] = useState(false)
+  const [keyword, setKeyword] = useState('')
 
   useEffect(() => {
     async function getRawgApi() {
       if (keyword !== '') {
         try {
-          const response = await fetch(`/api/videogameAutocomplete?q=${keyword.toLowerCase()}`);
-          const json = await response.json();
-          setData(json);
-          setDataIsReady(true);
+          const response = await fetch(`/api/videogameAutocomplete?q=${keyword.toLowerCase()}`)
+          const json = await response.json()
+          setData(json)
+          setDataIsReady(true)
         } catch (e) {
-          console.error(e);
+          console.error(e)
         }
       }
     }
-    getRawgApi();
-  }, [keyword]);
+    getRawgApi()
+  }, [keyword])
 
   const setKeywordInInput = event => {
-    setKeyword(event.target.value);
-    setDropdownIsopened(true);
-  };
+    setKeyword(event.target.value)
+    setDropdownIsopened(true)
+  }
 
   const closeDropdown = () => {
-    setDropdownIsopened(false);
-    setKeyword('');
-  };
+    setDropdownIsopened(false)
+    setKeyword('')
+  }
 
   return (
     <Fragment>
@@ -68,5 +68,5 @@ export default function Search() {
         ) : null}
       </div>
     </Fragment>
-  );
+  )
 }

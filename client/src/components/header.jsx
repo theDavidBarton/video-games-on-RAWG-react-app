@@ -1,45 +1,45 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import Search from './search';
-import logo from './../img/logo-big.svg';
-import github from './../img/github.svg';
+import React, { useState, useEffect, useCallback } from 'react'
+import Search from './search'
+import logo from './../img/logo-big.svg'
+import github from './../img/github.svg'
 
 export default function Header() {
-  const [data, setData] = useState(null);
-  const [dataIsReady, setDataIsReady] = useState(false);
+  const [data, setData] = useState(null)
+  const [dataIsReady, setDataIsReady] = useState(false)
 
   const getRawgApi = useCallback(async () => {
     try {
-      const response = await fetch('/api/topRatedRecommended');
-      const json = await response.json();
-      setData(json);
-      setDataIsReady(true);
+      const response = await fetch('/api/topRatedRecommended')
+      const json = await response.json()
+      setData(json)
+      setDataIsReady(true)
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    getRawgApi();
-  }, [getRawgApi]);
+    getRawgApi()
+  }, [getRawgApi])
 
   const getBackground = () => {
-    const backgroundPath = data.background_image;
-    let background;
+    const backgroundPath = data.background_image
+    let background
     if (window.innerWidth > 1024) {
       background = backgroundPath.match(/media\/screenshots/)
         ? backgroundPath.replace('media/screenshots', 'media/resize/1280/-/screenshots')
-        : backgroundPath.replace('media/games', 'media/resize/1280/-/games');
+        : backgroundPath.replace('media/games', 'media/resize/1280/-/games')
     } else {
       background = backgroundPath.match(/media\/screenshots/)
         ? backgroundPath.replace('media/screenshots', 'media/resize/420/-/screenshots')
-        : backgroundPath.replace('media/games', 'media/resize/420/-/games');
+        : backgroundPath.replace('media/games', 'media/resize/420/-/games')
     }
-    return background;
-  };
+    return background
+  }
 
   const imagePlacement = dataIsReady
     ? 'linear-gradient(0deg, rgba(52,58,64,1) 0%, rgba(52,58,64,0) 100%), url(' + getBackground() + ')'
-    : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)';
+    : 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)'
 
   return (
     <nav
@@ -67,5 +67,5 @@ export default function Header() {
         </div>
       </header>
     </nav>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import logoDark from './../img/logo-big-dark.svg';
+import React from 'react'
+import logoDark from './../img/logo-big-dark.svg'
 
 export default function Footer() {
   return (
@@ -28,5 +28,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

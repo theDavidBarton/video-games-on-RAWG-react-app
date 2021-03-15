@@ -1,26 +1,26 @@
-import React, { Fragment, useState } from 'react';
-import Review from './videogameReview';
+import React, { Fragment, useState } from 'react'
+import Review from './videogameReview'
 
 export default function Reviews({ data }) {
-  const [reviewHeight, setReviewHeight] = useState('133px');
+  const [reviewHeight, setReviewHeight] = useState('133px')
 
   const unnecessaryReviewReadmore = () => {
-    let unnecessaryReviewReadmore;
+    let unnecessaryReviewReadmore
     if (data.reviews[0]) {
       data.reviews.length <= 1 && data.reviews[0].text.length < 445
         ? (unnecessaryReviewReadmore = true)
-        : (unnecessaryReviewReadmore = false);
+        : (unnecessaryReviewReadmore = false)
     }
-    return unnecessaryReviewReadmore;
-  };
+    return unnecessaryReviewReadmore
+  }
 
   const setReviewsHeightFn = () => {
-    setReviewHeight('auto');
-  };
+    setReviewHeight('auto')
+  }
 
   const setBackReviewsHeightFn = () => {
-    setReviewHeight('133px');
-  };
+    setReviewHeight('133px')
+  }
 
   return (
     <article id='reviews' className='col'>
@@ -52,5 +52,5 @@ export default function Reviews({ data }) {
         </Fragment>
       ) : null}
     </article>
-  );
+  )
 }
