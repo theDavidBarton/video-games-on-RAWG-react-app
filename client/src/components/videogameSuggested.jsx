@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import PlatformBadge from './videogamePlatformBadge'
+import React, { Fragment } from 'react';
+import PlatformBadge from './videogamePlatformBadge';
 
 export default function Suggested({ data }) {
-  const suggestedElement = data
+  const suggestedElement = data;
   return (
     <Fragment>
       {suggestedElement.background_image ? (
@@ -21,12 +21,12 @@ export default function Suggested({ data }) {
             {suggestedElement.name.length >= 30 ? suggestedElement.name.substring(0, 30) + '...' : suggestedElement.name}
           </h5>
           <div>
-            {suggestedElement.platforms.map((platformElement, i) => (
-              <PlatformBadge data={platformElement} key={i} />
-            ))}
+            {suggestedElement.platforms
+              ? suggestedElement.platforms.map((platformElement, i) => <PlatformBadge data={platformElement} key={i} />)
+              : null}
           </div>
         </a>
       ) : null}
     </Fragment>
-  )
+  );
 }

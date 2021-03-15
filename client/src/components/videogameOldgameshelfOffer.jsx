@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
 export default function OldgameshelfOffer({ oldgameshelfIdentifier }) {
-  const oldgameshelfUrl = `https://oldgameshelf.com/${oldgameshelfIdentifier}.html`
+  const oldgameshelfUrl = `https://oldgameshelf.com/${oldgameshelfIdentifier}.html`;
   return (
     <Fragment>
       <a href={oldgameshelfUrl} target='_blank' rel='noopener noreferrer'>
@@ -10,5 +10,5 @@ export default function OldgameshelfOffer({ oldgameshelfIdentifier }) {
         </div>
       </a>
     </Fragment>
-  )
+  );
 }
