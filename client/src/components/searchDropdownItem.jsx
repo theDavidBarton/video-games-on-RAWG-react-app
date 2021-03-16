@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
 export default function SearchDropdownItem({ result }) {
   return (
@@ -33,7 +33,7 @@ export default function SearchDropdownItem({ result }) {
         </li>
       </a>
     </Fragment>
-  )
+  );
 }
 
 export function SearchDropdownItemNoResult() {
@@ -41,5 +41,5 @@ export function SearchDropdownItemNoResult() {
     <li className='my-1 text-nowrap d-inline-block text-truncate result-list-width'>
       <span className='mx-1'>no results found...</span>
     </li>
-  )
+  );
 }

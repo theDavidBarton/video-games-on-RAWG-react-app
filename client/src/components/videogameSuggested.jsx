@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import PlatformBadge from './videogamePlatformBadge'
+import React, { Fragment } from 'react';
+import PlatformBadge from './videogamePlatformBadge';
 
 export default function Suggested({ data }) {
-  const suggestedElement = data
+  const suggestedElement = data;
   return (
     <Fragment>
       {suggestedElement.background_image ? (
@@ -28,5 +28,5 @@ export default function Suggested({ data }) {
         </a>
       ) : null}
     </Fragment>
-  )
+  );
 }

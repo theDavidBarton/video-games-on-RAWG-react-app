@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
 export default function ArchiveOffer({ archiveIdentifier }) {
-  const archiveUrl = `https://archive.org/details/${archiveIdentifier}`
+  const archiveUrl = `https://archive.org/details/${archiveIdentifier}`;
   return (
     <Fragment>
       <a href={archiveUrl} target='_blank' rel='noopener noreferrer'>
@@ -10,5 +10,5 @@ export default function ArchiveOffer({ archiveIdentifier }) {
         </div>
       </a>
     </Fragment>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import dompurify from 'dompurify'
+import React, { Fragment } from 'react';
+import dompurify from 'dompurify';
 
 export default function Review({ data }) {
-  const reviewElement = data
+  const reviewElement = data;
   return (
     <Fragment>
       <div>{'★'.repeat(reviewElement.rating) + '☆'.repeat(5 - reviewElement.rating)}</div>
@@ -11,5 +11,5 @@ export default function Review({ data }) {
       <small>{reviewElement.created ? reviewElement.created.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/) : 'n/a'}</small>
       <hr />
     </Fragment>
-  )
+  );
 }

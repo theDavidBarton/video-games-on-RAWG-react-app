@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 export default function OneyGallery({ data }) {
   const getVideos = () => {
-    const videoPath = data
-    return videoPath.map(videoElement => videoElement.external_id)
-  }
-  const videos = getVideos()
+    const videoPath = data;
+    return videoPath.map(videoElement => videoElement.external_id);
+  };
+  const videos = getVideos();
   return (
     <main className='container'>
       <div id='galleryOverlay' className='gallery-overlay-style position-fixed text-light align-items-center d-flex'>
@@ -20,5 +20,5 @@ export default function OneyGallery({ data }) {
         </section>
       </div>
     </main>
-  )
+  );
 }
