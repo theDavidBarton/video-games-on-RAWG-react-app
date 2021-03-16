@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
 export default function SnesnowOffer({ snesnowIdentifier }) {
-  const snesnowUrl = `https://snesnow.com/play/${snesnowIdentifier}.html`
+  const snesnowUrl = `https://snesnow.com/play/${snesnowIdentifier}.html`;
   return (
     <Fragment>
       <a href={snesnowUrl} target='_blank' rel='noopener noreferrer'>
@@ -10,5 +10,5 @@ export default function SnesnowOffer({ snesnowIdentifier }) {
         </div>
       </a>
     </Fragment>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Videogame from './videogame'
-import Page404 from './404'
-import CookieBar from './cookieBar'
-import Header from './header'
-import Footer from './footer'
-import Homepage from './homepage'
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Videogame from './videogame';
+import Page404 from './404';
+import CookieBar from './cookieBar';
+import Header from './header';
+import Footer from './footer';
+import Homepage from './homepage';
 
 export default function App() {
   return (
@@ -21,5 +21,5 @@ export default function App() {
       </BrowserRouter>
       <Footer />
     </div>
-  )
+  );
 }
