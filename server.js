@@ -120,7 +120,7 @@ const apiCall = async options => {
     const port = process.env.PORT || 5000;
 
     app.use(compression());
-    app.use(cors({ origin: 'https://retro-game-finder-frontend.onrender.com' }));
+    app.use(cors({ origin: 'https://trending-video-games-frontend.onrender.com' }));
 
     // providing a constant endpoint for trending videogames
     app.get('/api/trending', async (req, res) => {
