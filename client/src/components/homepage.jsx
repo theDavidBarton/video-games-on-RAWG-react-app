@@ -17,17 +17,18 @@ export default function Homepage() {
     { id: 9, value: 8 },
     { id: 10, value: 9 }
   ]);
+  const domain = process.env.NODE_ENV === 'production' ? 'https://trending-video-games-backend.onrender.com' : '';
 
   const getRawgApi = useCallback(async () => {
     try {
-      const response = await fetch('/api/trending');
+      const response = await fetch(`${domain}/api/trending`);
       const json = await response.json();
       setData(json);
       setDataIsReady(true);
     } catch (e) {
       console.error(e);
     }
-  }, []);
+  }, [domain]);
 
   useEffect(() => {
     getRawgApi();

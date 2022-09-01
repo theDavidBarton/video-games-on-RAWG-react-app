@@ -1,9 +1,9 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const request = require('request');
 const compression = require('compression');
-const path = require('path');
 const oneyPlays = require('oneyplays-api');
 const userAgent = { 'User-Agent': 'video-games-on-RAWG-react-app (GitHub)' };
 const rawgApiKey = process.env.RAWG_API_KEY;
@@ -120,14 +120,7 @@ const apiCall = async options => {
     const port = process.env.PORT || 5000;
 
     app.use(compression());
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    // required to serve SPA on heroku production without routing problems; it will skip only 'api' calls
-    if (process.env.NODE_ENV === 'production') {
-      app.get(/^((?!(api)).)*$/, (req, res) => {
-        res.set('Cache-Control', 'public, max-age=31536001');
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-      });
-    }
+    app.use(cors({ origin: 'https://retro-game-finder-frontend.onrender.com' }));
 
     // providing a constant endpoint for trending videogames
     app.get('/api/trending', async (req, res) => {

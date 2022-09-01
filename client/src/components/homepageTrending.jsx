@@ -2,16 +2,17 @@ import React, { useState, useEffect, Fragment, useCallback } from 'react';
 
 export default function Trending({ data, value }) {
   const [detailsData, setDetailsData] = useState(null);
+  const domain = process.env.NODE_ENV === 'production' ? 'https://trending-video-games-backend.onrender.com' : '';
 
   const getRawgApi = useCallback(async () => {
     try {
-      const response = await fetch(`/api/videogame/${data.results[value].id}`);
+      const response = await fetch(`${domain}/api/videogame/${data.results[value].id}`);
       const json = await response.json();
       setDetailsData(json);
     } catch (e) {
       console.error(e);
     }
-  }, [data, value]);
+  }, [data, value, domain]);
 
   useEffect(() => {
     getRawgApi();

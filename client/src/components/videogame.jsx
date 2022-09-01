@@ -19,18 +19,19 @@ export default function Videogame() {
   const [oldgameshelfOfferAvailable, setOldgameshelfOfferAvailable] = useState(false);
   const [snesnowIdentifier, setSnesnowIdentifier] = useState(null);
   const [snesnowOfferAvailable, setSnesnowOfferAvailable] = useState(false);
+  const domain = process.env.NODE_ENV === 'production' ? 'https://trending-video-games-backend.onrender.com' : '';
 
   const getRawgApi = useCallback(async () => {
     try {
       // _RAWG game details call
-      const response = await fetch(`/api/videogame/${id}`);
+      const response = await fetch(`${domain}/api/videogame/${id}`);
       const json = await response.json();
       setData(json);
       setDataIsReady(true);
     } catch (e) {
       console.error(e);
     }
-  }, [id]);
+  }, [id, domain]);
 
   useEffect(() => {
     getRawgApi();
@@ -51,7 +52,7 @@ export default function Videogame() {
         const yearValue = data.released ? data.released.match(/[0-9]{4}/) : null;
 
         if (yearValue) {
-          const response = await fetch(`/api/searchArchive?title=${titleValue}&year=${yearValue}`);
+          const response = await fetch(`${domain}/api/searchArchive?title=${titleValue}&year=${yearValue}`);
           const json = await response.json();
           const identifier = json.response.docs.length > 0 ? json.response.docs[0].identifier : null;
           if (identifier) {
@@ -71,7 +72,7 @@ export default function Videogame() {
           return null;
         });
         if (isNES.length > 0) {
-          const response = await fetch(`/api/searchOldgameshelf?title=${titleValue}`);
+          const response = await fetch(`${domain}/api/searchOldgameshelf?title=${titleValue}`);
           const json = await response.json();
           if (json[0] !== undefined) {
             setOldgameshelfIdentifier(`${json[0].slug}-${json[0].uid}`);
@@ -90,7 +91,7 @@ export default function Videogame() {
           return null;
         });
         if (isSNES.length > 0) {
-          const response = await fetch(`/api/searchSnesnow?title=${titleValue}`);
+          const response = await fetch(`${domain}/api/searchSnesnow?title=${titleValue}`);
           const json = await response.json();
           if (json[0] !== undefined) {
             setSnesnowIdentifier(`${json[0].slug}-${json[0].id}`);
@@ -101,7 +102,7 @@ export default function Videogame() {
         console.error(e);
       }
     }
-  }, [data, dataIsReady]);
+  }, [data, dataIsReady, domain]);
 
   useEffect(() => {
     getArchiveApi();
