@@ -3,10 +3,11 @@ import Suggested from './videogameSuggested';
 
 export default function SimilarVideogames({ data }) {
   const [suggestedElements, setSuggestedElements] = useState(null);
+  const domain = process.env.NODE_ENV === 'production' ? 'https://trending-video-games-backend.onrender.com' : '';
   useEffect(() => {
     async function getRawgApi() {
       try {
-        const response = await fetch(`/api/videogameAutocomplete?q=${data.name}`);
+        const response = await fetch(`${domain}/api/videogameAutocomplete?q=${data.name}`);
         const json = await response.json();
         setSuggestedElements(json);
       } catch (e) {
@@ -14,7 +15,7 @@ export default function SimilarVideogames({ data }) {
       }
     }
     getRawgApi();
-  }, [data]);
+  }, [data, domain]);
 
   return (
     <Fragment>

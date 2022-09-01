@@ -6,17 +6,18 @@ import github from './../img/github.svg';
 export default function Header() {
   const [data, setData] = useState(null);
   const [dataIsReady, setDataIsReady] = useState(false);
+  const domain = process.env.NODE_ENV === 'production' ? 'https://trending-video-games-backend.onrender.com' : '';
 
   const getRawgApi = useCallback(async () => {
     try {
-      const response = await fetch('/api/topRatedRecommended');
+      const response = await fetch(`${domain}/api/topRatedRecommended`);
       const json = await response.json();
       setData(json);
       setDataIsReady(true);
     } catch (e) {
       console.error(e);
     }
-  }, []);
+  }, [domain]);
 
   useEffect(() => {
     getRawgApi();

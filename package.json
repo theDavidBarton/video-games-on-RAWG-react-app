@@ -1,10 +1,11 @@
 {
   "name": "video-games-on-rawg-react-app-express-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "server.js",
   "license": "MIT",
   "dependencies": {
     "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "oneyplays-api": "^1.3.0",
     "request": "^2.88.0"
@@ -14,6 +15,6 @@
     "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "engines": {
-    "node": "12.x"
+    "node": "16.x"
   }
 }
