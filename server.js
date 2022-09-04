@@ -120,7 +120,13 @@ const apiCall = async options => {
     const port = process.env.PORT || 5000;
 
     app.use(compression());
-    app.use(cors({ origin: 'https://trending-video-games-frontend.onrender.com' }));
+    app.use(cors({ origin: ['https://trending-video-games-frontend.onrender.com', 'https://thedavidbarton.github.io/'] }));
+
+    // providing a constant endpoint for health checks
+    app.get('/health', async (req, res) => {
+      res.json({ status: 'OK' });
+      console.log(`/health endpoint has been called ${JSON.stringify(req.query)}!`);
+    });
 
     // providing a constant endpoint for trending videogames
     app.get('/api/trending', async (req, res) => {

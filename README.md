@@ -27,6 +27,7 @@ An experimental project with the **RAWG** api and **Archive.org's** search api.
 - `GET` **/api/searchArchive?title={query}&year={query}**; `?title=` (mandatory); `?year=` (mandatory) - searches in Archive.org's collection if an older game has an online playable version on their servers.
 - `GET` **/api/searchOldgameshelf?title={query}**; `?title=` (mandatory) - searches in OldGameShelf.com's collection if a NES game has an online playable version on their page.
 - `GET` **/api/searchSnesnow?title={query}**; `?title=` (mandatory) - searches in SnesNow.com's collection if a SNES game has an online playable version on their page.
+- `GET` **/health?from={origin_url}** - `?from=` (optional) - used for health checks and to wake up idling Node.Js backend on free hosting sites
 
 See in details: [server.js](./server.js).
 
