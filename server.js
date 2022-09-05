@@ -120,7 +120,7 @@ const apiCall = async options => {
     const port = process.env.PORT || 5000;
 
     app.use(compression());
-    app.use(cors({ origin: ['https://trending-video-games-frontend.onrender.com', 'https://thedavidbarton.github.io/'] }));
+    app.use(cors({ origin: ['https://trending-video-games-frontend.onrender.com', 'https://thedavidbarton.github.io'] }));
 
     // providing a constant endpoint for health checks
     app.get('/health', async (req, res) => {
